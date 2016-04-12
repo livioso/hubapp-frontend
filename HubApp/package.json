@@ -1,0 +1,27 @@
+{
+  "name": "HubApp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "lint": "eslint --config .eslintrc index.android.js index.ios.js App/ || true",
+    "lint-fix": "eslint --fix --config .eslintrc index.android.js index.ios.js App/"
+  },
+  "dependencies": {
+    "react": "^0.14.8",
+    "react-native": "^0.23.1",
+    "react-redux": "^4.4.2",
+    "redux": "^3.4.0",
+    "redux-saga": "^0.9.5",
+    "redux-thunk": "^2.0.1",
+    "remote-redux-devtools": "^0.1.5"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.0.2",
+    "eslint": "^2.7.0",
+    "eslint-config-airbnb": "^7.0.0",
+    "eslint-plugin-immutable": "^1.0.0",
+    "eslint-plugin-jsx-a11y": "^0.6.2",
+    "eslint-plugin-react": "^4.3.0"
+  }
+}
