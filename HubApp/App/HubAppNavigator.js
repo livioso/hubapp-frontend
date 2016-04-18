@@ -1,24 +1,11 @@
 import React from 'react';
+import MemberListContainer from './Containers/memberListContainer';
 import {
-  View,
-  PixelRatio
-} from 'react-native';
-
-export const Playground = () => {
-  return (
-    <NavigationAnimatedExample />
-  );
-};
-
-const ReactNative = require('react-native');
-
-const {
-  Animated,
   NavigationExperimental,
   StyleSheet,
-  ScrollView,
-} = ReactNative;
-
+  View,
+  Text,
+} from 'react-native';
 
 const {
   AnimatedView: NavigationAnimatedView,
@@ -28,28 +15,9 @@ const {
   RootContainer: NavigationRootContainer,
 } = NavigationExperimental;
 
-const NavigationBasicReducer = NavigationReducer.StackReducer({ // eslint-disable-line new-cap
-  getPushedReducerForAction: (action) => {
-    switch (action.type) {
-      case 'detail':
-        return (state) => state || { key: action.key, id: action.id };
-      case 'settings':
-        return (state) => state || { key: action.key };
-      default:
-        return null;
-    }
-  },
-  getReducerForState: (initialState) => (state) => state || initialState,
-  initialState: {
-    key: 'main',
-    index: 0,
-    children: [
-      { key: 'HubApp' },
-    ],
-  },
-});
-
-const NavigationAnimatedExample = () => {
+// our navigator responsible for
+// rendering the currently active scene
+export const HubAppNavigator = () => {
   return (
     <NavigationRootContainer
       reducer={NavigationBasicReducer}
@@ -67,20 +35,33 @@ const renderNavigation = (navigationState) => {
       navigationState={navigationState}
       style={styles.animatedView}
       renderOverlay={renderHeader}
-      renderScene={renderCard}
-      applyAnimation={(pos, navState) => {
-        Animated.timing(pos, { toValue: navState.index, duration: 200 }).start();
-      }}
-    />
+      renderScene={renderCard} />
   );
 };
+
+const NavigationBasicReducer = NavigationReducer.StackReducer({ // eslint-disable-line new-cap
+  getPushedReducerForAction: (action) => {
+    if (action.type === 'detail') {
+      return (state) => state || { key: action.key, id: action.id };
+    }
+    if (action.type === 'settings') {
+      return (state) => state || { key: action.key };
+    }
+    return null;
+  },
+  getReducerForState: (initialState) => (state) => state || initialState,
+  initialState: {
+    index: 0,
+    key: 'main',
+    children: [{ key: 'HubApp' }]
+  },
+});
 
 const renderHeader = (props) => {
   return (
     <NavigationHeader
       navigationProps={props}
-      renderTitleComponent={renderTitleComponent}
-    />
+      renderTitleComponent={renderTitleComponent} />
   );
 };
 
@@ -97,115 +78,50 @@ const renderCard = (props) => {
     <NavigationCard
       key={`key_${props.scene.navigationState.key}`}
       renderScene={renderScene}
-      {...props}
-    />
+      {...props} />
   );
 };
 
 const renderScene = (props) => {
-  switch (props.scene.navigationState.key) {
-    case 'detail':
-      return (
-        <View style={{flex: 1, backgroundColor: 'red', marginTop: NavigationHeader.HEIGHT}}>
-          <Text style={{textAlign: 'center'}}>
-            {props.scene.navigationState.id}
-          </Text>
-        </View>);
-    case 'settings':
-      return (
-        <View style={{flex: 1, backgroundColor: 'blue'}}/>)
-    default:
-    return (
-      <ScrollView style={styles.scrollView}>
-        <NavigationExampleRow
-          text={props.scene.navigationState.key}
-        />
-        <NavigationExampleRow
-          text="Detail 1"
-          onPress={() => {
-            props.onNavigate({
-              type: 'detail',
-              key: 'detail',
-              id: 1
-            });
-          }}
-        />
-        <NavigationExampleRow
-          text="Detail 2"
-          onPress={() => {
-            props.onNavigate({
-              type: 'detail',
-              key: 'detail',
-              id: 2
-            });
-          }}
-        />
-        <NavigationExampleRow
-          text="Detail 3"
-          onPress={() => {
-            props.onNavigate({
-              type: 'detail',
-              key: 'detail',
-              id: 3
-            });
-          }}
-        />
-        <NavigationExampleRow
-          text="Settings"
-          onPress={() => {
-            props.onNavigate({
-              type: 'settings',
-              key: 'settings',
-            });
-          }}
-        />
-      </ScrollView>
-  );
-  }
-};
+  const scene = props.scene.navigationState.key;
 
-var {
-  Text,
-  TouchableHighlight,
-} = ReactNative;
-
-var NavigationExampleRow = React.createClass({
-  render: function() {
-    if (this.props.onPress) {
-      return (
-        <TouchableHighlight
-          style={styles.row}
-          underlayColor="#D0D0D0"
-          onPress={this.props.onPress}>
-          <Text style={styles.buttonText}>
-            {this.props.text}
-          </Text>
-        </TouchableHighlight>
-      );
-    }
+  if (scene === 'detail') {
     return (
-      <View style={styles.row}>
-        <Text style={styles.rowText}>
-          {this.props.text}
+      <View style={styles.sceneContainer}>
+        <Text style={{ textAlign: 'center' }}>
+          {props.scene.navigationState.id}
         </Text>
       </View>
     );
-  },
-});
+  }
+
+  if (scene === 'settings') {
+    return (
+      <View style={styles.sceneContainer} />
+    );
+  }
+
+  // initial view
+  return (
+    <View style={styles.sceneContainer}>
+      <MemberListContainer />
+    </View>
+  );
+};
+
+const scenePropType = {
+  scene: React.PropTypes.object.isRequired
+};
+
+// all these render function use props.scene!
+renderScene.propTypes = scenePropType; // eslint-disable-line immutable/no-mutation
+renderTitleComponent.propTypes = scenePropType; // eslint-disable-line immutable/no-mutation
+renderCard.propTypes = scenePropType; // eslint-disable-line immutable/no-mutation
 
 const styles = StyleSheet.create({
-  row: {
-    padding: 15,
-    backgroundColor: 'white',
-    borderBottomWidth: 1 / PixelRatio.get(),
-    borderBottomColor: '#CDCDCD',
-  },
-  rowText: {
-    fontSize: 17,
-  },
-  buttonText: {
-    fontSize: 17,
-    fontWeight: '500',
+  sceneContainer: {
+    marginTop: NavigationHeader.HEIGHT,
+    flex: 1,
   },
   animatedView: {
     flex: 1,
@@ -214,4 +130,3 @@ const styles = StyleSheet.create({
     marginTop: NavigationHeader.HEIGHT,
   },
 });
-
