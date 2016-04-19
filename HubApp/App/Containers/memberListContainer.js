@@ -12,10 +12,6 @@ export default class MemberListContainer extends Component {
     actions: React.PropTypes.object.isRequired
   };
 
-  componentWillMount() {
-    this.props.actions.requestMemberList();
-  }
-
   render() {
     return (
       <MemberList members={this.props.state.memberList} />
@@ -42,4 +38,3 @@ export default connect(
   }
 
 )(MemberListContainer);
-
