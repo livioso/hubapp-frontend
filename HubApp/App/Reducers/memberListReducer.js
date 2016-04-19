@@ -1,23 +1,22 @@
 const initialState = {
-  memberList: [
-    {
-      lastName: 'Blatter',
-      firstName: 'Sepp',
-      picture: 'https://randomuser.me/api/portraits/med/men/80.jpg'
-    },
-    {
-      lastName: 'Bieri',
-      firstName: 'Livio',
-      picture: 'https://randomuser.me/api/portraits/med/men/80.jpg'
-    },
-    {
-      lastName: 'Brunner',
-      firstName: 'Raphi',
-      picture: 'https://randomuser.me/api/portraits/med/men/80.jpg'
-    },
-  ]
+  memberList: [],
+  loading: true
 };
 
-export default function memberList(state = initialState, action) {
-  return state;
-}
+export const memberList = (state = initialState, action) => {
+  switch (action.type) {
+    case 'REQUEST_MEMBERLIST':
+      return {
+        ...state,
+        loading: true
+      };
+    case 'RECEIVE_MEMBERLIST':
+      return {
+        ...state,
+        memberList: action.memberList,
+        loading: false
+      };
+    default:
+      return state;
+  }
+};

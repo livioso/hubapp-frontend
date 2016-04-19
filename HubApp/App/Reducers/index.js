@@ -1,5 +1,5 @@
-import memberList from './memberListReducer';
+import { memberList } from './memberListReducer';
 
 export {
-	memberList
+  memberList
 };

@@ -3,12 +3,18 @@ import { Component } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { MemberList } from '../Components/memberList';
+import * as memberListActions from '../Actions/memberListActions';
 
 export default class MemberListContainer extends Component {
 
   static propTypes = {
-    state: React.PropTypes.object.isRequired
+    state: React.PropTypes.object.isRequired,
+    actions: React.PropTypes.object.isRequired
   };
+
+  componentWillMount() {
+    this.props.actions.requestMemberList();
+  }
 
   render() {
     return (
@@ -31,7 +37,7 @@ export default connect(
   // it want to receive by props?
   (dispatch) => {
     return {
-      actions: bindActionCreators({}, dispatch)
+      actions: bindActionCreators(memberListActions, dispatch)
     };
   }
 
