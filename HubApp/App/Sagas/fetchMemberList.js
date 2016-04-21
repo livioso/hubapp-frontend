@@ -1,13 +1,14 @@
 import { takeLatest } from 'redux-saga';
-import { put } from 'redux-saga/effects';
+import { put, call } from 'redux-saga/effects';
 import { receiveMemberList } from '../Actions/memberListActions';
+import { apiFetchMemberList } from '../Services/api';
 
 export function* fetchMemberList() {
   try {
-    const memberList = [];
+    const memberList = yield call(apiFetchMemberList);
     yield put(receiveMemberList(memberList));
   } catch (error) {
-    // 🍠
+    alert(error); // 💩
   }
 }
 

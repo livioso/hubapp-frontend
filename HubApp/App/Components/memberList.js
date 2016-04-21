@@ -24,7 +24,7 @@ const renderMemberRow = (member) => {
     <TouchableOpacity onPress={onPressMemberRow}>
       <View style={styles.memberRowContainer}>
         <Image source={{ uri: member.picture }} style={{ width: 60, height: 60, borderRadius: 30 }} />
-        <Text>{`${member.firstName} ${member.lastName}`}</Text>
+        <Text>{`${member.prename} ${member.lastname}`}</Text>
       </View>
     </TouchableOpacity>
   );
