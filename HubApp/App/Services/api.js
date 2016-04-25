@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === 'production') {
   host = 'http://localhost:8080';
 }
 
-const apiRoot = '/api';
+const apiRoot = '';
 const apiMembers = '/members';
 
 // Fetches an API response and normalizes the result JSON according to schema.
