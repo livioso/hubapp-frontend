@@ -41,10 +41,10 @@ const renderNavigation = (navigationState) => {
 
 const NavigationBasicReducer = NavigationReducer.StackReducer({ // eslint-disable-line new-cap
   getPushedReducerForAction: (action) => {
-    if (action.type === 'detail') {
+    if (action.key === 'Detail') {
       return (state) => state || { key: action.key, id: action.id };
     }
-    if (action.type === 'settings') {
+    if (action.key === 'settings') {
       return (state) => state || { key: action.key };
     }
     return null;
@@ -83,9 +83,10 @@ const renderCard = (props) => {
 };
 
 const renderScene = (props) => {
-  const scene = props.scene.navigationState.key;
+  const { navigationState } = props.scene;
 
-  if (scene === 'detail') {
+  // segue to detail page from list view
+  if (navigationState.key === 'Detail') {
     return (
       <View style={styles.sceneContainer}>
         <Text style={{ textAlign: 'center' }}>
@@ -95,16 +96,21 @@ const renderScene = (props) => {
     );
   }
 
-  if (scene === 'settings') {
+  if (navigationState.key === 'Settings') {
     return (
       <View style={styles.sceneContainer} />
     );
   }
 
-  // initial view
+  // initial view => list of members ;)
   return (
     <View style={styles.sceneContainer}>
-      <MemberListContainer />
+      <MemberListContainer onPressDetail={(memberId) => {
+        props.onNavigate({
+          key: 'Detail',
+          id: memberId
+        });
+      }} />
     </View>
   );
 };
