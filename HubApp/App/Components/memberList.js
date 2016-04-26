@@ -1,4 +1,5 @@
-import React, {
+import React from 'react';
+import {
   ListView,
   TouchableOpacity,
   StyleSheet,
@@ -22,10 +23,10 @@ export const MemberList = ({ members, onPressDetail }) => {
 
 const renderMemberRow = (member, onPressDetail) => {
   return (
-    <TouchableOpacity onPress={() => onPressDetail(1)}>
+    <TouchableOpacity onPress={() => onPressDetail(member)}>
       <View style={styles.memberRowContainer}>
         <Image source={{ uri: member.picture }}
-          style={{ width: 60, height: 60, borderRadius: 30 }} />
+          style={styles.profilePicture} />
         <Text>{`${member.prename} ${member.lastname}`}</Text>
       </View>
     </TouchableOpacity>
@@ -48,5 +49,10 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingLeft: 10,
     paddingRight: 10
+  },
+  profilePicture: {
+    width: 60,
+    height: 60,
+    borderRadius: 30
   }
 });

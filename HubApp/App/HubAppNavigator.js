@@ -1,11 +1,13 @@
 import React from 'react';
-import MemberListContainer from './Containers/memberListContainer';
 import {
   NavigationExperimental,
   StyleSheet,
-  View,
-  Text,
+  View
 } from 'react-native';
+
+import MemberListContainer from './Containers/memberListContainer';
+import { MemberDetails } from './Components/memberDetails';
+import { color } from './Styles/color'
 
 const {
   AnimatedView: NavigationAnimatedView,
@@ -42,7 +44,7 @@ const renderNavigation = (navigationState) => {
 const NavigationBasicReducer = NavigationReducer.StackReducer({ // eslint-disable-line new-cap
   getPushedReducerForAction: (action) => {
     if (action.key === 'Detail') {
-      return (state) => state || { key: action.key, id: action.id };
+      return (state) => state || { key: action.key, member: action.member };
     }
     if (action.key === 'settings') {
       return (state) => state || { key: action.key };
@@ -84,14 +86,12 @@ const renderCard = (props) => {
 
 const renderScene = (props) => {
   const { navigationState } = props.scene;
-
   // segue to detail page from list view
   if (navigationState.key === 'Detail') {
     return (
       <View style={styles.sceneContainer}>
-        <Text style={{ textAlign: 'center' }}>
-          {props.scene.navigationState.id}
-        </Text>
+        <MemberDetails {...props}
+          member={navigationState.member} />
       </View>
     );
   }
@@ -105,10 +105,10 @@ const renderScene = (props) => {
   // initial view => list of members ;)
   return (
     <View style={styles.sceneContainer}>
-      <MemberListContainer onPressDetail={(memberId) => {
+      <MemberListContainer onPressDetail={(member) => {
         props.onNavigate({
           key: 'Detail',
-          id: memberId
+          member
         });
       }} />
     </View>
@@ -127,12 +127,10 @@ renderCard.propTypes = scenePropType; // eslint-disable-line immutable/no-mutati
 const styles = StyleSheet.create({
   sceneContainer: {
     marginTop: NavigationHeader.HEIGHT,
+    backgroundColor: color.red,
     flex: 1,
   },
   animatedView: {
     flex: 1,
-  },
-  scrollView: {
-    marginTop: NavigationHeader.HEIGHT,
-  },
+  }
 });

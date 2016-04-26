@@ -16,6 +16,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSURL *jsCodeLocation;
+	
+	NSLog (@"Font families: %@", [UIFont familyNames]);
 
   /**
    * Loading JavaScript code - uncomment the one you want.

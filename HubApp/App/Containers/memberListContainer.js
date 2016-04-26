@@ -1,6 +1,6 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { MemberList } from '../Components/memberList';
 import * as memberListActions from '../Actions/memberListActions';
 
