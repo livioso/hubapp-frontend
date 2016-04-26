@@ -12,7 +12,6 @@ export const font = StyleSheet.create({
   text: {
     fontSize: normalize(15),
     lineHeight: normalize(23),
-    color: 'white',
     fontWeight: 'normal',
     letterSpacing: -1,
     fontFamily: 'OpenSans'

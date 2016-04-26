@@ -7,7 +7,7 @@ import {
 
 import MemberListContainer from './Containers/memberListContainer';
 import { MemberDetails } from './Components/memberDetails';
-import { color } from './Styles/color'
+import { color } from './Styles/color';
 
 const {
   AnimatedView: NavigationAnimatedView,
@@ -63,6 +63,7 @@ const renderHeader = (props) => {
   return (
     <NavigationHeader
       navigationProps={props}
+      style={{ backgroundColor: color.red }}
       renderTitleComponent={renderTitleComponent} />
   );
 };
@@ -127,7 +128,7 @@ renderCard.propTypes = scenePropType; // eslint-disable-line immutable/no-mutati
 const styles = StyleSheet.create({
   sceneContainer: {
     marginTop: NavigationHeader.HEIGHT,
-    backgroundColor: color.red,
+    backgroundColor: 'white',
     flex: 1,
   },
   animatedView: {
