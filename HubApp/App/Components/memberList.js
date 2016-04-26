@@ -27,7 +27,7 @@ const renderMemberRow = (member, onPressDetail) => {
       <View style={styles.memberRowContainer}>
         <Image source={{ uri: member.picture }}
           style={styles.profilePicture} />
-        <Text>{`${member.prename} ${member.lastname}`}</Text>
+        <Text>{`${member.firstname} ${member.lastname}`}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
     paddingRight: 10
   },
   profilePicture: {
+    borderRadius: 30,
     width: 60,
-    height: 60,
-    borderRadius: 30
+    height: 60
   }
 });
