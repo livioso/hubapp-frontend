@@ -62,7 +62,7 @@ const NavigationBasicReducer = NavigationReducer.StackReducer({ // eslint-disabl
 const renderHeader = (props) => {
   return (
     <NavigationHeader
-      navigationProps={props}
+      {...props}
       style={{ backgroundColor: color.red }}
       renderTitleComponent={renderTitleComponent} />
   );
