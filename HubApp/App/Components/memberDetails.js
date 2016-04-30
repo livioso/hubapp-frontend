@@ -15,6 +15,9 @@ export const MemberDetails = ({ member }) => {
       <Image style={ styles.image } source={{ uri: member.picture }} />
       <Text>{`${member.firstname} ${member.lastname}`}</Text>
       <Text>{member.shortDescription}</Text>
+      <View style={{ borderRadius: 20, backgroundColor: color.red }}>
+        <Text style={{ color: 'white' }}>Programming</Text>
+      </View>
     </View>
   );
 };

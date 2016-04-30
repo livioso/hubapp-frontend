@@ -1,3 +1,4 @@
+// @flow weak
 import { fork } from 'redux-saga/effects';
 import { startup } from './startup';
 import { watchRequestMemberList } from './fetchMemberList';
