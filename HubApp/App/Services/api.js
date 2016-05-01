@@ -6,7 +6,7 @@ let host = ''; // eslint-disable-line immutable/no-let
 if (process.env.NODE_ENV === 'production') {
   host = '_not_yet_done_';
 } else {
-  host = 'http://localhost:8080';
+  host = 'http://Tateyama.local:8080';
 }
 
 const apiRoot = '/api';

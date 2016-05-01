@@ -22,10 +22,10 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		BA1143AE1CCF933C00F62DCD /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA1143AA1CCF908700F62DCD /* OpenSans-Bold.ttf */; };
-		BA1143AF1CCF933E00F62DCD /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA1143AB1CCF908700F62DCD /* OpenSans-ExtraBold.ttf */; };
-		BA1143B01CCF934100F62DCD /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA1143AC1CCF908700F62DCD /* OpenSans-Light.ttf */; };
-		BA1143B11CCF934400F62DCD /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA1143AD1CCF908700F62DCD /* OpenSans-Regular.ttf */; };
+		BAFBDE361CD6104A00FCD906 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BAFBDE321CD6104A00FCD906 /* OpenSans-Bold.ttf */; };
+		BAFBDE371CD6104A00FCD906 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BAFBDE331CD6104A00FCD906 /* OpenSans-ExtraBold.ttf */; };
+		BAFBDE381CD6104A00FCD906 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BAFBDE341CD6104A00FCD906 /* OpenSans-Light.ttf */; };
+		BAFBDE391CD6104A00FCD906 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BAFBDE351CD6104A00FCD906 /* OpenSans-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,10 +130,10 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		BA1143AA1CCF908700F62DCD /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Bold.ttf"; path = "../../../../../../../Downloads/open-sans/OpenSans-Bold.ttf"; sourceTree = "<group>"; };
-		BA1143AB1CCF908700F62DCD /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-ExtraBold.ttf"; path = "../../../../../../../Downloads/open-sans/OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
-		BA1143AC1CCF908700F62DCD /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Light.ttf"; path = "../../../../../../../Downloads/open-sans/OpenSans-Light.ttf"; sourceTree = "<group>"; };
-		BA1143AD1CCF908700F62DCD /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Regular.ttf"; path = "../../../../../../../Downloads/open-sans/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		BAFBDE321CD6104A00FCD906 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Bold.ttf"; path = "HubApp/Fonts/OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		BAFBDE331CD6104A00FCD906 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-ExtraBold.ttf"; path = "HubApp/Fonts/OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		BAFBDE341CD6104A00FCD906 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Light.ttf"; path = "HubApp/Fonts/OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		BAFBDE351CD6104A00FCD906 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Regular.ttf"; path = "HubApp/Fonts/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,10 +317,10 @@
 		BA11439F1CCF903800F62DCD /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				BA1143AA1CCF908700F62DCD /* OpenSans-Bold.ttf */,
-				BA1143AB1CCF908700F62DCD /* OpenSans-ExtraBold.ttf */,
-				BA1143AC1CCF908700F62DCD /* OpenSans-Light.ttf */,
-				BA1143AD1CCF908700F62DCD /* OpenSans-Regular.ttf */,
+				BAFBDE321CD6104A00FCD906 /* OpenSans-Bold.ttf */,
+				BAFBDE331CD6104A00FCD906 /* OpenSans-ExtraBold.ttf */,
+				BAFBDE341CD6104A00FCD906 /* OpenSans-Light.ttf */,
+				BAFBDE351CD6104A00FCD906 /* OpenSans-Regular.ttf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -527,10 +527,10 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				BA1143AE1CCF933C00F62DCD /* OpenSans-Bold.ttf in Resources */,
-				BA1143B01CCF934100F62DCD /* OpenSans-Light.ttf in Resources */,
-				BA1143B11CCF934400F62DCD /* OpenSans-Regular.ttf in Resources */,
-				BA1143AF1CCF933E00F62DCD /* OpenSans-ExtraBold.ttf in Resources */,
+				BAFBDE361CD6104A00FCD906 /* OpenSans-Bold.ttf in Resources */,
+				BAFBDE381CD6104A00FCD906 /* OpenSans-Light.ttf in Resources */,
+				BAFBDE391CD6104A00FCD906 /* OpenSans-Regular.ttf in Resources */,
+				BAFBDE371CD6104A00FCD906 /* OpenSans-ExtraBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,7 +550,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
-			showEnvVarsInLog = 1;
 		};
 /* End PBXShellScriptBuildPhase section */
 
