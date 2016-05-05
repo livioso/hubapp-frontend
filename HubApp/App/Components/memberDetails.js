@@ -11,13 +11,10 @@ import { color } from '../Styles/color';
 
 export const MemberDetails = ({ member }) => {
   return (
-    <View style={ [styles.container, { backgroundColor: color.blue }] }>
+    <View style={ [styles.container, { backgroundColor: color.light }] }>
       <Image style={ styles.image } source={{ uri: member.picture }} />
       <Text>{`${member.firstname} ${member.lastname}`}</Text>
       <Text>{member.shortDescription}</Text>
-      <View style={{ borderRadius: 20, backgroundColor: color.red }}>
-        <Text style={{ color: 'white' }}>Programming</Text>
-      </View>
     </View>
   );
 };
