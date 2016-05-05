@@ -1,15 +1,16 @@
-import React from 'react-native';
+import React from 'react';
+import ReactNative from 'react-native';
 import { font } from './font';
 
 export const Text = ({ style, ...props }) => {
   return (
-    <React.Text style={[font.text, style]} {...props} />
+    <ReactNative.Text style={[font.text, style]} {...props} />
   );
 };
 
 export const HeaderText = ({ style, ...props }) => {
   return (
-    <React.Text style={[font.h1, style]} {...props} />
+    <ReactNative.Text style={[font.h1, style]} {...props} />
   );
 };
 

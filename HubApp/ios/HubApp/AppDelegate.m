@@ -16,8 +16,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSURL *jsCodeLocation;
-	
-	NSLog (@"Font families: %@", [UIFont familyNames]);
 
   /**
    * Loading JavaScript code - uncomment the one you want.
@@ -32,8 +30,10 @@
    * `inet` value under `en0:`) and make sure your computer and iOS device are
    * on the same Wi-Fi network.
    */
+	
+	NSLog (@"Font families: %@", [UIFont familyNames]);
 
-  jsCodeLocation = [NSURL URLWithString:@"http://Tateyama.local:8081/index.ios.bundle?platform=ios&dev=true"];
+  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=true"];
 
   /**
    * OPTION 2
