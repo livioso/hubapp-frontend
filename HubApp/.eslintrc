@@ -4,6 +4,9 @@
   "plugins": [
     "immutable"
   ],
+  "env": {
+    "mocha": true
+  },
   "rules": {
     "comma-dangle": 0,
     "complexity": [2, 5],

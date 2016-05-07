@@ -1,4 +1,6 @@
-describe('This test should run when we do npm test', () => {
+import expect from 'expect';
+
+describe('Walking Skeleton Test', () => {
   it('should run and not crash', () => {
     expect(true).toBe(true);
   });
