@@ -25,7 +25,6 @@ describe('Memberlist Reducer', () => {
     });
   });
 
-
   const expectedMemberList = [
     { lastName: 'Brunner', firstName: 'Raphi' },
     { lastName: 'Blatter', firstName: 'Sepp' },

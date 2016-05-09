@@ -1,6 +1,10 @@
 import expect from 'expect';
-import { memberList } from '../App/Reducers/memberListReducer';
-import { requestMemberList, receiveMemberList } from '../App/Actions/memberListActions';
+import {
+  requestMemberList,
+  receiveMemberList,
+  REQUEST_MEMBERLIST,
+  RECEIVE_MEMBERLIST
+} from '../App/Actions/memberListActions';
 
 describe('Memberlist Actions', () => {
 
@@ -8,8 +12,22 @@ describe('Memberlist Actions', () => {
     expect(
       requestMemberList()
     ).toEqual({
-      type: 'REQUEST'
+      type: REQUEST_MEMBERLIST
     });
   });
 
+  const expectedMemberList = [
+    { lastName: 'Brunner', firstName: 'Raphi' },
+    { lastName: 'Blatter', firstName: 'Sepp' },
+    { lastName: 'Bieri', firstName: 'Livio' }
+  ];
+
+  it('should create an action to receive the memberlist', () => {
+    expect(
+      receiveMemberList(expectedMemberList)
+    ).toEqual({
+      type: RECEIVE_MEMBERLIST,
+      memberList: expectedMemberList
+    });
+  });
 });
