@@ -1,12 +1,15 @@
 import React from 'react';
 import {
   NavigationExperimental,
+  TouchableOpacity,
   StyleSheet,
-  View
+  View,
+  Text
 } from 'react-native';
 
 import MemberListContainer from './Containers/memberListContainer';
 import { MemberDetails } from './Components/memberDetails';
+import { MemberListFilter } from './Components/memberListFilter';
 import { color } from './Styles/color';
 
 const {
@@ -64,7 +67,10 @@ const renderHeader = (props) => {
     <NavigationHeader
       {...props}
       style={{ backgroundColor: color.red }}
-      renderTitleComponent={renderTitleComponent} />
+      renderTitleComponent={renderTitleComponent}
+      renderRightComponent={() => {
+        return props.scene.navigationState.key === 'Detail' ? null : renderRightComponent()
+      }}/>
   );
 };
 
@@ -73,6 +79,14 @@ const renderTitleComponent = (props) => {
     <NavigationHeader.Title>
       { props.scene.navigationState.key }
     </NavigationHeader.Title>
+  );
+};
+
+const renderRightComponent = (props) => {
+  return (
+    <TouchableOpacity onPress={() => {}}>
+      <Text>Filter</Text>
+    </TouchableOpacity>
   );
 };
 
