@@ -8,9 +8,11 @@ export default connect(
   // which part of the Redux global state does
   // our component want to receive as props?
   (state) => {
+    const { members, filter } = state.memberList;
     return {
-      members: state.memberList.members
-    };
+      members: getMembersFiltered(members, filter),
+      filter
+    }
   },
 
   // which action creators does
@@ -23,3 +25,15 @@ export default connect(
   }
 
 )(MemberList);
+
+const getMembersFiltered = (members, filter) => {
+  if (filter.length === 0) {
+    return members;
+  }
+
+  // we need to filter 😑
+  return members.filter((member) => {
+    const skills = member.skillList.map(skill => skill.name);
+    return filter.every(skill => skills.includes(skill));
+  });
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import {
   ListView,
   TouchableOpacity,
+  LayoutAnimation,
   StyleSheet,
   TextInput,
   Image,
@@ -11,17 +12,12 @@ import {
 import { Text } from '../Styles/text';
 import { color } from '../Styles/color';
 
-export const MemberList = ({ members, onPressDetail, onClearFilter }) => {
+export const MemberList = ({ members, filter, onPressDetail, onClearFilter }) => {
   const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
   const dataSource = ds.cloneWithRows(members);
   return (
     <View style={styles.list}>
-      <View style={{ backgroundColor: color.red, height: 25, flexDirection: 'row', justifyContent: 'space-between'}}>
-        <Text style={{ color: color.light, marginLeft: 5 }}>JavaScript, Webdevelopment</Text>
-        <TouchableOpacity onPress={onClearFilter}>
-          <Text style={{ color: color.light, marginRight: 5 }}>Reset</Text>
-        </TouchableOpacity>
-      </View>
+      { renderActiveFilter(filter, onClearFilter) }
       <ListView
         enableEmptySections
         renderRow={(member) => renderMemberRow(member, onPressDetail)}
@@ -29,6 +25,22 @@ export const MemberList = ({ members, onPressDetail, onClearFilter }) => {
     </View>
   );
 };
+
+const renderActiveFilter = (filter, onClearFilter) => {
+  LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+  if (filter.length === 0) {
+    return null;
+  }
+
+  return (
+    <View style={{ backgroundColor: color.red, height: 25, flexDirection: 'row', justifyContent: 'space-between'}}>
+      <Text style={{ color: color.light, marginLeft: 5 }}>{filter.join()}</Text>
+      <TouchableOpacity onPress={onClearFilter}>
+        <Text style={{ color: color.light, marginRight: 5 }}>Reset</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
 
 const renderMemberRow = (member, onPressDetail) => {
   return (
@@ -55,6 +67,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    backgroundColor: color.light,
     paddingTop: 10,
     paddingLeft: 10,
     paddingRight: 10

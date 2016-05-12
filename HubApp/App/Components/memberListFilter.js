@@ -22,7 +22,7 @@ export const MemberListFilter = ({ onApplyFilter, ...props }) => {
           topic={'JavaScript'}
           color={color.red}
           isChecked={false}
-          onToggle={() => {onApplyFilter(['Beat'])}} />
+          onToggle={() => {onApplyFilter(['JavaScript'])}} />
       </View>
       <CoolButton caption={'Apply Filters'} onPress={() => props.onNavigate({type: 'BackAction'})}/>
     </Animated.View>
