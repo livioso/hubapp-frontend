@@ -1,6 +1,11 @@
 import expect from 'expect';
 import { memberList } from '../App/Reducers/memberListReducer';
-import { requestMemberList, receiveMemberList } from '../App/Actions/memberListActions';
+import {
+  requestMemberList,
+  receiveMemberList,
+  applyFilter,
+  clearFilter
+} from '../App/Actions/memberListActions';
 
 describe('Memberlist Reducer', () => {
 
@@ -8,8 +13,9 @@ describe('Memberlist Reducer', () => {
     expect(
       memberList(undefined, {})
     ).toEqual({
-      memberList: [],
-      loading: true
+      members: [],
+      loading: true,
+      filter: []
     });
   });
 
@@ -17,11 +23,11 @@ describe('Memberlist Reducer', () => {
     expect(
       memberList({
         loading: false,
-        memberList: []
+        members: [],
       }, requestMemberList())
     ).toEqual({
-      memberList: [],
-      loading: true
+      members: [],
+      loading: true,
     });
   });
 
@@ -35,12 +41,32 @@ describe('Memberlist Reducer', () => {
     expect(
       memberList({
         loading: true,
-        memberList: []
+        members: [],
       }, receiveMemberList(expectedMemberList))
     ).toEqual({
-      memberList: expectedMemberList,
-      loading: false
+      members: expectedMemberList,
+      loading: false,
     });
   });
 
+  const expectedFilter = ['ReactNative', 'React'];
+  it('should handle applyFilter', () => {
+    expect(
+      memberList({
+        filter: ['SomeFilter']
+      }, applyFilter(expectedFilter))
+    ).toEqual({
+      filter: expectedFilter
+    });
+  });
+
+  it('should handle clearFilter', () => {
+    expect(
+      memberList({
+        filter: ['SomeFilter']
+      }, clearFilter())
+    ).toEqual({
+      filter: []
+    });
+  });
 });

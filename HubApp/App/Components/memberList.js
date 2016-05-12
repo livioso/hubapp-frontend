@@ -3,17 +3,25 @@ import {
   ListView,
   TouchableOpacity,
   StyleSheet,
+  TextInput,
   Image,
   View
 } from 'react-native';
 
 import { Text } from '../Styles/text';
+import { color } from '../Styles/color';
 
-export const MemberList = ({ members, onPressDetail }) => {
+export const MemberList = ({ members, onPressDetail, onClearFilter }) => {
   const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
   const dataSource = ds.cloneWithRows(members);
   return (
     <View style={styles.list}>
+      <View style={{ backgroundColor: color.red, height: 25, flexDirection: 'row', justifyContent: 'space-between'}}>
+        <Text style={{ color: color.light, marginLeft: 5 }}>JavaScript, Webdevelopment</Text>
+        <TouchableOpacity onPress={onClearFilter}>
+          <Text style={{ color: color.light, marginRight: 5 }}>Reset</Text>
+        </TouchableOpacity>
+      </View>
       <ListView
         enableEmptySections
         renderRow={(member) => renderMemberRow(member, onPressDetail)}

@@ -1,20 +1,32 @@
+import {
+  REQUEST_MEMBERLIST,
+  RECEIVE_MEMBERLIST,
+  APPLY_FILTER
+} from '../Actions/memberListActions';
+
 const initialState = {
-  memberList: [],
-  loading: true
+  members: [],
+  loading: true,
+  filter: [],
 };
 
 export const memberList = (state = initialState, action) => {
   switch (action.type) {
-    case 'REQUEST_MEMBERLIST':
+    case REQUEST_MEMBERLIST:
       return {
         ...state,
         loading: true
       };
-    case 'RECEIVE_MEMBERLIST':
+    case RECEIVE_MEMBERLIST:
       return {
         ...state,
-        memberList: action.memberList,
+        members: action.members,
         loading: false
+      };
+    case APPLY_FILTER:
+      return {
+        ...state,
+        filter: action.filter
       };
     default:
       return state;

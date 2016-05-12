@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { MemberList } from '../Components/memberList';
+import { MemberListFilter } from '../Components/memberListFilter';
 import * as memberListActions from '../Actions/memberListActions';
 
 export default connect(
@@ -9,7 +9,7 @@ export default connect(
   // our component want to receive as props?
   (state) => {
     return {
-      members: state.memberList.members
+      filter: state.memberList.filter
     };
   },
 
@@ -18,8 +18,7 @@ export default connect(
   (dispatch) => {
     const { clearFilter } = bindActionCreators(memberListActions, dispatch);
     return {
-      onClearFilter: clearFilter
+      onApplyFilter: applyFilter
     };
   }
-
-)(MemberList);
+)(MemberListFilter);
