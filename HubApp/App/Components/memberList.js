@@ -15,6 +15,7 @@ export const MemberList = ({ members, onPressDetail }) => {
   return (
     <View style={styles.list}>
       <ListView
+        enableEmptySections
         renderRow={(member) => renderMemberRow(member, onPressDetail)}
         dataSource={dataSource} />
     </View>

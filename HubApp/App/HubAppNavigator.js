@@ -20,6 +20,14 @@ const {
   RootContainer: NavigationRootContainer,
 } = NavigationExperimental;
 
+// all the possible navigation
+// states // aka screens of the app
+const Screens = {
+  Detail: 'Detail',
+  Filter: 'Filter',
+  Main: 'HubApp'
+};
+
 // our navigator responsible for
 // rendering the currently active scene
 export const HubAppNavigator = () => {
@@ -46,19 +54,17 @@ const renderNavigation = (navigationState) => {
 
 const NavigationBasicReducer = NavigationReducer.StackReducer({ // eslint-disable-line new-cap
   getPushedReducerForAction: (action) => {
-    if (action.key === 'Detail') {
+    if (action.key === Screens.Detail) {
       return (state) => state || { key: action.key, member: action.member };
     }
-    if (action.key === 'settings') {
-      return (state) => state || { key: action.key };
-    }
-    return null;
+
+    return null; // nothing matched :(
   },
   getReducerForState: (initialState) => (state) => state || initialState,
   initialState: {
     index: 0,
-    key: 'main',
-    children: [{ key: 'HubApp' }]
+    key: 'HubApp',
+    children: [{ key: Screens.Main }]
   },
 });
 
@@ -93,7 +99,7 @@ const renderRightComponent = (props) => {
 const renderCard = (props) => {
   return (
     <NavigationCard
-      key={`key_${props.scene.navigationState.key}`}
+      key={`_${props.scene.navigationState.key}`}
       renderScene={renderScene}
       {...props} />
   );
@@ -101,8 +107,23 @@ const renderCard = (props) => {
 
 const renderScene = (props) => {
   const { navigationState } = props.scene;
+
+  // we start here => Initial View
+  if (navigationState.key === Screens.Main) {
+    return (
+      <View style={styles.sceneContainer}>
+        <MemberListContainer onPressDetail={(member) => {
+          props.onNavigate({
+            key: 'Detail',
+            member
+          });
+        }} />
+      </View>
+    );
+  }
+
   // segue to detail page from list view
-  if (navigationState.key === 'Detail') {
+  if (navigationState.key === Screens.Detail) {
     return (
       <View style={styles.sceneContainer}>
         <MemberDetails {...props}
@@ -110,24 +131,6 @@ const renderScene = (props) => {
       </View>
     );
   }
-
-  if (navigationState.key === 'Settings') {
-    return (
-      <View style={styles.sceneContainer} />
-    );
-  }
-
-  // initial view => list of members ;)
-  return (
-    <View style={styles.sceneContainer}>
-      <MemberListContainer onPressDetail={(member) => {
-        props.onNavigate({
-          key: 'Detail',
-          member
-        });
-      }} />
-    </View>
-  );
 };
 
 const scenePropType = {
