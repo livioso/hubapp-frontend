@@ -16,7 +16,7 @@ export default connect(
   // which action creators does
   // it want to receive by props?
   (dispatch) => {
-    const { clearFilter } = bindActionCreators(memberListActions, dispatch);
+    const { applyFilter } = bindActionCreators(memberListActions, dispatch);
     return {
       onApplyFilter: applyFilter
     };

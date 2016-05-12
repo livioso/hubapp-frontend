@@ -13,8 +13,7 @@ import { color } from '../Styles/color';
 import { CoolButton } from '../Styles/button';
 import ListFilterItem from './listFilterItem';
 
-export const MemberListFilter = (props) => {
-  debugger;
+export const MemberListFilter = ({ onApplyFilter, ...props }) => {
   return (
     <Animated.View style={styles.container}>
       <View style={{ flex: 1}}>
