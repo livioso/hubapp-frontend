@@ -84,7 +84,8 @@ const renderHeader = (props) => {
       renderTitleComponent={renderTitleComponent}
       renderLeftComponent={renderBackButton}
       renderRightComponent={() => {
-        return props.scene.navigationState.key === Screens.Main ? renderRightComponent(props) : null;
+        return props.scene.navigationState.key === Screens.Main ?
+          renderRightComponent(props) : null;
       }} />
   );
 };
@@ -94,7 +95,8 @@ const renderBackButton = (props) => {
     return null;
   }
   return (
-    <TouchableOpacity style={styles.titleButtonContainer} onPress={() => props.onNavigate({ type: 'BackAction' })}>
+    <TouchableOpacity style={styles.titleButtonContainer}
+      onPress={() => props.onNavigate({ type: 'BackAction' })}>
       <Image style={styles.titleButton} source={require('./Styles/Assets/back-icon.png')} />
     </TouchableOpacity>
   );
@@ -158,29 +160,44 @@ const renderScene = (props) => {
   }
 
   // we start here => Initial View
-  if (navigationState.key === Screens.Main) {
-    return (
-      <View style={styles.sceneContainer}>
-        <MemberListContainer onPressDetail={(member) => {
-          props.onNavigate({
-            key: Screens.Detail,
-            member
-          });
-        }} />
-      </View>
-    );
-  }
-
+  return (
+    <View style={styles.sceneContainer}>
+      <MemberListContainer onPressDetail={(member) => {
+        props.onNavigate({
+          key: Screens.Detail,
+          member
+        });
+      }} />
+    </View>
+  );
 };
 
-const scenePropType = {
+renderTitleComponent.propTypes = { // eslint-disable-line immutable/no-mutation
   scene: React.PropTypes.object.isRequired
 };
 
-// all these render function use props.scene!
-renderScene.propTypes = scenePropType; // eslint-disable-line immutable/no-mutation
-renderTitleComponent.propTypes = scenePropType; // eslint-disable-line immutable/no-mutation
-renderCard.propTypes = scenePropType; // eslint-disable-line immutable/no-mutation
+renderCard.propTypes = { // eslint-disable-line immutable/no-mutation
+  scene: React.PropTypes.object.isRequired
+};
+
+renderHeader.propTypes = { // eslint-disable-line immutable/no-mutation
+  scene: React.PropTypes.object.isRequired
+};
+
+renderScene.propTypes = { // eslint-disable-line immutable/no-mutation
+  scene: React.PropTypes.object.isRequired,
+  onNavigate: React.PropTypes.func.isRequired
+};
+
+renderRightComponent.propTypes = { // eslint-disable-line immutable/no-mutation
+  scene: React.PropTypes.object.isRequired,
+  onNavigate: React.PropTypes.func.isRequired
+};
+
+renderBackButton.propTypes = { // eslint-disable-line immutable/no-mutation
+  scene: React.PropTypes.object.isRequired,
+  onNavigate: React.PropTypes.func.isRequired
+};
 
 const styles = StyleSheet.create({
   sceneContainer: {

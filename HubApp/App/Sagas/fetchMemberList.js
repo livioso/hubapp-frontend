@@ -8,7 +8,7 @@ export function* fetchMemberList() {
     const memberList = yield call(apiFetchMemberList);
     yield put(receiveMemberList(memberList));
   } catch (error) {
-    alert(error); // 💩
+    alert(error); // eslint-disable-line
   }
 }
 

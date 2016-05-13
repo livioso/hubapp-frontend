@@ -1,4 +1,5 @@
-// @flow weak
+/* @flow weak */
+/* eslint-disable no-alert, no-console, max-len */
 import React from 'react';
 import ReactNative from 'react-native';
 import { Button, SquareButton } from './Styles/button';

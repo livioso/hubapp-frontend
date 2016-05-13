@@ -1,14 +1,13 @@
-'use strict';
-
-var React = require('react');
+import React from 'react';
 import {
   StyleSheet,
   View,
   TouchableOpacity,
 } from 'react-native';
-var { Text } = require('../Styles/text');
 
-class ListFilterItem extends React.Component {
+import { Text } from '../Styles/text';
+
+export default class ListFilterItem extends React.Component { // eslint-disable-line
   props: {
     topic: string;
     color: string;
@@ -42,7 +41,7 @@ class ListFilterItem extends React.Component {
 
 const SIZE = 24;
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     paddingVertical: 12,
     flexDirection: 'row',
@@ -61,5 +60,3 @@ var styles = StyleSheet.create({
     flex: 1,
   },
 });
-
-module.exports = ListFilterItem;

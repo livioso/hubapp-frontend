@@ -1,4 +1,3 @@
-// @flow weak
 import React from 'react';
 import ReactNative from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
@@ -38,7 +37,7 @@ export const CoolButton = (props) => {
     <LinearGradient
       start={[0.5, 1]} end={[1, 1]}
       colors={[color.orange, color.orange]}
-      style={[b_styles.button, b_styles.primaryButton]}>
+      style={[bstyles.button, bstyles.primaryButton]}>
       <Text style={{ color: color.light }}>
         {caption}
       </Text>
@@ -50,7 +49,7 @@ export const CoolButton = (props) => {
       accessibilityTraits="button"
       onPress={props.onPress}
       activeOpacity={0.8}
-      style={[b_styles.container]}>
+      style={[bstyles.container]}>
       {content}
     </TouchableOpacity>
   );
@@ -58,7 +57,7 @@ export const CoolButton = (props) => {
 
 const HEIGHT = 50;
 
-var b_styles = StyleSheet.create({
+const bstyles = StyleSheet.create({
   container: {
     height: HEIGHT,
     marginLeft: 50,
@@ -121,3 +120,7 @@ const propTypes = {
 
 Button.propTypes = propTypes; // eslint-disable-line immutable/no-mutation
 SquareButton.propTypes = propTypes; // eslint-disable-line immutable/no-mutation
+CoolButton.propTypes = { // eslint-disable-line immutable/no-mutation
+  ...propTypes,
+  caption: React.PropTypes.string.isRequired
+};

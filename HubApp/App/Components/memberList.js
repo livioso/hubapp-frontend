@@ -4,7 +4,6 @@ import {
   TouchableOpacity,
   LayoutAnimation,
   StyleSheet,
-  TextInput,
   Image,
   View
 } from 'react-native';
@@ -33,7 +32,7 @@ const renderActiveFilter = (filter, onClearFilter) => {
   }
 
   return (
-    <View style={{ backgroundColor: color.red, height: 25, flexDirection: 'row', justifyContent: 'space-between' }}>
+    <View style={ styles.activeFilter }>
       <Text style={{ color: color.light, marginLeft: 5 }}>{filter.join()}</Text>
       <TouchableOpacity onPress={onClearFilter}>
         <Text style={{ color: color.light, marginRight: 5 }}>Reset</Text>
@@ -56,7 +55,9 @@ const renderMemberRow = (member, onPressDetail) => {
 
 MemberList.propTypes = { // eslint-disable-line immutable/no-mutation
   members: React.PropTypes.array.isRequired,
-  onPressDetail: React.PropTypes.func.isRequired
+  filter: React.PropTypes.array.isRequired,
+  onPressDetail: React.PropTypes.func.isRequired,
+  onClearFilter: React.PropTypes.func.isRequired
 };
 
 const styles = StyleSheet.create({
@@ -76,5 +77,11 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     width: 60,
     height: 60
+  },
+  activeFilter: {
+    backgroundColor: color.red,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    height: 25,
   }
 });
