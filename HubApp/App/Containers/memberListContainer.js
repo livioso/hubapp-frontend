@@ -33,7 +33,7 @@ const getMembersFiltered = (members, filter) => {
 
   // we need to filter 😑
   return members.filter((member) => {
-    const skills = member.skillList.map(skill => skill.name);
+    const { skills } = member;
     return filter.every(skill => skills.includes(skill));
   });
 }

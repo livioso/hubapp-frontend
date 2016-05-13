@@ -33,6 +33,21 @@ const callApi = (endpoint) => {
 // fetch all members unfiltered
 export const apiFetchMemberList = () => {
   const endpoint = `${host}${apiRoot}${apiMembers}/`;
-  const response = callApi(endpoint).then(json => json.response._embedded.members);
-  return response;
+  return callApi(endpoint).then((json) => {
+    // the server response contains too much
+    // information => just get what we need
+    const { members } = json.response._embedded;
+    return members.map((member) => {
+      return {
+        entryDate: member.entryDate,
+        firstname: member.firstname,
+        lastname: member.lastname,
+        picture: member.picture,
+        position: member.function,
+        shortDescription: member.shortDescription,
+        skills: member.skillList.map(skill => skill.name),
+        link: member._links.self.href
+      }
+    })
+  });
 };
