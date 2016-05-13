@@ -6,16 +6,26 @@ import {
   View
 } from 'react-native';
 
-import { Text } from '../Styles/text';
+import { Text, HeaderText } from '../Styles/text';
 import { color } from '../Styles/color';
 
 export const MemberDetails = ({ member }) => {
   return (
     <View style={ [styles.container, { backgroundColor: color.light }] }>
       <Image style={ styles.image } source={{ uri: member.picture }} />
-      <Text>{`${member.firstname} ${member.lastname}`}</Text>
+      <HeaderText>{`${member.firstname} ${member.lastname}`}</HeaderText>
+      <Text>{member.position}</Text>
       <Text>{member.shortDescription}</Text>
+      { renderSkills(member.skills) }
     </View>
+  );
+};
+
+const renderSkills = (skills) => {
+  return (
+    skills.map((skill) => {
+      return <Text>{skill}</Text>
+    })
   );
 };
 
@@ -23,10 +33,11 @@ MemberDetails.propTypes = { // eslint-disable-line immutable/no-mutation
   member: React.PropTypes.object.isRequired,
 };
 
-const imageSize = Dimensions.get('window').width / 2;
+const imageSize = Dimensions.get('window').width / 3;
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    marginTop: 20,
     flex: 1
   },
   image: {

@@ -17,11 +17,12 @@ export const font = StyleSheet.create({
     fontFamily: 'OpenSans'
   },
   h1: {
-    fontSize: normalize(24),
+    fontSize: normalize(16),
     lineHeight: normalize(27),
     color: 'black',
     fontWeight: 'bold',
     letterSpacing: -1,
+    fontFamily: 'OpenSans'
   },
   p: {
     fontSize: normalize(15),
