@@ -47,7 +47,7 @@ export const apiFetchMemberList = () => {
         shortDescription: member.shortDescription,
         skills: member.skillList.map(skill => skill.name),
         link: member._links.self.href
-      }
-    })
+      };
+    });
   });
 };

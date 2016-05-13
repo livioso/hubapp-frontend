@@ -53,8 +53,8 @@ export const CoolButton = (props) => {
       style={[b_styles.container]}>
       {content}
     </TouchableOpacity>
-  )
-}
+  );
+};
 
 const HEIGHT = 50;
 

@@ -17,10 +17,10 @@ class ListFilterItem extends React.Component {
   };
 
   render() {
-    const {topic, color, isChecked, onToggle} = this.props;
+    const { topic, color, isChecked, onToggle } = this.props;
     const style = isChecked
-      ? {backgroundColor: color}
-      : {borderColor: color, borderWidth: 1};
+      ? { backgroundColor: color }
+      : { borderColor: color, borderWidth: 1 };
     const accessibilityTraits = ['button'];
     if (isChecked) {
       accessibilityTraits.push('selected');

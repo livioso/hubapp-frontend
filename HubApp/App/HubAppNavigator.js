@@ -84,8 +84,8 @@ const renderHeader = (props) => {
       renderTitleComponent={renderTitleComponent}
       renderLeftComponent={renderBackButton}
       renderRightComponent={() => {
-        return props.scene.navigationState.key === Screens.Main ? renderRightComponent(props) : null
-      }}/>
+        return props.scene.navigationState.key === Screens.Main ? renderRightComponent(props) : null;
+      }} />
   );
 };
 
@@ -94,7 +94,7 @@ const renderBackButton = (props) => {
     return null;
   }
   return (
-    <TouchableOpacity style={styles.titleButtonContainer} onPress={() => props.onNavigate({type: 'BackAction'})}>
+    <TouchableOpacity style={styles.titleButtonContainer} onPress={() => props.onNavigate({ type: 'BackAction' })}>
       <Image style={styles.titleButton} source={require('./Styles/Assets/back-icon.png')} />
     </TouchableOpacity>
   );
@@ -117,9 +117,9 @@ const renderRightComponent = (props) => {
       onPress={() => {
         props.onNavigate({
           key: Screens.Filter
-      });
-    }} >
-      <Text style={{ color: color.light, marginRight: 5}}>
+        });
+      }} >
+      <Text style={{ color: color.light, marginRight: 5 }}>
         Filter
       </Text>
     </TouchableOpacity>

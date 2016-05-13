@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   Animated,
   ListView,
@@ -16,21 +16,21 @@ import ListFilterItem from './listFilterItem';
 export const MemberListFilter = ({ onApplyFilter, filter, ...props }) => {
   return (
     <Animated.View style={styles.container}>
-      <View style={{ flex: 1}}>
+      <View style={{ flex: 1 }}>
         <ListFilterItem
           key={'JavaScript'}
           topic={'JavaScript'}
           color={color.red}
           isChecked={filter.includes('JavaScript')}
-          onToggle={() => {onApplyFilter(['JavaScript'])}} />
+          onToggle={() => {onApplyFilter(['JavaScript']);}} />
         <ListFilterItem
           key={'CSS'}
           topic={'CSS'}
           color={color.red}
           isChecked={filter.includes('CSS')}
-          onToggle={() => {onApplyFilter(['CSS'])}} />
+          onToggle={() => {onApplyFilter(['CSS']);}} />
       </View>
-      <CoolButton caption={'Apply Filters'} onPress={() => props.onNavigate({type: 'BackAction'})}/>
+      <CoolButton caption={'Apply Filters'} onPress={() => props.onNavigate({ type: 'BackAction' })} />
     </Animated.View>
   );
 };

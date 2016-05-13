@@ -33,14 +33,14 @@ const renderActiveFilter = (filter, onClearFilter) => {
   }
 
   return (
-    <View style={{ backgroundColor: color.red, height: 25, flexDirection: 'row', justifyContent: 'space-between'}}>
+    <View style={{ backgroundColor: color.red, height: 25, flexDirection: 'row', justifyContent: 'space-between' }}>
       <Text style={{ color: color.light, marginLeft: 5 }}>{filter.join()}</Text>
       <TouchableOpacity onPress={onClearFilter}>
         <Text style={{ color: color.light, marginRight: 5 }}>Reset</Text>
       </TouchableOpacity>
     </View>
   );
-}
+};
 
 const renderMemberRow = (member, onPressDetail) => {
   return (

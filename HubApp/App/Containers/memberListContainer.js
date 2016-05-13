@@ -12,7 +12,7 @@ export default connect(
     return {
       members: getMembersFiltered(members, filter),
       filter
-    }
+    };
   },
 
   // which action creators does
@@ -36,4 +36,4 @@ const getMembersFiltered = (members, filter) => {
     const { skills } = member;
     return filter.every(skill => skills.includes(skill));
   });
-}
+};
