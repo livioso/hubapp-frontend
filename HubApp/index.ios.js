@@ -1,4 +1,5 @@
 // import { Playground as HubApp } from './App/Playground';
+// import { Styleguide as HubApp } from './App/Styleguide.js';
 import { HubApp } from './App/HubApp';
 import {
   AppRegistry,

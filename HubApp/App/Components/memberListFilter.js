@@ -33,9 +33,9 @@ export const MemberListFilter = ({ onApplyFilter, filter, ...props }) => {
 };
 
 MemberListFilter.propTypes = { // eslint-disable-line immutable/no-mutation
-  onApplyFilter: React.PropTypes.function.isRequired,
+  onApplyFilter: React.PropTypes.func.isRequired,
   filter: React.PropTypes.array.isRequired,
-  onNavigate: React.PropTypes.function.isRequired
+  onNavigate: React.PropTypes.func.isRequired
 };
 
 const styles = StyleSheet.create({
