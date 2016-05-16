@@ -8,7 +8,6 @@ import {
 } from '../App/Actions/memberListActions';
 
 describe('Memberlist Reducer', () => {
-
   it('should return the initial state', () => {
     expect(
       memberList(undefined, {})

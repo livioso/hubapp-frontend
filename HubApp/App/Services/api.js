@@ -11,6 +11,7 @@ if (process.env.NODE_ENV === 'production') {
 
 const apiRoot = '/api';
 const apiMembers = '/members';
+const apiSkills = '/skills';
 
 // Fetches an API response and normalizes the result JSON according to schema.
 // This makes every API response have the same shape, regardless of how nested it was.
@@ -47,6 +48,21 @@ export const apiFetchMemberList = () => {
         shortDescription: member.shortDescription,
         skills: member.skillList.map(skill => skill.name),
         link: member._links.self.href
+      };
+    });
+  });
+};
+
+// fetch all the skills / tags
+export const apiFetchTagsList = () => {
+  const endpoint = `${host}${apiRoot}${apiSkills}/`;
+  return callApi(endpoint).then((json) => {
+    // the server response contains too much
+    // information => just get what we need
+    const { skills } = json.response._embedded;
+    return skills.map((skill) => {
+      return {
+        tag: skill.name
       };
     });
   });

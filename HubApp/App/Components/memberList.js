@@ -46,6 +46,7 @@ const renderMemberRow = (member, onPressDetail) => {
     <TouchableOpacity onPress={() => onPressDetail(member)}>
       <View style={styles.memberRowContainer}>
         <Image source={{ uri: member.picture }}
+          defaultSource={require('../Styles/Assets/ic_account_circle.png')}
           style={styles.profilePicture} />
         <Text>{`${member.firstname} ${member.lastname}`}</Text>
       </View>
