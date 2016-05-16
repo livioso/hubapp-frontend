@@ -1,5 +1,7 @@
 import { memberList } from './memberListReducer';
+import { tagList } from './tagListReducer';
 
 export {
-  memberList
+  memberList,
+  tagList
 };
