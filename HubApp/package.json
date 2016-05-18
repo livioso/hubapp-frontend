@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start": "node node_modules/react-native/local-cli/cli.js start -- --reset-cache",
     "test": "node node_modules/mocha/bin/mocha --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch",
     "lint": "node ./node_modules/eslint/bin/eslint.js --config .eslintrc index.android.js index.ios.js App/ __tests__/; flow || true",
