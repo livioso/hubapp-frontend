@@ -7,7 +7,6 @@ import {
 } from '../App/Actions/tagListActions';
 
 describe('Tag list Actions', () => {
-
   it('should create an action to request the tags', () => {
     expect(
       requestTagList()

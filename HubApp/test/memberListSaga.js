@@ -1,3 +1,7 @@
+// no idea why this does not work with
+// just babel-preset-react-native... 😐
+import 'babel-polyfill';
+
 import expect from 'expect';
 import { call, put } from 'redux-saga/effects';
 import { fetchMemberList } from '../App/Sagas/fetchMemberList';
