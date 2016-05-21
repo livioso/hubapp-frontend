@@ -52,7 +52,7 @@ export const apiFetchMemberList = () => {
 };
 
 // fetch all the skills / tags
-export const apiFetchTagsList = () => {
+export const apiFetchTagList = () => {
   const endpoint = `${host}${apiRoot}${apiSkills}/`;
   return callApi(endpoint).then((json) => {
     // the server response contains too much
