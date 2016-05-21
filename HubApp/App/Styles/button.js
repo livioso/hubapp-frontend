@@ -36,7 +36,7 @@ export const CoolButton = (props) => {
   const content = (
     <LinearGradient
       start={[0.5, 1]} end={[1, 1]}
-      colors={[color.orange, color.orange]}
+      colors={[color.blue, color.blue]}
       style={[bstyles.button, bstyles.primaryButton]}>
       <Text style={{ color: color.light }}>
         {caption}
@@ -62,7 +62,8 @@ const bstyles = StyleSheet.create({
     height: HEIGHT,
     marginLeft: 50,
     marginRight: 50,
-    marginBottom: 25
+    marginBottom: 25,
+    marginTop: 25
   },
   button: {
     flex: 1,

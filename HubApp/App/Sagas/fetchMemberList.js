@@ -3,7 +3,6 @@ import { put, call } from 'redux-saga/effects';
 import { receiveMemberList } from '../Actions/memberListActions';
 import { request, membersURL } from '../Services/api';
 
-
 export function* fetchMemberList() {
   const response = yield call(request, membersURL);
   const isResponseOK = response.error === undefined || response.error === null;

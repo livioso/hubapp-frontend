@@ -20,7 +20,7 @@ export const MemberListFilter = ({ allFilters, activeFilters, onToggleFilter, ..
             <ListFilterItem
               key={filter.id}
               topic={filter.name}
-              color={color.red}
+              color={color.blue}
               isChecked={activeFilters.includes(filter.name)}
               onToggle={() => {onToggleFilter(filter.name);}} />
 
@@ -43,6 +43,7 @@ MemberListFilter.propTypes = { // eslint-disable-line immutable/no-mutation
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    margin: 10,
     backgroundColor: 'white'
   },
 });
