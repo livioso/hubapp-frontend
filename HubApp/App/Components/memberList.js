@@ -48,7 +48,19 @@ const renderMemberRow = (member, onPressDetail) => {
         <Image source={{ uri: member.picture }}
           defaultSource={require('../Styles/Assets/ic_account_circle.png')}
           style={styles.profilePicture} />
-        <Text>{`${member.firstname} ${member.lastname}`}</Text>
+        <View style={styles.memberDescription}>
+          <Text>{`${member.firstname} ${member.lastname}`}</Text>
+          <View style={{ flexDirection: 'row' }}>
+            {
+              member.skills.map(skill => {
+                return (
+                <View style={{ backgroundColor: 'tomato', marginRight: 5 }}>
+                  <Text style={{ fontSize: 12 }}>{`${skill.name}`}</Text>
+                </View>);
+              })
+            }
+          </View>
+        </View>
       </View>
     </TouchableOpacity>
   );
@@ -65,10 +77,12 @@ const styles = StyleSheet.create({
   list: {
     flex: 1,
   },
+  memberDescription: {
+    paddingLeft: 10,
+  },
   memberRowContainer: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
     backgroundColor: color.light,
     paddingTop: 10,
     paddingLeft: 10,

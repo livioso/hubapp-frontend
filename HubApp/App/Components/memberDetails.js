@@ -24,7 +24,7 @@ export const MemberDetails = ({ member }) => {
 const renderSkills = (skills) => {
   return (
     skills.map((skill) => {
-      return <Text style={{ backgroundColor: 'red' }}>{skill}</Text>;
+      return <Text style={{ backgroundColor: 'red' }}>{skill.name}</Text>;
     })
   );
 };
