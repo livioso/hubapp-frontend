@@ -3,8 +3,8 @@ import { memberList } from '../App/Reducers/memberListReducer';
 import {
   requestMemberList,
   receiveMemberList,
-  applyFilter,
-  clearFilter
+  toggleFilter,
+  clearFilters
 } from '../App/Actions/memberListActions';
 
 describe('Memberlist Reducer', () => {
@@ -14,7 +14,7 @@ describe('Memberlist Reducer', () => {
     ).toEqual({
       members: [],
       loading: true,
-      filter: []
+      filters: []
     });
   });
 
@@ -48,24 +48,33 @@ describe('Memberlist Reducer', () => {
     });
   });
 
-  const expectedFilter = ['ReactNative', 'React'];
-  it('should handle applyFilter', () => {
+  it('should handle toggle when item needs to be removed', () => {
     expect(
       memberList({
-        filter: ['SomeFilter']
-      }, applyFilter(expectedFilter))
+        filters: ['JavaScript', 'Java']
+      }, toggleFilter('JavaScript'))
     ).toEqual({
-      filter: expectedFilter
+      filters: ['Java']
     });
   });
 
-  it('should handle clearFilter', () => {
+  it('should handle toggle when item needs to be added', () => {
     expect(
       memberList({
-        filter: ['SomeFilter']
-      }, clearFilter())
+        filters: ['JavaScript']
+      }, toggleFilter('Java'))
     ).toEqual({
-      filter: []
+      filters: ['JavaScript', 'Java']
+    });
+  });
+
+  it('should handle clearFilters', () => {
+    expect(
+      memberList({
+        filters: ['SomeFilter']
+      }, clearFilters())
+    ).toEqual({
+      filters: []
     });
   });
 });

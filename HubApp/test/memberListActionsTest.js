@@ -2,15 +2,15 @@ import expect from 'expect';
 import {
   requestMemberList,
   receiveMemberList,
-  applyFilter,
-  clearFilter,
+  toggleFilter,
+  clearFilters,
   REQUEST_MEMBERLIST,
   RECEIVE_MEMBERLIST,
-  APPLY_FILTER
+  APPLY_FILTERS,
+  TOGGLE_FILTER
 } from '../App/Actions/memberListActions';
 
 describe('Memberlist Actions', () => {
-
   it('should create an action to request the memberlist', () => {
     expect(
       requestMemberList()
@@ -34,22 +34,22 @@ describe('Memberlist Actions', () => {
     });
   });
 
-  const expectedFilter =['ReactNative, React'];
-  it('should create an action to apply a filter to the memberlist', () => {
+  const expectedToggleFilter = 'ReactNative';
+  it('should create an action to toggle a filter to the memberlist', () => {
     expect(
-      applyFilter(expectedFilter)
+      toggleFilter(expectedToggleFilter)
     ).toEqual({
-      type: APPLY_FILTER,
-      filter: expectedFilter
+      type: TOGGLE_FILTER,
+      filter: expectedToggleFilter
     });
   });
 
   it('should create an action to clear the filter for the memberlist', () => {
     expect(
-      clearFilter()
+      clearFilters()
     ).toEqual({
-      type: APPLY_FILTER,
-      filter: []
+      type: APPLY_FILTERS,
+      filters: []
     });
   });
 });
