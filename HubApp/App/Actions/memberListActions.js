@@ -1,6 +1,7 @@
 export const REQUEST_MEMBERLIST = 'REQUEST_MEMBERLIST';
 export const RECEIVE_MEMBERLIST = 'RECEIVE_MEMBERLIST';
-export const APPLY_FILTER = 'APPLY_FILTER';
+export const APPLY_FILTERS = 'APPLY_FILTERS';
+export const TOGGLE_FILTER = 'TOGGLE_FILTER';
 
 export const requestMemberList = () => {
   return {
@@ -15,16 +16,16 @@ export const receiveMemberList = (members) => {
   };
 };
 
-export const applyFilter = (filter) => {
+export const toggleFilter = (filter) => {
   return {
-    type: APPLY_FILTER,
+    type: TOGGLE_FILTER,
     filter
   };
 };
 
-export const clearFilter = () => {
+export const clearFilters = () => {
   return {
-    type: APPLY_FILTER,
-    filter: []
+    type: APPLY_FILTERS,
+    filters: []
   };
 };

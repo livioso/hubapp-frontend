@@ -1,16 +1,17 @@
 import {
   REQUEST_MEMBERLIST,
   RECEIVE_MEMBERLIST,
-  APPLY_FILTER
+  TOGGLE_FILTER,
+  APPLY_FILTERS
 } from '../Actions/memberListActions';
 
 const initialState = {
   members: [],
   loading: true,
-  filter: [],
+  filters: [],
 };
 
-export const memberList = (state = initialState, action) => {
+export const memberList = (state = initialState, action) => { // eslint-disable-line complexity
   switch (action.type) {
     case REQUEST_MEMBERLIST:
       return {
@@ -23,10 +24,20 @@ export const memberList = (state = initialState, action) => {
         members: action.members,
         loading: false
       };
-    case APPLY_FILTER:
+    case TOGGLE_FILTER: {
+      const { filters } = state;
+      const { filter } = action;
       return {
         ...state,
-        filter: action.filter
+        filters: filters.includes(filter) ?
+          filters.filter(each => each !== filter) :
+          filters.concat([filter])
+      };
+    }
+    case APPLY_FILTERS:
+      return {
+        ...state,
+        filters: action.filters
       };
     default:
       return state;

@@ -11,12 +11,12 @@ import {
 import { Text } from '../Styles/text';
 import { color } from '../Styles/color';
 
-export const MemberList = ({ members, filter, onPressDetail, onClearFilter }) => {
+export const MemberList = ({ members, filters, onPressDetail, onClearFilters }) => {
   const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
   const dataSource = ds.cloneWithRows(members);
   return (
     <View style={styles.list}>
-      { renderActiveFilter(filter, onClearFilter) }
+      { renderActiveFilters(filters, onClearFilters) }
       <ListView
         enableEmptySections
         renderRow={(member) => renderMemberRow(member, onPressDetail)}
@@ -25,16 +25,16 @@ export const MemberList = ({ members, filter, onPressDetail, onClearFilter }) =>
   );
 };
 
-const renderActiveFilter = (filter, onClearFilter) => {
+const renderActiveFilters = (filters, onClearFilters) => {
   LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-  if (filter.length === 0) {
+  if (filters.length === 0) {
     return null;
   }
 
   return (
     <View style={ styles.activeFilter }>
-      <Text style={{ color: color.light, marginLeft: 5 }}>{filter.join()}</Text>
-      <TouchableOpacity onPress={onClearFilter}>
+      <Text style={{ color: color.light, marginLeft: 5 }}>{filters.join()}</Text>
+      <TouchableOpacity onPress={onClearFilters}>
         <Text style={{ color: color.light, marginRight: 5 }}>Reset</Text>
       </TouchableOpacity>
     </View>
@@ -68,9 +68,9 @@ const renderMemberRow = (member, onPressDetail) => {
 
 MemberList.propTypes = { // eslint-disable-line immutable/no-mutation
   members: React.PropTypes.array.isRequired,
-  filter: React.PropTypes.array.isRequired,
+  filters: React.PropTypes.array.isRequired,
   onPressDetail: React.PropTypes.func.isRequired,
-  onClearFilter: React.PropTypes.func.isRequired
+  onClearFilters: React.PropTypes.func.isRequired
 };
 
 const styles = StyleSheet.create({

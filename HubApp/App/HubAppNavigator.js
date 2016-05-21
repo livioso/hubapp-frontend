@@ -26,7 +26,7 @@ const {
 // all the possible navigation
 // states // aka screens of the app
 const Screens = {
-  Detail: 'Detail',
+  Detail: 'Details',
   Filter: 'Filter',
   Main: 'HubApp'
 };

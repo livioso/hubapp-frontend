@@ -8,16 +8,17 @@ export default connect(
   // our component want to receive as props?
   (state) => {
     return {
-      filter: state.memberList.filter
+      activeFilters: state.memberList.filters,
+      allFilters: state.tagList.tags
     };
   },
 
   // which action creators does
   // it want to receive by props?
   (dispatch) => {
-    const { applyFilter } = bindActionCreators(memberListActions, dispatch);
+    const { toggleFilter } = bindActionCreators(memberListActions, dispatch);
     return {
-      onApplyFilter: applyFilter
+      onToggleFilter: toggleFilter
     };
   }
 )(MemberListFilter);

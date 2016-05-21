@@ -7,32 +7,29 @@ export default connect(
   // which part of the Redux global state does
   // our component want to receive as props?
   (state) => {
-    const { members, filter } = state.memberList;
+    const { members, filters } = state.memberList;
     return {
-      members: getMembersFiltered(members, filter),
-      filter
+      members: getMembersFiltered(members, filters),
+      filters
     };
   },
 
   // which action creators does
   // it want to receive by props?
   (dispatch) => {
-    const { clearFilter } = bindActionCreators(memberListActions, dispatch);
+    const { clearFilters } = bindActionCreators(memberListActions, dispatch);
     return {
-      onClearFilter: clearFilter
+      onClearFilters: clearFilters
     };
   }
 
 )(MemberList);
 
-const getMembersFiltered = (members, filter) => {
-  if (filter.length === 0) {
-    return members;
-  }
-
-  // we need to filter 😑
-  return members.filter((member) => {
-    const { skills } = member;
-    return filter.every(skill => skills.includes(skill));
-  });
+const getMembersFiltered = (members, filters) => {
+  return members
+    .filter((member) => {
+      const { skills } = member;
+      const memberSkills = skills.map(skill => skill.name);
+      return filters.every(skill => memberSkills.includes(skill));
+    });
 };

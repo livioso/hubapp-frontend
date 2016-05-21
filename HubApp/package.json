@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "expect": "^1.20.0",
+    "immutable": "^3.8.1",
     "react": "^15.0.2",
     "react-native": "^0.26.0-rc",
     "react-native-linear-gradient": "^1.5.6",
