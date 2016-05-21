@@ -1,68 +1,37 @@
-let host = ''; // eslint-disable-line immutable/no-let
+export const host = 'http://localhost:8080';
+export const membersURL = `${host}/api/members`;
+export const skillsURL = `${host}/api/skills`;
 
-// Make sure that we never accidentally use
-// localhost in production! If you want to
-// use localhost change it only for non-production
-if (process.env.NODE_ENV === 'production') {
-  host = '_not_yet_done_';
-} else {
-  // host = 'http://Tateyama.local:8080';
-  host = 'http://localhost:8080';
-}
-
-const apiRoot = '/api';
-const apiMembers = '/members';
-const apiSkills = '/skills';
-
-// Fetches an API response and normalizes the result JSON according to schema.
-// This makes every API response have the same shape, regardless of how nested it was.
-const callApi = (endpoint) => {
-  return fetch(endpoint)
-    .then(response => response.json()
-    .then(json => ({ json, response })))
-    .then(({ json, response }) => {
-      if (!response.ok) {
-        return Promise.reject(json);
-      }
-      return json;
-    })
-    .then(
-      response => ({ response }),
-      error => ({ error: error.message || 'Something bad happened' })
-    );
+/**
+ * Parses the JSON returned
+ * @param response response from a network request
+ */
+const parseJSON = (response) => {
+  return response.json();
 };
 
-// fetch all members unfiltered
-export const apiFetchMemberList = () => {
-  const endpoint = `${host}${apiRoot}${apiMembers}/`;
-  return callApi(endpoint).then((json) => {
-    const members = json.response;
-    return members.map((member) => {
-      return {
-        id: member.id,
-        entryDate: member.entryDate,
-        firstname: member.firstname,
-        lastname: member.lastname,
-        picture: member.picture,
-        position: member.function,
-        shortDescription: member.shortDescription,
-        skills: member.skills
-      };
-    });
-  });
+/**
+ * Checks if a network request went OK
+ * @param response response from a network request
+ */
+const checkStatus = (response) => {
+  if (response.status >= 200 && response.status < 300) {
+    return response; // all good
+  }
+
+  // something went wrong
+  throw new Error(response.statusText);
 };
 
-// fetch all the skills / tags
-export const apiFetchTagList = () => {
-  const endpoint = `${host}${apiRoot}${apiSkills}/`;
-  return callApi(endpoint).then((json) => {
-    // the server response contains too much
-    // information => just get what we need
-    const { skills } = json.response._embedded;
-    return skills.map((skill) => {
-      return {
-        tag: skill.name
-      };
-    });
-  });
+/**
+ * Request (GET) an URL, returns a promise
+ * @param url the URL we are requesting
+ * @param options passed to fetch
+ */
+export const request = (url, options) => {
+  return fetch(url, options)
+    .then(checkStatus)
+    .then(parseJSON)
+    .then((data) => ({ data }))
+    .catch((error) => ({ error }));
 };
