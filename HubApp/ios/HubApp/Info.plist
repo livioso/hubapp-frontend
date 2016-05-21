@@ -45,10 +45,6 @@
     </dict>
     <key>UIAppFonts</key>
     <array>
-      <string>OpenSans-Regular.ttf</string>
-      <string>OpenSans-Light.ttf</string>
-      <string>OpenSans-ExtraBold.ttf</string>
-      <string>OpenSans-Bold.ttf</string>
       <string>Entypo.ttf</string>
       <string>EvilIcons.ttf</string>
       <string>FontAwesome.ttf</string>
