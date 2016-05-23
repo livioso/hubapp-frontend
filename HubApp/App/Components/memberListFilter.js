@@ -12,24 +12,26 @@ import ListFilterItem from './listFilterItem';
 
 export const MemberListFilter = ({ allFilters, activeFilters, onToggleFilter, ...props }) => {
   return (
-    <Animated.View style={styles.container}>
-      <ScrollView style={{ flex: 1 }}>
-        {
-          allFilters.map((filter) => (
+    <View style={{ flex: 1 }}>
+      <Animated.View style={styles.container}>
+        <ScrollView style={{ flex: 1 }}>
+          {
+            allFilters.map((filter) => (
 
-            <ListFilterItem
-              key={filter.id}
-              topic={filter.name}
-              color={color.blue}
-              isChecked={activeFilters.includes(filter.name)}
-              onToggle={() => {onToggleFilter(filter.name);}} />
+              <ListFilterItem
+                key={filter.id}
+                topic={filter.name}
+                color={color.blue}
+                isChecked={activeFilters.includes(filter.name)}
+                onToggle={() => {onToggleFilter(filter.name);}} />
 
-          ))
-        }
-      </ScrollView>
+            ))
+          }
+        </ScrollView>
+      </Animated.View>
       <CoolButton onPress={() => props.onNavigate({ type: 'BackAction' })}
         caption={'Apply Filters'} />
-    </Animated.View>
+    </View>
   );
 };
 

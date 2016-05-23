@@ -11,9 +11,7 @@ const normalize = (size) => {
 export const font = StyleSheet.create({
   text: {
     fontSize: normalize(15),
-    lineHeight: normalize(23),
     fontWeight: 'normal',
-    letterSpacing: -1,
     fontFamily: 'OpenSans'
   },
   h1: {

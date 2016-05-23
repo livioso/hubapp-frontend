@@ -26,7 +26,7 @@ export const MemberList = ({ members, filters, onPressDetail, onClearFilters }) 
 };
 
 const renderActiveFilters = (filters, onClearFilters) => {
-  LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+  LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
   if (filters.length === 0) {
     return null;
   }
@@ -50,11 +50,11 @@ const renderMemberRow = (member, onPressDetail) => {
           style={styles.profilePicture} />
         <View style={styles.memberDescription}>
           <Text>{`${member.firstname} ${member.lastname}`}</Text>
-          <View style={{ flexDirection: 'row' }}>
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap', flex: 1 }}>
             {
               member.skills.map(skill => {
                 return (
-                <View style={{ backgroundColor: color.blue, marginRight: 5 }}>
+                <View style={{ backgroundColor: color.blue, marginRight: 3, marginBottom: 3, borderRadius: 55, height: 20, padding: 5, justifyContent: 'center', alignItems: 'center' }}>
                   <Text style={{ fontSize: 12, color: color.light }}>{`${skill.name}`}</Text>
                 </View>);
               })
@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   memberDescription: {
+    flex: 1,
     paddingLeft: 10,
   },
   memberRowContainer: {

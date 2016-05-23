@@ -60,17 +60,12 @@ const HEIGHT = 50;
 const bstyles = StyleSheet.create({
   container: {
     height: HEIGHT,
-    marginLeft: 50,
-    marginRight: 50,
-    marginBottom: 25,
-    marginTop: 25
   },
   button: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 40,
   },
   border: {
     borderWidth: 1,
@@ -78,7 +73,6 @@ const bstyles = StyleSheet.create({
     borderRadius: HEIGHT / 2,
   },
   primaryButton: {
-    borderRadius: HEIGHT / 2,
     backgroundColor: 'transparent',
   },
   icon: {
