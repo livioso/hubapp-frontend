@@ -2,6 +2,7 @@ import React from 'react';
 import {
   NavigationExperimental,
   StatusBar,
+  TabBarIOS,
   TouchableOpacity,
   StyleSheet,
   Platform,
@@ -12,6 +13,7 @@ import {
 
 import MemberListFilterContainer from './Containers/memberListFilterContainer';
 import MemberListContainer from './Containers/memberListContainer';
+import ProfileContainer from './Containers/profileContainer';
 import { MemberDetails } from './Components/memberDetails';
 import { color } from './Styles/color';
 
@@ -162,12 +164,20 @@ const renderScene = (props) => {
   // we start here => Initial View
   return (
     <View style={styles.sceneContainer}>
-      <MemberListContainer onPressDetail={(member) => {
-        props.onNavigate({
-          key: Screens.Detail,
-          member
-        });
-      }} />
+      <TabBarIOS>
+        <TabBarIOS.Item systemIcon="featured" />
+        <TabBarIOS.Item selected systemIcon="contacts">
+          <MemberListContainer onPressDetail={(member) => {
+            props.onNavigate({
+              key: Screens.Detail,
+              member
+            });
+          }} />
+        </TabBarIOS.Item>
+        <TabBarIOS.Item systemIcon="more">
+          <ProfileContainer />
+        </TabBarIOS>
+      </TabBarIOS>
     </View>
   );
 };
