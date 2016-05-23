@@ -54,8 +54,8 @@ const renderMemberRow = (member, onPressDetail) => {
             {
               member.skills.map(skill => {
                 return (
-                <View style={{ backgroundColor: 'tomato', marginRight: 5 }}>
-                  <Text style={{ fontSize: 12 }}>{`${skill.name}`}</Text>
+                <View style={{ backgroundColor: color.blue, marginRight: 5 }}>
+                  <Text style={{ fontSize: 12, color: color.light }}>{`${skill.name}`}</Text>
                 </View>);
               })
             }
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     height: 60
   },
   activeFilter: {
-    backgroundColor: color.red,
+    backgroundColor: color.green,
     justifyContent: 'space-between',
     flexDirection: 'row',
     height: 25,
