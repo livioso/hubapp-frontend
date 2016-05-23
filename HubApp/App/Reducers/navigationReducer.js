@@ -13,14 +13,14 @@ const allTabs = [
 	{ key: 'settings', icon: simpleIcon, title: 'Settings' }
 ];
 
-export const tabs = NavigationReducer.TabsReducer({ // eslint-disable-line new-cap
+export const tabs = NavigationReducer.TabsReducer({
   key: 'ApplicationTabs',
   initialIndex: 0,
   tabReducers: allTabs.map(t => (lastRoute) => lastRoute || t),
 });
 
 // GLOBAL
-const globalNavigation = NavigationReducer.StackReducer({ // eslint-disable-line new-cap
+const globalNavigation = NavigationReducer.StackReducer({
   getPushedReducerForAction: (action) => {
     if (action.type === 'push') {
       return (state) => (state || action.route);
