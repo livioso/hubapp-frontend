@@ -21,7 +21,7 @@
     "redux": "^3.4.0",
     "redux-saga": "^0.9.5",
     "redux-thunk": "^2.0.1",
-    "remote-redux-devtools": "^0.1.5"
+    "remote-redux-devtools": "^0.3.3"
   },
   "devDependencies": {
     "babel-eslint": "^6.0.2",
