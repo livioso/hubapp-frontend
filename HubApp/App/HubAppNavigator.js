@@ -176,7 +176,7 @@ const renderScene = (props) => {
         </TabBarIOS.Item>
         <TabBarIOS.Item systemIcon="more">
           <ProfileContainer />
-        </TabBarIOS>
+        </TabBarIOS.Item>
       </TabBarIOS>
     </View>
   );
