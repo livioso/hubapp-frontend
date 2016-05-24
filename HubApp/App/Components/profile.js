@@ -10,6 +10,10 @@ import { Text, HeaderText } from '../Styles/text';
 import { color } from '../Styles/color';
 
 export const Profile = ({ me }) => {
+  if (me === undefined) {
+    return null;
+  }
+
   return (
     <View style={ [styles.container, { backgroundColor: color.light }] }>
       <Image style={ styles.image } source={{ uri: me.picture }} />

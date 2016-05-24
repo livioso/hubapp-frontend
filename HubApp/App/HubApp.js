@@ -1,5 +1,5 @@
 import React from 'react';
-import { HubAppNavigator } from './HubAppNavigator';
+import HubAppNavigator from './HubAppNavigator';
 import { Provider } from 'react-redux';
 import configureStore from './Store/store';
 

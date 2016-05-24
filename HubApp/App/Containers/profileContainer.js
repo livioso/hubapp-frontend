@@ -9,14 +9,15 @@ export default connect(
     const { members } = state.memberList;
     return {
       // TBD: Filter out by ID.
-      me: members[0]
+      me: members.length !== 0 ? members[0] : undefined
     };
   },
 
   // which action creators does
   // it want to receive by props?
   (dispatch) => {
-    return { // TBD Add actions.
+    return {
+      dispatch
     };
   }
 )(Profile);

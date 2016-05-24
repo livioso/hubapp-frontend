@@ -11,7 +11,7 @@ import {
 import { Text } from '../Styles/text';
 import { color } from '../Styles/color';
 
-export const MemberList = ({ members, filters, onPressDetail, onClearFilters }) => {
+export const MemberList = ({ members, filters, onClearFilters, ...props }) => {
   const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
   const dataSource = ds.cloneWithRows(members);
   return (
@@ -19,7 +19,19 @@ export const MemberList = ({ members, filters, onPressDetail, onClearFilters }) 
       { renderActiveFilters(filters, onClearFilters) }
       <ListView
         enableEmptySections
-        renderRow={(member) => renderMemberRow(member, onPressDetail)}
+        renderRow={(member) => renderMemberRow(member, () => {
+          props.onNavigate({
+            member,
+            type: 'push',
+            route: {
+              key: 'details',
+              title: 'Item details',
+              showBackButton: true,
+              member
+            }
+          });
+        })
+        }
         dataSource={dataSource} />
     </View>
   );
@@ -43,7 +55,7 @@ const renderActiveFilters = (filters, onClearFilters) => {
 
 const renderMemberRow = (member, onPressDetail) => {
   return (
-    <TouchableOpacity onPress={() => onPressDetail(member)}>
+    <TouchableOpacity onPress={() => onPressDetail()}>
       <View style={styles.memberRowContainer}>
         <Image source={{ uri: member.picture }}
           defaultSource={require('../Styles/Assets/ic_account_circle.png')}

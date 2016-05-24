@@ -7,9 +7,11 @@ export default connect(
   // which part of the Redux global state does
   // our component want to receive as props?
   (state) => {
-    const { members, filters } = state.memberList;
+    const { globalNav: navigation, memberList } = state;
+    const { members, filters } = memberList;
     return {
       members: getMembersFiltered(members, filters),
+      navigation,
       filters
     };
   },
@@ -19,10 +21,24 @@ export default connect(
   (dispatch) => {
     const { clearFilters } = bindActionCreators(memberListActions, dispatch);
     return {
-      onClearFilters: clearFilters
+      onClearFilters: clearFilters,
+      dispatch
+    };
+  },
+
+  (stateProps, dispatchProps, ownProps) => {
+    return {
+      ...ownProps,
+      ...stateProps,
+      ...dispatchProps,
+      onNavigate: (action) => {
+        dispatchProps.dispatch({
+          ...action,
+          scope: action.scope || stateProps.navigation.key
+        });
+      }
     };
   }
-
 )(MemberList);
 
 const getMembersFiltered = (members, filters) => {
@@ -33,3 +49,5 @@ const getMembersFiltered = (members, filters) => {
       return filters.every(skill => memberSkills.includes(skill));
     });
 };
+
+
