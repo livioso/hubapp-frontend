@@ -10,6 +10,7 @@ import {
   View,
   NavigationExperimental,
   TouchableOpacity,
+  StatusBar,
   Platform,
   StyleSheet,
   Image
@@ -20,14 +21,15 @@ const {
   Header: NavigationHeader,
 } = NavigationExperimental;
 
-const HubAppNavigator = ({ navigation, onNavigate }) => {
+const HubAppNavigator = ({ navigation, onNavigate, tabs }) => {
+  StatusBar.setBarStyle('light-content', true);
   return (
     <NavigationCardStack
       direction={'vertical'}
       navigationState={navigation}
       onNavigate={onNavigate}
       renderScene={_renderScene}
-      renderOverlay={renderHeader} />
+      renderOverlay={(props) => renderHeader({...props, tabs: tabs})} />
   );
 };
 
@@ -72,7 +74,16 @@ const renderHeader = (props) => {
       style={{ backgroundColor: color.blue }}
       renderTitleComponent={renderTitleComponent}
       renderLeftComponent={renderBackButton}
-      renderRightComponent={renderRightComponent} />
+      renderRightComponent={() => {
+        const { key } = props.scene.navigationState;
+        if (props.tabs.index === 0 && key === 'applicationTabs') {
+          return (
+            renderRightComponent(props)
+          );
+        } else {
+          return null;
+        }
+      }} />
   );
 };
 
@@ -92,7 +103,7 @@ const renderTitleComponent = (props) => {
   return (
     <NavigationHeader.Title>
       <Text style={{ color: color.light }}>
-        { props.scene.navigationState.key }
+        { props.scene.navigationState.title }
       </Text>
     </NavigationHeader.Title>
   );
@@ -107,8 +118,7 @@ const renderRightComponent = (props) => {
           type: 'push',
           route: {
             key: 'filter',
-            title: 'Apply Filters',
-            showBackButton: true
+            title: 'Filters',
           }
         });
       }} >
@@ -124,7 +134,8 @@ export default connect(
   // our component want to receive as props?
   (state) => {
     return {
-      navigation: state.globalNav
+      navigation: state.globalNav,
+      tabs: state.tabs
     };
   },
 
@@ -213,7 +224,6 @@ const styles = StyleSheet.create({
 // // our navigator responsible for
 // // rendering the currently active scene
 // export const HubAppNavigator = () => {
-//   StatusBar.setBarStyle('light-content', true);
 //   return (
 //     <NavigationRootContainer
 //       reducer={NavigationBasicReducer}

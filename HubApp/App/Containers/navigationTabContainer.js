@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ProfileContainer from './profileContainer';
 import MemberListContainer from './memberListContainer';
+// import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {
   View,
