@@ -1,9 +1,24 @@
-import { View, NavigationExperimental } from 'react-native';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ApplicationTabs from './Containers/navigationTabContainer';
+import MemberListFilterContainer from './Containers/memberListFilterContainer';
 import { MemberDetails } from './Components/memberDetails';
-const { CardStack: NavigationCardStack } = NavigationExperimental;
+import { color } from './Styles/color';
+import { Text } from './Styles/text';
+
+import {
+  View,
+  NavigationExperimental,
+  TouchableOpacity,
+  Platform,
+  StyleSheet,
+  Image
+} from 'react-native';
+
+const {
+  CardStack: NavigationCardStack,
+  Header: NavigationHeader,
+} = NavigationExperimental;
 
 const HubAppNavigator = ({ navigation, onNavigate }) => {
   return (
@@ -12,12 +27,8 @@ const HubAppNavigator = ({ navigation, onNavigate }) => {
       navigationState={navigation}
       onNavigate={onNavigate}
       renderScene={_renderScene}
-      renderOverlay={_renderHeader} />
+      renderOverlay={renderHeader} />
   );
-};
-
-const _renderHeader = (props) => {
-  return null;
 };
 
 const _renderScene = (props) => {
@@ -25,23 +36,87 @@ const _renderScene = (props) => {
 
   if (key === 'applicationTabs') {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.sceneContainer}>
         <ApplicationTabs />
       </View>
     );
   }
 
-  if (key === 'new') {
-  }
-
   if (key === 'details') {
     const { member } = props.scene.navigationState;
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.sceneContainer}>
         <MemberDetails member={member} />
       </View>
     );
   }
+
+  if (key === 'filter') {
+    const { member } = props.scene.navigationState;
+    return (
+      <View style={styles.sceneContainer}>
+        <MemberListFilterContainer {...props} />
+      </View>
+    );
+  }
+
+  return (
+    <View />
+  );
+};
+
+const renderHeader = (props) => {
+  return (
+    <NavigationHeader
+      {...props}
+      style={{ backgroundColor: color.blue }}
+      renderTitleComponent={renderTitleComponent}
+      renderLeftComponent={renderBackButton}
+      renderRightComponent={renderRightComponent} />
+  );
+};
+
+const renderBackButton = (props) => {
+  if (props.scene.index === 0) {
+    return null;
+  }
+  return (
+    <TouchableOpacity style={styles.titleButtonContainer}
+      onPress={() => props.onNavigate({ type: 'BackAction' })}>
+      <Image style={styles.titleButton} source={require('./Styles/Assets/back-icon.png')} />
+    </TouchableOpacity>
+  );
+};
+
+const renderTitleComponent = (props) => {
+  return (
+    <NavigationHeader.Title>
+      <Text style={{ color: color.light }}>
+        { props.scene.navigationState.key }
+      </Text>
+    </NavigationHeader.Title>
+  );
+};
+
+const renderRightComponent = (props) => {
+  return (
+    <TouchableOpacity
+      style={styles.titleButtonContainer}
+      onPress={() => {
+        props.onNavigate({
+          type: 'push',
+          route: {
+            key: 'filter',
+            title: 'Apply Filters',
+            showBackButton: true
+          }
+        });
+      }} >
+      <Text style={{ color: color.light, marginRight: 5 }}>
+        Filter
+      </Text>
+    </TouchableOpacity>
+  );
 };
 
 export default connect(
@@ -76,6 +151,29 @@ export default connect(
     };
   }
 )(HubAppNavigator);
+
+const styles = StyleSheet.create({
+  sceneContainer: {
+    marginTop: NavigationHeader.HEIGHT,
+    backgroundColor: 'white',
+    flex: 1,
+  },
+  animatedView: {
+    flex: 1,
+  },
+  titleButtonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  titleButton: {
+    height: 24,
+    width: 24,
+    margin: Platform.OS === 'ios' ? 10 : 16,
+    resizeMode: 'contain'
+  }
+});
 
 // import React from 'react';
 // import {
