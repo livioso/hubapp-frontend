@@ -8,8 +8,8 @@ const simpleIcon = {
 };
 
 const allTabs = [
-  { key: 'notifications', icon: simpleIcon, title: 'Members' },
-	{ key: 'feed', icon: simpleIcon, title: 'Profile' },
+  { key: 'members', icon: simpleIcon, title: 'Members' },
+	{ key: 'profile', icon: simpleIcon, title: 'Profile' },
 ];
 
 export const tabs = NavigationReducer.TabsReducer({

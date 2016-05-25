@@ -16,7 +16,8 @@ export const Profile = ({ me }) => {
 
   return (
     <View style={ [styles.container, { backgroundColor: color.light }] }>
-      <Image style={ styles.image } source={{ uri: me.picture }} />
+      <Image style={ styles.image } source={{ uri: me.picture }}
+        defaultSource={require('../Styles/Assets/ic_account_circle.png')} />
       <HeaderText>{`${me.firstname} ${me.lastname}`}</HeaderText>
       <Text>{me.position}</Text>
       <Text>{me.shortDescription}</Text>
@@ -28,7 +29,7 @@ export const Profile = ({ me }) => {
 const renderSkills = (skills) => {
   return (
     skills.map((skill) => {
-      return <Text style={{ backgroundColor: 'red' }}>{skill.name}</Text>;
+      return <Text key={skill.id} style={{ backgroundColor: 'red' }}>{skill.name}</Text>;
     })
   );
 };

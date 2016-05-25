@@ -12,7 +12,8 @@ import { color } from '../Styles/color';
 export const MemberDetails = ({ member }) => {
   return (
     <View style={ [styles.container, { backgroundColor: color.light }] }>
-      <Image style={ styles.image } source={{ uri: member.picture }} />
+      <Image style={ styles.image } source={{ uri: member.picture }}
+        defaultSource={require('../Styles/Assets/ic_account_circle.png')} />
       <HeaderText>{`${member.firstname} ${member.lastname}`}</HeaderText>
       <Text>{member.position}</Text>
       <Text>{member.shortDescription}</Text>

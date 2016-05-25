@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ProfileContainer from './profileContainer';
 import MemberListContainer from './memberListContainer';
-// import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {
   View,
@@ -14,23 +13,16 @@ import {
 const { Reducer: NavigationReducer } = NavigationExperimental;
 const { JumpToAction } = NavigationReducer.TabsReducer;
 
-const _renderTabContent = (tab, onNavigate) => {
-
-  if (tab.key === 'feed') {
+const renderTabContent = (tab) => {
+  if (tab.key === 'profile') {
     return (
       <ProfileContainer />
     );
   }
 
-  if (tab.key === 'notifications') {
+  if (tab.key === 'members') {
     return (
       <MemberListContainer />
-    );
-  }
-
-  if (tab.key === 'settings') {
-    return (
-      <View style={{ backgroundColor: 'pink' }} />
     );
   }
 
@@ -46,7 +38,7 @@ const ApplicationTabs = ({ navigation, onNavigate }) => {
         title={tab.title}
         onPress={() => onNavigate(JumpToAction(i))}
         selected={navigation.index === i}>
-      { _renderTabContent(tab, onNavigate) }
+      { renderTabContent(tab) }
       </TabBarIOS.Item>
     );
   });
@@ -80,7 +72,7 @@ export default connect(
     };
   },
 
-  // 😂
+  // inject the scope to on navigate
   (stateProps, dispatchProps, ownProps) => {
     return {
       ...ownProps,

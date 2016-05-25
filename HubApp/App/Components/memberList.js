@@ -66,8 +66,8 @@ const renderMemberRow = (member, onPressDetail) => {
             {
               member.skills.map(skill => {
                 return (
-                <View style={{ backgroundColor: color.blue, marginRight: 3, marginBottom: 3, borderRadius: 55, height: 20, padding: 5, justifyContent: 'center', alignItems: 'center' }}>
-                  <Text style={{ fontSize: 12, color: color.light }}>{`${skill.name}`}</Text>
+                <View key={skill.id} style={ styles.tagContainer }>
+                  <Text style={ styles.tagCaption }>{`${skill.name}`}</Text>
                 </View>);
               })
             }
@@ -81,8 +81,8 @@ const renderMemberRow = (member, onPressDetail) => {
 MemberList.propTypes = { // eslint-disable-line immutable/no-mutation
   members: React.PropTypes.array.isRequired,
   filters: React.PropTypes.array.isRequired,
-  onPressDetail: React.PropTypes.func.isRequired,
-  onClearFilters: React.PropTypes.func.isRequired
+  onClearFilters: React.PropTypes.func.isRequired,
+  onNavigate: React.PropTypes.func.isRequired
 };
 
 const styles = StyleSheet.create({
@@ -111,5 +111,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     height: 25,
+  },
+  tagContainer: {
+    backgroundColor: color.blue,
+    marginRight: 3,
+    marginBottom: 3,
+    borderRadius: 55,
+    height: 20,
+    padding: 5,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  tagCaption: {
+    fontSize: 12,
+    color: color.light
   }
 });
