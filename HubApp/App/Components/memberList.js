@@ -10,6 +10,7 @@ import {
 
 import { Text } from '../Styles/text';
 import { color } from '../Styles/color';
+import { Tag } from '../Styles/tag';
 
 export const MemberList = ({ members, filters, onClearFilters, ...props }) => {
   const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -66,9 +67,8 @@ const renderMemberRow = (member, onPressDetail) => {
             {
               member.skills.map(skill => {
                 return (
-                <View key={skill.id} style={ styles.tagContainer }>
-                  <Text style={ styles.tagCaption }>{`${skill.name}`}</Text>
-                </View>);
+                  <Tag key={skill.id}>{`${skill.name}`}</Tag>
+                );
               })
             }
           </View>
