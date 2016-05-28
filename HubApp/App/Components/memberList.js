@@ -5,7 +5,8 @@ import {
   LayoutAnimation,
   StyleSheet,
   Image,
-  View
+  View,
+  ScrollView
 } from 'react-native';
 
 import { Text } from '../Styles/text';
@@ -26,7 +27,7 @@ export const MemberList = ({ members, filters, onClearFilters, ...props }) => {
             type: 'push',
             route: {
               key: 'details',
-              title: 'Item details',
+              title: 'Details',
               showBackButton: true,
               member
             }
@@ -46,7 +47,9 @@ const renderActiveFilters = (filters, onClearFilters) => {
 
   return (
     <View style={ styles.activeFilter }>
-      <Text style={{ color: color.light, marginLeft: 5 }}>{filters.join()}</Text>
+      <ScrollView horizontal>
+        <Text style={{ color: color.light, marginLeft: 5 }}>{filters.join(', ')}</Text>
+      </ScrollView>
       <TouchableOpacity onPress={onClearFilters}>
         <Text style={{ color: color.light, marginRight: 5 }}>Reset</Text>
       </TouchableOpacity>

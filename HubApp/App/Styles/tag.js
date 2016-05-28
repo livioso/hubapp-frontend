@@ -1,51 +1,26 @@
 import React from 'react';
 import {
   StyleSheet,
-  View
+  TouchableOpacity,
 } from 'react-native';
 
 import { Text } from '../Styles/text';
 import { color } from '../Styles/color';
 
-export const Tag = ({ style, ...props }) => {
+export const Tag = ({ onPress = () => {}, style, ...props }) => {
   return (
-    <View style={ [styles.tagContainer, style] }>
+    <TouchableOpacity onPress={onPress} style={ [styles.tagContainer, style] }>
       <Text style={ styles.tagCaption } {...props} />
-    </View>
+    </TouchableOpacity>
   );
 };
 
 Tag.propTypes = { // eslint-disable-line immutable/no-mutation
-  style: React.PropTypes.object
+  style: React.PropTypes.object,
+  onPress: React.PropTypes.func
 };
 
 const styles = StyleSheet.create({
-  list: {
-    flex: 1,
-  },
-  memberDescription: {
-    flex: 1,
-    paddingLeft: 10,
-  },
-  memberRowContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: color.light,
-    paddingTop: 10,
-    paddingLeft: 10,
-    paddingRight: 10
-  },
-  profilePicture: {
-    borderRadius: 30,
-    width: 60,
-    height: 60
-  },
-  activeFilter: {
-    backgroundColor: color.green,
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    height: 25,
-  },
   tagContainer: {
     backgroundColor: color.blue,
     marginRight: 3,

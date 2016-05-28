@@ -8,7 +8,7 @@ import {
 
 import { color } from '../Styles/color';
 import { CoolButton } from '../Styles/button';
-import ListFilterItem from './listFilterItem';
+import { ListFilterItem } from './listFilterItem';
 
 export const MemberListFilter = ({ allFilters, activeFilters, onToggleFilter, ...props }) => {
   return (
@@ -20,7 +20,7 @@ export const MemberListFilter = ({ allFilters, activeFilters, onToggleFilter, ..
 
               <ListFilterItem
                 key={filter.id}
-                topic={filter.name}
+                filter={filter.name}
                 color={color.blue}
                 isChecked={activeFilters.includes(filter.name)}
                 onToggle={() => {onToggleFilter(filter.name);}} />

@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 
 import { Text, HeaderText } from '../Styles/text';
+import { Tag } from '../Styles/tag';
 import { color } from '../Styles/color';
 
 export const MemberDetails = ({ member }) => {
@@ -15,18 +16,27 @@ export const MemberDetails = ({ member }) => {
       <Image style={ styles.image } source={{ uri: member.picture }}
         defaultSource={require('../Styles/Assets/ic_account_circle.png')} />
       <HeaderText>{`${member.firstname} ${member.lastname}`}</HeaderText>
-      <Text>{member.position}</Text>
-      <Text>{member.shortDescription}</Text>
-      { renderSkills(member.skills) }
+
+			<View style={{ flex: 1, padding: 10, alignItems: 'center' }} >
+				<Text>{member.position}</Text>
+				<Text>{member.shortDescription}</Text>
+				{ renderSkills(member.skills) }
+      </View>
     </View>
   );
 };
 
 const renderSkills = (skills) => {
   return (
-    skills.map((skill) => {
-      return <Text style={{ backgroundColor: 'red' }}>{skill.name}</Text>;
-    })
+    <View style={{ flexDirection: 'row', flexWrap: 'wrap', flex: 1 }}>
+      {
+        skills.map(skill => {
+          return (
+            <Tag key={skill.id}>{`${skill.name}`}</Tag>
+          );
+        })
+      }
+    </View>
   );
 };
 
