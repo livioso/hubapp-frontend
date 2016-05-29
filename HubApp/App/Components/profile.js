@@ -8,6 +8,7 @@ import {
 
 import { Text, HeaderText } from '../Styles/text';
 import { color } from '../Styles/color';
+import { Tag } from '../Styles/tag';
 
 export const Profile = ({ me }) => {
   if (me === undefined) {
@@ -28,8 +29,10 @@ export const Profile = ({ me }) => {
 
 const renderSkills = (skills) => {
   return (
-    skills.map((skill) => {
-      return <Text key={skill.id} style={{ backgroundColor: 'red' }}>{skill.name}</Text>;
+    skills.map(skill => {
+      return (
+        <Tag key={skill.id} onDelete={() => {}}>{`${skill.name}`}</Tag>
+      );
     })
   );
 };

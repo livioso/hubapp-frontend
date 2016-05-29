@@ -7,7 +7,10 @@ import {
 import { Text } from '../Styles/text';
 import { color } from '../Styles/color';
 
-export const Tag = ({ onPress = () => {}, style, ...props }) => {
+export const Tag = ({ onPress, onDelete = undefined, style, ...props }) => {
+  const deleteButton = onDelete !== undefined ? (
+    <TouchableOpacity onPress={onDelete} />
+  ) : null;
   return (
     <TouchableOpacity onPress={onPress} style={ [styles.tagContainer, style] }>
       <Text style={ styles.tagCaption } {...props} />
@@ -29,7 +32,8 @@ const styles = StyleSheet.create({
     height: 20,
     padding: 5,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    flexDirection: 'row'
   },
   tagCaption: {
     fontSize: 12,

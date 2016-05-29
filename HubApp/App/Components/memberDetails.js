@@ -17,18 +17,18 @@ export const MemberDetails = ({ member }) => {
         defaultSource={require('../Styles/Assets/ic_account_circle.png')} />
       <HeaderText>{`${member.firstname} ${member.lastname}`}</HeaderText>
 
-			<View style={{ flex: 1, padding: 10, alignItems: 'center' }} >
+			<View style={{ padding: 10, alignItems: 'center' }} >
 				<Text>{member.position}</Text>
 				<Text>{member.shortDescription}</Text>
-				{ renderSkills(member.skills) }
       </View>
+      { renderSkills(member.skills) }
     </View>
   );
 };
 
 const renderSkills = (skills) => {
   return (
-    <View style={{ flexDirection: 'row', flexWrap: 'wrap', flex: 1 }}>
+    <View style={{ flexDirection: 'row', flexWrap: 'wrap', flex: 1, margin: 20 }}>
       {
         skills.map(skill => {
           return (

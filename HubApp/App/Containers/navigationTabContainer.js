@@ -34,6 +34,7 @@ const ApplicationTabs = ({ navigation, onNavigate }) => {
     return (
       <TabBarIOS.Item key={tab.key}
         icon={tab.icon}
+        systemIcon={tab.title === 'Members' ? 'contacts' : 'more'}
         selectedIcon={tab.selectedIcon}
         title={tab.title}
         onPress={() => onNavigate(JumpToAction(i))}

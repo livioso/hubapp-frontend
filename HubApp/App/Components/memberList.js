@@ -32,8 +32,7 @@ export const MemberList = ({ members, filters, onClearFilters, ...props }) => {
               member
             }
           });
-        })
-        }
+        })}
         dataSource={dataSource} />
     </View>
   );

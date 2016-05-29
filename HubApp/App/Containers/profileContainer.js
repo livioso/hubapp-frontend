@@ -9,7 +9,7 @@ export default connect(
     const { members } = state.memberList;
     return {
       // TBD: Filter out by ID.
-      me: members.length !== 0 ? members[0] : undefined
+      me: members.length !== 0 ? members[167] : undefined
     };
   },
 
