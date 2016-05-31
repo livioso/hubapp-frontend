@@ -12,7 +12,7 @@ export const requestMemberList = () => {
 export const receiveMemberList = (members) => {
   return {
     type: RECEIVE_MEMBERLIST,
-    members
+    members,
   };
 };
 

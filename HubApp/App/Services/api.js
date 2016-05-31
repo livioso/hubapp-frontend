@@ -1,4 +1,4 @@
-export const host = 'http://localhost:8080';
+export const host = 'http://Tateyama.local:8080';
 export const membersURL = `${host}/api/members`;
 export const skillsURL = `${host}/api/skills`;
 
