@@ -1,5 +1,6 @@
 export const host = 'http://Tateyama.local:8080';
 export const membersURL = `${host}/api/members`;
+export const currentMeURL = `${host}/api/members/me/skills`;
 export const skillsURL = `${host}/api/skills`;
 
 /**
