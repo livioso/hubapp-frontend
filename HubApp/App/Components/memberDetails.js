@@ -40,7 +40,7 @@ const renderSkills = (skills) => {
   );
 };
 
-MemberDetails.propTypes = { // eslint-disable-line immutable/no-mutation
+MemberDetails.propTypes = {
   member: React.PropTypes.object.isRequired,
 };
 
