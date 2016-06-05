@@ -31,21 +31,23 @@ export const profile = (state = initialState, action) => { // eslint-disable-lin
         ...state,
         firstname,
         lastname,
-        skills,
         picture,
         position,
-        shortDescription
+        shortDescription,
+        skills: skills.map(skill => skill.name),
       };
     }
 
     case ADD_TAG:
       return {
-        ...state
+        ...state,
+        skills: state.skills.concat(action.tag)
       };
 
     case REMOVE_TAG:
       return {
-        ...state
+        ...state,
+        skills: state.skills.filter(skill => skill !== action.tag)
       };
 
     default:

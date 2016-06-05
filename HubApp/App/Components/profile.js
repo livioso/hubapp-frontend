@@ -31,8 +31,8 @@ const renderSkills = (skills) => {
   return (
     skills.map(skill => {
       return (
-        <Tag key={skill.id}>
-          {`${skill.name}`}
+        <Tag key={skill}>
+          {`${skill}`}
         </Tag>
       );
     })

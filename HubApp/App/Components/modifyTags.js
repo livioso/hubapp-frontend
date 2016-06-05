@@ -4,25 +4,16 @@ import {
   StyleSheet,
   ScrollView,
   TextInput,
-  TouchableOpacity,
 } from 'react-native';
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import { Text, HeaderText } from '../Styles/text';
 import { ProfileTag } from '../Styles/tag';
 import { color } from '../Styles/color';
 import { font } from '../Styles/font';
 
-export const ModifyTags = ({ tags = [
-  'C',
-  'Java',
-  'JavaScript',
-  'Programming',
-  'Webdevelopment'
-], deleteTag = (tag) => alert(tag), addTag = (tag) => alert(tag) }) => (
+export const ModifyTags = ({ tags, removeTag, addTag }) => (
   <ScrollView style={ styles.container }>
     <AddTagBar addTag={addTag} />
-    { activeTags(tags, deleteTag) }
+    { activeTags(tags, removeTag) }
   </ScrollView>
 );
 
@@ -50,13 +41,13 @@ class AddTagBar extends Component {
   }
 }
 
-const activeTags = (tags, deleteTag) => (
+const activeTags = (tags, removeTag) => (
   <View style={{ backgroundColor: color.light, flexDirection: 'row', flexWrap: 'wrap', padding: 4 }}>
   {
     tags.map(tag => {
       return (
         <View style={{ paddingLeft: 2, paddingBottom: 2 }}>
-          <ProfileTag onDelete={deleteTag}>{tag}</ProfileTag>
+          <ProfileTag onDelete={removeTag}>{tag}</ProfileTag>
         </View>
       );
     })
@@ -65,7 +56,9 @@ const activeTags = (tags, deleteTag) => (
 );
 
 ModifyTags.propTypes = { // eslint-disable-line immutable/no-mutation
-  tags: React.PropTypes.object.isRequired,
+  tags: PropTypes.array.isRequired,
+  removeTag: PropTypes.func.isRequired,
+  addTag: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({

@@ -1,7 +1,7 @@
 export const ADD_TAG = 'ADD_TAG';
 export const REMOVE_TAG = 'REMOVE_TAG';
 
-export const requestMemberList = (tag) => {
+export const removeTag = (tag) => {
   return {
     type: REMOVE_TAG,
     tag

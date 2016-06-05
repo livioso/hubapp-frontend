@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import ApplicationTabs from './Containers/navigationTabContainer';
 import MemberListFilterContainer from './Containers/memberListFilterContainer';
-import { ModifyTags as ModifyTagsContainer } from './Components/modifyTags';
+import ModifyTagsContainer from './Containers/modifyTagsContainer';
 import { MemberDetails } from './Components/memberDetails';
 import { color } from './Styles/color';
 import { Text } from './Styles/text';
