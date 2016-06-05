@@ -1,7 +1,7 @@
 import { globalNav, tabs } from './navigationReducer';
 import { memberList } from './memberListReducer';
 import { tagList } from './tagListReducer';
-import { profile } from './profile';
+import { profile } from './profileReducer';
 
 export {
   globalNav,
