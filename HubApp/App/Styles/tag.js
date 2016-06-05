@@ -53,10 +53,10 @@ const styles = StyleSheet.create({
   },
   tagProfileContainer: {
     height: 35,
-    paddingTop: 5,
+    paddingTop: 0,
     paddingLeft: 5,
-    paddingBottom: 5,
-    paddingRight: 3,
+    paddingBottom: 0,
+    paddingRight: 0,
     borderColor: color.light,
   },
   tagCaption: {
@@ -67,9 +67,9 @@ const styles = StyleSheet.create({
     borderColor: color.light,
     borderWidth: 2,
     backgroundColor: color.blue,
-    height: 30,
-    width: 30,
-    borderRadius: 15,
+    height: 37,
+    width: 37,
+    borderRadius: 17,
     marginLeft: 5,
     alignItems: 'center',
     justifyContent: 'center'

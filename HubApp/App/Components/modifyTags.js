@@ -46,7 +46,7 @@ const activeTags = (tags, removeTag) => (
   {
     tags.map(tag => {
       return (
-        <View style={{ paddingLeft: 2, paddingBottom: 2 }}>
+        <View style={{ paddingLeft: 2, paddingBottom: 2 }} key={tag}>
           <ProfileTag onDelete={removeTag}>{tag}</ProfileTag>
         </View>
       );
