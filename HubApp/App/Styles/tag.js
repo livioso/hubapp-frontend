@@ -21,7 +21,7 @@ export const ProfileTag = ({ onPress, onDelete, style, ...props }) => {
     <TouchableOpacity onPress={onPress}
       style={ [styles.tagContainer, styles.tagProfileContainer, style] }>
       <Text style={ styles.tagCaption } {...props} />
-      <TouchableOpacity onPress={onDelete} style={ styles.tagCircle }>
+      <TouchableOpacity onPress={() => onDelete(props.children)} style={ styles.tagCircle }>
         <Icon name="clear" style={{ color: color.light }} />
       </TouchableOpacity>
     </TouchableOpacity>
