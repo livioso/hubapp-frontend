@@ -1,23 +1,24 @@
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux';
 import { Profile } from '../Components/profile';
+import * as profileActions from '../Actions/profileActions';
 
 export default connect(
   // which part of the Redux global state does
   // our component want to receive as props?
   (state) => {
-    const { members } = state.memberList;
     return {
-      // TBD: Filter out by ID.
-      me: members.length !== 0 ? members[167] : undefined
+      me: state.profile
     };
   },
 
   // which action creators does
   // it want to receive by props?
   (dispatch) => {
+    const { addTag, removeTag } = bindActionCreators(profileActions, dispatch);
     return {
-      dispatch
+      onAddTag: addTag,
+      onRemoveTag: removeTag
     };
   }
 )(Profile);
