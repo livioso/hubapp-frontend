@@ -8,7 +8,7 @@ import {
 
 import { Text, HeaderText } from '../Styles/text';
 import { color } from '../Styles/color';
-import { ProfileTag } from '../Styles/tag';
+import { Tag } from '../Styles/tag';
 
 export const Profile = ({ me }) => {
   if (me === undefined) {
@@ -31,11 +31,9 @@ const renderSkills = (skills) => {
   return (
     skills.map(skill => {
       return (
-        <ProfileTag key={skill.id}
-          onPress={() => {alert('bütten tag')}}
-          onDelete={() => {alert('yolo')}}>
+        <Tag key={skill.id}>
           {`${skill.name}`}
-        </ProfileTag>
+        </Tag>
       );
     })
   );
