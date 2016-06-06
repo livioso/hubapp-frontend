@@ -13,6 +13,7 @@ const initialState = {
   skills: [],
   position: '',
   shortDescription: '',
+  memberIndex: 167
 };
 
 export const profile = (state = initialState, action) => { // eslint-disable-line complexity
@@ -25,7 +26,7 @@ export const profile = (state = initialState, action) => { // eslint-disable-lin
         picture,
         position,
         shortDescription,
-      } = action.members[167];
+      } = action.members[state.memberIndex];
 
       return {
         ...state,

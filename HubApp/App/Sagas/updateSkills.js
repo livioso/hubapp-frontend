@@ -2,6 +2,8 @@ import { takeLatest } from 'redux-saga';
 import { call, select } from 'redux-saga/effects';
 import { request, currentMeURL } from '../Services/api';
 import { ADD_TAG, REMOVE_TAG } from '../Actions/profileActions';
+import { fetchMemberList } from './fetchMemberList';
+import { fetchTagList } from './fetchTagList';
 
 function* updateSkills() {
   const state = yield select();
@@ -12,6 +14,10 @@ function* updateSkills() {
       'Content-Type': 'application/json'
     },
   });
+
+  // re-fetch all the things
+  yield call(fetchMemberList);
+  yield call(fetchTagList);
 }
 
 export function* watchAddTag() {
