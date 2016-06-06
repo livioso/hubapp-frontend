@@ -31,7 +31,7 @@ const HubAppNavigator = ({ navigation, onNavigate, tabs }) => {
       navigationState={navigation}
       onNavigate={onNavigate}
       renderScene={_renderScene}
-      renderOverlay={(props) => renderHeader({...props, tabs: tabs})} />
+      renderOverlay={(props) => renderHeader({ ...props, tabs: tabs })} />
   );
 };
 
@@ -122,7 +122,7 @@ const renderFilterButton = (props) => (
       Filter
     </Text>
   </TouchableOpacity>
-)
+);
 
 const renderMoreButton = (props) => (
   <TouchableOpacity
