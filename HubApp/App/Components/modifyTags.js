@@ -34,7 +34,7 @@ class AddTagBar extends Component {
 
   render() {
     return (
-      <View style={{ marginLeft: 5, marginRight: 5, borderBottomWidth: 2, marginBottom: 10, borderBottomColor: color.blue, justifyContent: 'space-between', flexDirection: 'row'}}>
+      <View style={{ marginLeft: 5, marginRight: 5, borderBottomWidth: 2, marginBottom: 10, borderBottomColor: color.blue, justifyContent: 'space-between', flexDirection: 'row' }}>
         <TextInput ref="tagInput" style={[font.text, { height: 30, borderWidth: 0, flex: 1 }]} placeholder="Add new tag to your profile" returnKeyType="done" clearButtonMode="while-editing" onSubmitEditing={this.onSubmitEditing} />
       </View>
     );

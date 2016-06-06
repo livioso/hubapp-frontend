@@ -3,7 +3,7 @@ import { fork } from 'redux-saga/effects';
 import { startup } from './startup';
 import { watchRequestMemberList } from './fetchMemberList';
 import { watchRequestTagList } from './fetchTagList';
-import { watchAddTag, watchRemoveTag} from './updateSkills';
+import { watchAddTag, watchRemoveTag } from './updateSkills';
 
 // The entry point for all the
 // sagas used in this application.

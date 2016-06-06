@@ -16,7 +16,6 @@ export const MemberDetails = ({ member }) => {
       <Image style={ styles.image } source={{ uri: member.picture }}
         defaultSource={require('../Styles/Assets/ic_account_circle.png')} />
       <HeaderText>{`${member.firstname} ${member.lastname}`}</HeaderText>
-
 			<View style={{ padding: 10, alignItems: 'center' }} >
 				<Text>{member.position}</Text>
 				<Text>{member.shortDescription}</Text>
