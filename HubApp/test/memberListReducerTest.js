@@ -2,8 +2,8 @@ import expect from 'expect';
 
 import {
   memberList,
-  viewMembersByFilter,
-  viewMembersByJaccard
+  filterMembers,
+  filterMembersByJaccard
 } from '../App/Reducers/memberListReducer';
 
 import {
@@ -92,7 +92,7 @@ describe('Memberlist Reducer', () => {
       { lastName: 'Bieri', firstName: 'Livio', skills: [{ name: 'C' }, { name: 'C++' }] }
     ];
     expect(
-      viewMembersByFilter(members, filters)
+      filterMembers(members, filters)
     ).toEqual(
       [{ lastName: 'Brunner', firstName: 'Raphi', skills: [{ name: 'Java' }] }]
     );
@@ -123,9 +123,10 @@ describe('Memberlist Reducer', () => {
       },
     ];
     expect(
-      viewMembersByJaccard(members, filters, 2 / 3)
+      filterMembersByJaccard(members, filters, 2 / 3)
     ).toEqual(
       [{
+        similarity: 0.6666666666666666,
         lastName: 'Blatter',
         skills: [
           { name: 'C++' },

@@ -44,7 +44,7 @@ export const memberList = (state = initialState, action) => { // eslint-disable-
   }
 };
 
-export const viewMembersByFilter = (members, filters) => {
+export const filterMembers = (members, filters) => {
   return members
     .filter((member) => {
       const { skills } = member;
@@ -53,13 +53,35 @@ export const viewMembersByFilter = (members, filters) => {
     });
 };
 
-// given members it should only return the ones which have >= thresholds
-// amount of filters / skills.
-export const viewMembersByJaccard = (members, filters, threshold = 2/3) => {
-  return members
-    .filter((member) => {
-      const { skills } = member;
-      const memberSkills = skills.map(skill => skill.name);
-      return filters.reduce(skill => memberSkills.includes(skill));
-    });
+export const filterMembersByJaccard = (members, filters, threshold = 2 / 3) => {
+  // map the users to their similarity for the specified filters
+  const membersWithJaccardSimilarity = members.map(member => {
+    const { skills } = member;
+    const memberSkills = skills.map(skill => skill.name);
+    const similarity = calculateJaccardSimilarity(memberSkills, filters);
+    return { ...member, similarity };
+  });
+
+  return membersWithJaccardSimilarity
+    .filter(member => member.similarity >= threshold)
+    .sort((lhs, rhs) => lhs.similarity >= rhs.similarity);
+};
+
+export const calculateJaccardSimilarity = (skills, filters) => {
+  // nothing to do 😀
+  if (filters.length === 0) {
+    return 1;
+  }
+
+  // reduce the skills into a single number that tells us
+  // how many matching skills the user has with filters
+  const initialScore = 0;
+  const score = filters.reduce((previous, current) => {
+    return skills.includes(current)
+      ? previous + 1
+      : previous;
+  }, initialScore);
+
+  // calculate the Jaccard similarity
+  return score / filters.length;
 };

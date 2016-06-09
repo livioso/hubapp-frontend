@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { MemberList } from '../Components/memberList';
-import { viewMembersByFilter } from '../Reducers/memberListReducer';
+import { filterMembersByJaccard } from '../Reducers/memberListReducer';
 import * as memberListActions from '../Actions/memberListActions';
 
 export default connect(
@@ -11,7 +11,7 @@ export default connect(
     const { globalNav: navigation, memberList } = state;
     const { members, filters } = memberList;
     return {
-      members: viewMembersByFilter(members, filters),
+      members: filterMembersByJaccard(members, filters),
       navigation,
       filters
     };

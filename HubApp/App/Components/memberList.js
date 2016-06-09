@@ -64,7 +64,7 @@ const renderMemberRow = (member, onPressDetail) => {
           defaultSource={require('../Styles/Assets/ic_account_circle.png')}
           style={styles.profilePicture} />
         <View style={styles.memberDescription}>
-          <Text>{`${member.firstname} ${member.lastname}`}</Text>
+          <Text>{`${member.firstname} ${member.lastname} ${member.similarity}`}</Text>
           <View style={{ flexDirection: 'row', flexWrap: 'wrap', flex: 1 }}>
             {
               member.skills.map(skill => {
