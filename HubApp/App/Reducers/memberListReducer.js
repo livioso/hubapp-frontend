@@ -43,3 +43,23 @@ export const memberList = (state = initialState, action) => { // eslint-disable-
       return state;
   }
 };
+
+export const viewMembersByFilter = (members, filters) => {
+  return members
+    .filter((member) => {
+      const { skills } = member;
+      const memberSkills = skills.map(skill => skill.name);
+      return filters.every(skill => memberSkills.includes(skill));
+    });
+};
+
+// given members it should only return the ones which have >= thresholds
+// amount of filters / skills.
+export const viewMembersByJaccard = (members, filters, threshold = 2/3) => {
+  return members
+    .filter((member) => {
+      const { skills } = member;
+      const memberSkills = skills.map(skill => skill.name);
+      return filters.reduce(skill => memberSkills.includes(skill));
+    });
+};

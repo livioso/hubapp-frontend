@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { MemberList } from '../Components/memberList';
+import { viewMembersByFilter } from '../Reducers/memberListReducer';
 import * as memberListActions from '../Actions/memberListActions';
 
 export default connect(
@@ -10,7 +11,7 @@ export default connect(
     const { globalNav: navigation, memberList } = state;
     const { members, filters } = memberList;
     return {
-      members: getMembersFiltered(members, filters),
+      members: viewMembersByFilter(members, filters),
       navigation,
       filters
     };
@@ -40,14 +41,4 @@ export default connect(
     };
   }
 )(MemberList);
-
-const getMembersFiltered = (members, filters) => {
-  return members
-    .filter((member) => {
-      const { skills } = member;
-      const memberSkills = skills.map(skill => skill.name);
-      return filters.every(skill => memberSkills.includes(skill));
-    });
-};
-
 

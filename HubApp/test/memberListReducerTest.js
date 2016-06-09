@@ -1,5 +1,11 @@
 import expect from 'expect';
-import { memberList } from '../App/Reducers/memberListReducer';
+
+import {
+  memberList,
+  viewMembersByFilter,
+  viewMembersByJaccard
+} from '../App/Reducers/memberListReducer';
+
 import {
   requestMemberList,
   receiveMemberList,
@@ -76,5 +82,56 @@ describe('Memberlist Reducer', () => {
     ).toEqual({
       filters: []
     });
+  });
+
+  it('should handle filter function on members', () => {
+    const filters = ['Java'];
+    const members = [
+      { lastName: 'Brunner', firstName: 'Raphi', skills: [{ name: 'Java' }] },
+      { lastName: 'Blatter', firstName: 'Sepp', skills: [{ name: 'C' }, { name: 'C++' }] },
+      { lastName: 'Bieri', firstName: 'Livio', skills: [{ name: 'C' }, { name: 'C++' }] }
+    ];
+    expect(
+      viewMembersByFilter(members, filters)
+    ).toEqual(
+      [{ lastName: 'Brunner', firstName: 'Raphi', skills: [{ name: 'Java' }] }]
+    );
+  });
+
+  it('should handle filtering by Jaccard on members', () => {
+    const filters = ['Java', 'C', 'C++'];
+    const members = [
+      {
+        lastName: 'Brunner',
+        skills: [
+          { name: 'Java' }
+        ]
+      },
+      {
+        lastName: 'Bieri',
+        skills: [
+          { name: 'C' }
+        ]
+      },
+      {
+        lastName: 'Blatter',
+        skills: [
+          { name: 'C++' },
+          { name: 'Java' },
+          { name: 'Haskell' }
+        ]
+      },
+    ];
+    expect(
+      viewMembersByJaccard(members, filters, 2 / 3)
+    ).toEqual(
+      [{
+        lastName: 'Blatter',
+        skills: [
+          { name: 'C++' },
+          { name: 'Java' },
+          { name: 'Haskell' }]
+      }]
+    );
   });
 });
