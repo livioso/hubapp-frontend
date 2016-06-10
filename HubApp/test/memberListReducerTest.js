@@ -98,7 +98,26 @@ describe('Memberlist Reducer', () => {
     );
   });
 
-  it('should handle filtering by Jaccard on members', () => {
+  it('should handle empty filter (Jaccard) Similarity => 1', () => {
+    expect(
+      filterMembersByJaccard([{
+        lastName: 'Blatter',
+        skills: [
+          { name: 'Java' }
+        ]
+      }], [])
+    ).toEqual(
+      [{
+        similarity: 1,
+        lastName: 'Blatter',
+        skills: [
+          { name: 'Java' }
+        ]
+      }]
+    );
+  });
+
+  it('should handle filtering (Jaccard)', () => {
     const filters = ['Java', 'C', 'C++'];
     const members = [
       {
