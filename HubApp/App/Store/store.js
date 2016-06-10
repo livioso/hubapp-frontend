@@ -1,6 +1,8 @@
+import { AsyncStorage } from 'react-native';
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
+import { persistStore, autoRehydrate } from 'redux-persist';
+import immutableTransform from 'redux-persist-transform-immutable';
 import createSagaMiddleware from 'redux-saga';
-import devTools from 'remote-redux-devtools';
 import thunk from 'redux-thunk';
 
 import * as reducers from '../Reducers';
@@ -16,12 +18,16 @@ let createStoreWithMiddleware = () => { // eslint-disable-line immutable/no-let
 // Disable development tools on production!
 if (process.env.NODE_ENV === 'production') {
   createStoreWithMiddleware = compose(
+    autoRehydrate(),
     applyMiddleware(thunk, sagaMiddleware),
   )(createStore);
 } else {
   createStoreWithMiddleware = compose(
+    autoRehydrate(),
     applyMiddleware(thunk, sagaMiddleware),
-    devTools()
+    global.reduxNativeDevTools
+      ? global.reduxNativeDevTools()
+      : nope => nope
   )(createStore);
 }
 
@@ -31,6 +37,11 @@ export default function configureStore(initialState) {
 
   // Create the one and only redux store. 🚀
   const store = createStoreWithMiddleware(reducer);
+
+  persistStore(store, {
+    transform: [immutableTransform({ records: null })],
+    storage: AsyncStorage,
+  });
 
   if (module.hot) {
     // enable hot module replacement for reducers
