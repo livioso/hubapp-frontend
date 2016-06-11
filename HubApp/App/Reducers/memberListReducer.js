@@ -54,6 +54,11 @@ export const filterMembers = (members, filters) => {
 };
 
 export const filterMembersByJaccard = (members, filters, threshold = 2 / 3) => {
+  // nothing to do 😀
+  if (filters.length === 0) {
+    return members;
+  }
+
   // map the users to their similarity for the specified filters
   const membersWithJaccardSimilarity = members.map(member => {
     const { skills } = member;
@@ -73,21 +78,16 @@ export const filterMembersByJaccard = (members, filters, threshold = 2 / 3) => {
     });
 };
 
-export const calculateJaccardSimilarity = (skills, filters) => {
-  // nothing to do 😀
-  if (filters.length === 0) {
-    return 1;
-  }
-
+export const calculateJaccardSimilarity = (lhs, rhs) => {
   // reduce the skills into a single number that tells us
   // how many matching skills the user has with filters
   const initialScore = 0;
-  const score = filters.reduce((previous, current) => {
-    return skills.includes(current)
+  const score = rhs.reduce((previous, current) => {
+    return lhs.includes(current)
       ? previous + 1
       : previous;
   }, initialScore);
 
   // calculate the Jaccard similarity
-  return score / filters.length;
+  return score / rhs.length;
 };
