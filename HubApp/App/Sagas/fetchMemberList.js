@@ -8,8 +8,7 @@ export function* fetchMemberList() {
   const isResponseOK = response.error === undefined || response.error === null;
 
   if (isResponseOK) {
-    const members = mapResponseToMembers(response)
-      .sort((lhs, rhs) => lhs.lastname.localeCompare(rhs.lastname));
+    const members = mapResponseToMembers(response);
     yield put(receiveMemberList(members));
   } else {
     console.log(response.error); // eslint-disable-line no-console

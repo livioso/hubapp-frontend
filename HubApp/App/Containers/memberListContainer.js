@@ -9,9 +9,10 @@ export default connect(
   // our component want to receive as props?
   (state) => {
     const { globalNav: navigation, memberList } = state;
-    const { members, filters } = memberList;
+    const { members: allMember, filters } = memberList;
+    const members = filterMembersByJaccard(allMember, filters);
     return {
-      members: filterMembersByJaccard(members, filters),
+      members,
       navigation,
       filters
     };

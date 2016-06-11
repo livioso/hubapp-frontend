@@ -64,7 +64,13 @@ export const filterMembersByJaccard = (members, filters, threshold = 2 / 3) => {
 
   return membersWithJaccardSimilarity
     .filter(member => member.similarity >= threshold)
-    .sort((lhs, rhs) => lhs.similarity >= rhs.similarity);
+    .sort((lhs, rhs) => lhs.lastname.localeCompare(rhs.lastname))
+    .sort((lhs, rhs) => {
+      if (filters.length === 0) return 0;
+      if (lhs.similarity < rhs.similarity) return 1;
+      if (lhs.similarity > rhs.similarity) return -1;
+      return 0;
+    });
 };
 
 export const calculateJaccardSimilarity = (skills, filters) => {
