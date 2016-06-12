@@ -26,8 +26,8 @@ export const MemberList = ({ members, filters, onClearFilters, ...props }) => {
             member,
             type: 'push',
             route: {
-              key: 'details',
-              title: 'Details',
+              key: `details_${member.id}`,
+              title: `Details for ${member.firstname}`,
               showBackButton: true,
               member
             }

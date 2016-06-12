@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import {
+  TouchableOpacity,
   StyleSheet,
   ScrollView,
   Dimensions,
@@ -10,7 +11,7 @@ import {
 import { Text, HeaderText } from '../Styles/text';
 import { Tag } from '../Styles/tag';
 
-export const MemberDetails = ({ member }) => (
+export const MemberDetails = ({ member, ...props }) => (
   <View style={styles.container}>
     <Image style={styles.image} source={{ uri: member.picture }}
       defaultSource={require('../Styles/Assets/ic_account_circle.png')} />
@@ -19,7 +20,7 @@ export const MemberDetails = ({ member }) => (
       <Text>{member.position}</Text>
       <Text>{member.shortDescription}</Text>
       { renderSkills(member) }
-      { renderSimilar(member) }
+      { renderSimilar({ ...member, ...props }) }
     </View>
   </View>
 );
@@ -30,8 +31,21 @@ const renderSkills = ({ skills }) => (
   </View>
 );
 
-const renderSimilar = ({ similar, firstname }) => {
-  if (similar.length === 0) {
+const onNavigateToSimilarMember = (member, props) => {
+  props.onNavigate({
+    member,
+    type: 'push',
+    route: {
+      key: `details_${member.id}`,
+      title: 'Similar Member',
+      showBackButton: true,
+      member
+    }
+  });
+};
+
+const renderSimilar = ({ similar, firstname, ...props }) => {
+  if (similar === undefined || similar.length === 0) {
     return null;
   }
 
@@ -41,7 +55,9 @@ const renderSimilar = ({ similar, firstname }) => {
       <ScrollView horizontal style={{ height: 60 }}>
         {
           similar.map(member => (
-            <Image source={{ uri: member.picture }} style={{ height: 60, width: 60 }} />
+            <TouchableOpacity key={member.id} onPress={() => onNavigateToSimilarMember(member, props)}>
+              <Image source={{ uri: member.picture }} style={{ height: 60, width: 60 }} />
+            </TouchableOpacity>
           ))
         }
       </ScrollView>
@@ -59,12 +75,12 @@ renderSkills.propTypes = { // eslint-disable-line immutable/no-mutation
 
 renderSimilar.propTypes = { // eslint-disable-line immutable/no-mutation
   firstname: PropTypes.string.isRequired,
-  skills: PropTypes.array.isRequired
+  similar: PropTypes.array.isRequired
 };
 
 // FIXME (livioso 06.12.2016) Why do we need to do this?
 // Could be caused by some bug with nesting of components.
-const containerWidth = Dimensions.get('window').width - 40;
+const containerWidth = Dimensions.get('window').width;
 const imageSize = Dimensions.get('window').width / 3;
 const styles = StyleSheet.create({
   container: {
@@ -85,7 +101,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    width: containerWidth
+    width: containerWidth - 40
   },
   similar: {
     paddingTop: 40,

@@ -46,11 +46,11 @@ const _renderScene = (props) => {
     );
   }
 
-  if (key === 'details') {
+  if (key.startsWith('details')) {
     const { member } = props.scene.navigationState;
     return (
       <View style={styles.sceneContainer}>
-        <MemberDetails member={member} />
+        <MemberDetails member={member} {...props} />
       </View>
     );
   }
