@@ -21,7 +21,7 @@ export const memberList = (state = initialState, action) => { // eslint-disable-
     case RECEIVE_MEMBERLIST:
       return {
         ...state,
-        members: action.members,
+        members: calculateSimilarMembers(action.members),
         loading: false
       };
     case TOGGLE_FILTER: {
@@ -76,6 +76,20 @@ export const filterMembersByJaccard = (members, filters, threshold = 2 / 3) => {
       if (lhs.similarity > rhs.similarity) return -1;
       return 0;
     });
+};
+
+export const calculateSimilarMembers = (members) => {
+  return members.map(member => {
+    // no skills => no similar members
+    if (member.skills.length === 0) {
+      return { ...member, similar: [] };
+    }
+
+    const skills = member.skills.map(skill => skill.name);
+    const similar = filterMembersByJaccard(members, skills);
+
+    return { ...member, similar };
+  });
 };
 
 export const calculateJaccardSimilarity = (lhs, rhs) => {

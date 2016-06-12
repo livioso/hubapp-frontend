@@ -41,7 +41,7 @@ ProfileTag.propTypes = { // eslint-disable-line immutable/no-mutation
 
 const styles = StyleSheet.create({
   tagContainer: {
-    backgroundColor: color.blue,
+    backgroundColor: color.gray,
     marginRight: 3,
     marginBottom: 3,
     borderRadius: 55,
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   tagCircle: {
     borderColor: color.light,
     borderWidth: 2,
-    backgroundColor: color.blue,
+    backgroundColor: color.gray,
     height: 37,
     width: 37,
     borderRadius: 17,
