@@ -54,9 +54,9 @@ export const filterMembers = (members, filters) => {
 };
 
 export const filterMembersByJaccard = (members, filters, threshold = 2 / 3) => {
-  // nothing to do 😀
   if (filters.length === 0) {
-    return members;
+    return members
+      .sort((lhs, rhs) => lhs.lastname.localeCompare(rhs.lastname));
   }
 
   // map the users to their similarity for the specified filters

@@ -25,7 +25,7 @@ export const profile = (state = initialState, action) => { // eslint-disable-lin
         picture,
         position,
         shortDescription,
-      } = action.members[167];
+      } = action.members.filter(member => member.id === 84)[0];
 
       return {
         ...state,

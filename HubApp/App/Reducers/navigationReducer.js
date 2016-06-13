@@ -15,7 +15,7 @@ const allTabs = [
 export const tabs = NavigationReducer.TabsReducer({
   key: 'ApplicationTabs',
   initialIndex: 0,
-  tabReducers: allTabs.map(t => (lastRoute) => lastRoute || t),
+  tabReducers: allTabs.map(t => (lastRoute) => lastRoute || t)
 });
 
 // GLOBAL
