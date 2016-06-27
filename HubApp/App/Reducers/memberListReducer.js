@@ -53,7 +53,7 @@ export const filterMembers = (members, filters) => {
     });
 };
 
-export const filterMembersByJaccard = (members, filters, threshold = 2 / 3) => {
+export const filterMembersByJaccard = (members, filters, threshold = 1/3) => {
   if (filters.length === 0) {
     return members
       .sort((lhs, rhs) => lhs.lastname.localeCompare(rhs.lastname));
