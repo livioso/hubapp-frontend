@@ -60,13 +60,6 @@ const renderActiveFilters = (filters, onClearFilters) => {
 };
 
 const renderSearchBar = () => {
-  return (
-    <View style={styles.searchBar}>
-      <TextInput style={[font.text, styles.searchBarTextInput]}
-        returnKeyType="done" clearButtonMode="while-editing"
-        placeholder="Search for members or skills..." />
-    </View>
-  );
 };
 
 const renderMemberRow = (member, onPressDetail) => {
