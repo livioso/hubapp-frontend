@@ -12,14 +12,24 @@ export default connect(
   // which part of the Redux global state does
   // our component want to receive as props?
   (state) => {
-    const { globalNav: navigation, memberList } = state;
-    const { members: allMember, filters, search } = memberList;
-    const searchedMembers = filterMembersByLiveSearch(allMember, search);
-    const members = filterMembersByJaccard(searchedMembers, filters);
+    const { globalNav: navigation, members } = state;
+
+    // destruct the slightly
+    // complicated state
+    const {
+      data: { list: allMember },
+      filter: { active: activeFilter },
+      search: { text: searchText }
+    } = members;
+
+    // apply filter & search
+    const searchedMembers = filterMembersByLiveSearch(allMember, searchText);
+    const membersFiltered = filterMembersByJaccard(searchedMembers, activeFilter);
+
     return {
-      members,
-      navigation,
-      filters
+      members: membersFiltered,
+      filters: activeFilter,
+      navigation
     };
   },
 

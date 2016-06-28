@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux';
+
 import {
   REQUEST_MEMBERLIST,
   RECEIVE_MEMBERLIST,
@@ -6,14 +8,12 @@ import {
   SEARCH
 } from '../Actions/memberListActions';
 
-const initialState = {
-  members: [],
+const initialStateList = {
+  list: [],
   loading: true,
-  filters: [],
-  search: '',
 };
 
-export const memberList = (state = initialState, action) => { // eslint-disable-line complexity
+const data = (state = initialStateList, action) => { // eslint-disable-line complexity
   switch (action.type) {
     case REQUEST_MEMBERLIST:
       return {
@@ -23,40 +23,75 @@ export const memberList = (state = initialState, action) => { // eslint-disable-
     case RECEIVE_MEMBERLIST:
       return {
         ...state,
-        members: calculateSimilarMembers(action.members),
+        list: calculateSimilarMembers(action.members),
         loading: false
-      };
-    case TOGGLE_FILTER: {
-      const { filters } = state;
-      const { filter } = action;
-      return {
-        ...state,
-        filters: filters.includes(filter) ?
-          filters.filter(each => each !== filter) :
-          filters.concat([filter])
-      };
-    }
-    case APPLY_FILTERS:
-      return {
-        ...state,
-        filters: action.filters
-      };
-    case SEARCH:
-      return {
-        ...state,
-        search: action.searchText
       };
     default:
       return state;
   }
 };
 
-export const filterMembersByLiveSearch = (members, search) => {
+const initialStateFilter = {
+  active: []
+};
+
+const filter = (state = initialStateFilter, action) => {
+  switch (action.type) {
+    case TOGGLE_FILTER: {
+      const { active } = state;
+      const { filter: toggleFilter } = action;
+      return {
+        ...state,
+        active: active.includes(toggleFilter) ?
+          active.filter(each => each !== toggleFilter) :
+          active.concat([toggleFilter])
+      };
+    }
+    case APPLY_FILTERS:
+      return {
+        ...state,
+        active: action.filters
+      };
+    default:
+      return state;
+  }
+};
+
+const initialStateSearch = {
+  text: '',
+  suggestions: []
+};
+
+const search = (state = initialStateSearch, action) => {
+  switch (action.type) {
+    case SEARCH:
+      return {
+        ...state,
+        text: action.searchText
+      };
+    default:
+      return state;
+  }
+};
+
+// combine the separate parts
+// into one members reducer
+export const members = combineReducers({
+  data,
+  filter,
+  search
+});
+
+
+// ******************************************************************
+// Filters for Members
+// ******************************************************************
+export const filterMembersByLiveSearch = (memberlist, searchtext) => {
   if (search === '') {
-    return members; // nothing to search
+    return memberlist; // nothing to search
   }
 
-  return members
+  return memberlist
     .filter((member) => {
       const {
         shortDescription: description,
@@ -67,14 +102,14 @@ export const filterMembersByLiveSearch = (members, search) => {
       const memberAsText = `${firstname} ${lastname} ${memberSkills} ${description}`;
       // search for each word in search text
       // example: "Raphael Swift" => Raphael and Swift
-      const searchWords = search.split(' ');
+      const searchWords = searchtext.split(' ');
       // every word must be mentioned in the member text
       return searchWords.every(word => memberAsText.includes(word));
     });
 };
 
-export const filterMembers = (members, filters) => {
-  return members
+export const filterMembers = (memberlist, filters) => {
+  return memberlist
     .filter((member) => {
       const { skills } = member;
       const memberSkills = skills.map(skill => skill.name);
@@ -82,14 +117,14 @@ export const filterMembers = (members, filters) => {
     });
 };
 
-export const filterMembersByJaccard = (members, filters, threshold = 1 / 3) => {
+export const filterMembersByJaccard = (memberlist, filters, threshold = 1 / 3) => {
   if (filters.length === 0) {
-    return members
+    return memberlist
       .sort((lhs, rhs) => lhs.lastname.localeCompare(rhs.lastname));
   }
 
   // map the users to their similarity for the specified filters
-  const membersWithJaccardSimilarity = members.map(member => {
+  const membersWithJaccardSimilarity = memberlist.map(member => {
     const { skills } = member;
     const memberSkills = skills.map(skill => skill.name);
     const similarity = calculateJaccardSimilarity(memberSkills, filters);

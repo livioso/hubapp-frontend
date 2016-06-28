@@ -8,7 +8,7 @@ export default connect(
   // our component want to receive as props?
   (state) => {
     return {
-      activeFilters: state.memberList.filters,
+      activeFilters: state.members.filter.active,
       allFilters: state.tagList.tags
     };
   },
