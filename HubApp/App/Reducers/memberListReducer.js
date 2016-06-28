@@ -53,21 +53,23 @@ export const memberList = (state = initialState, action) => { // eslint-disable-
 
 export const filterMembersByLiveSearch = (members, search) => {
   if (search === '') {
-    return members;
+    return members; // nothing to search
   }
 
   return members
     .filter((member) => {
       const {
-        shortDescription,
-        firstname,
-        lastname,
-        skills,
+        shortDescription: description,
+        firstname, lastname, skills
       } = member;
-
+      // merge all the fields into one big string for searching
       const memberSkills = skills.map(skill => skill.name).join(' ');
-      const memberAsText = `${firstname} ${lastname} ${memberSkills}`;
-      return memberAsText.includes(search);
+      const memberAsText = `${firstname} ${lastname} ${memberSkills} ${description}`;
+      // search for each word in search text
+      // example: "Raphael Swift" => Raphael and Swift
+      const searchWords = search.split(' ');
+      // every word must be mentioned in the member text
+      return searchWords.every(word => memberAsText.includes(word));
     });
 };
 
