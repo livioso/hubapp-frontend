@@ -6,10 +6,12 @@ import {
   StyleSheet,
   Image,
   View,
-  ScrollView
+  ScrollView,
+  TextInput,
 } from 'react-native';
 
 import { Text } from '../Styles/text';
+import { font } from '../Styles/font';
 import { color } from '../Styles/color';
 import { Tag } from '../Styles/tag';
 
@@ -19,6 +21,7 @@ export const MemberList = ({ members, filters, onClearFilters, ...props }) => {
   return (
     <View style={styles.list}>
       { renderActiveFilters(filters, onClearFilters) }
+      { renderSearchBar() }
       <ListView
         enableEmptySections
         renderRow={(member) => renderMemberRow(member, () => {
@@ -52,6 +55,16 @@ const renderActiveFilters = (filters, onClearFilters) => {
       <TouchableOpacity onPress={onClearFilters}>
         <Text style={{ color: color.light, marginRight: 5 }}>Reset</Text>
       </TouchableOpacity>
+    </View>
+  );
+};
+
+const renderSearchBar = () => {
+  return (
+    <View style={styles.searchBar}>
+      <TextInput style={[font.text, styles.searchBarTextInput]}
+        returnKeyType="done" clearButtonMode="while-editing"
+        placeholder="Search for members or skills..." />
     </View>
   );
 };
@@ -113,6 +126,22 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     height: 25,
+  },
+  searchBar: {
+    height: 35,
+    paddingLeft: 4,
+    paddingRight: 4,
+    borderBottomColor: color.blue,
+    backgroundColor: color.blue,
+    justifyContent: 'space-between',
+    flexDirection: 'row'
+  },
+  searchBarTextInput: {
+    paddingLeft: 4,
+    paddingRight: 4,
+    backgroundColor: 'white',
+    height: 30,
+    flex: 1
   },
   tagContainer: {
     backgroundColor: color.blue,
