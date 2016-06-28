@@ -2,13 +2,15 @@ import {
   REQUEST_MEMBERLIST,
   RECEIVE_MEMBERLIST,
   TOGGLE_FILTER,
-  APPLY_FILTERS
+  APPLY_FILTERS,
+  SEARCH
 } from '../Actions/memberListActions';
 
 const initialState = {
   members: [],
   loading: true,
   filters: [],
+  search: '',
 };
 
 export const memberList = (state = initialState, action) => { // eslint-disable-line complexity
@@ -39,9 +41,34 @@ export const memberList = (state = initialState, action) => { // eslint-disable-
         ...state,
         filters: action.filters
       };
+    case SEARCH:
+      return {
+        ...state,
+        search: action.searchText
+      };
     default:
       return state;
   }
+};
+
+export const filterMembersByLiveSearch = (members, search) => {
+  if (search === '') {
+    return members;
+  }
+
+  return members
+    .filter((member) => {
+      const {
+        shortDescription,
+        firstname,
+        lastname,
+        skills,
+      } = member;
+
+      const memberSkills = skills.map(skill => skill.name).join(' ');
+      const memberAsText = `${firstname} ${lastname} ${memberSkills}`;
+      return memberAsText.includes(search);
+    });
 };
 
 export const filterMembers = (members, filters) => {
@@ -53,7 +80,7 @@ export const filterMembers = (members, filters) => {
     });
 };
 
-export const filterMembersByJaccard = (members, filters, threshold = 1/3) => {
+export const filterMembersByJaccard = (members, filters, threshold = 1 / 3) => {
   if (filters.length === 0) {
     return members
       .sort((lhs, rhs) => lhs.lastname.localeCompare(rhs.lastname));

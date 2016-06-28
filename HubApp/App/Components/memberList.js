@@ -7,21 +7,20 @@ import {
   Image,
   View,
   ScrollView,
-  TextInput,
 } from 'react-native';
 
 import { Text } from '../Styles/text';
-import { font } from '../Styles/font';
 import { color } from '../Styles/color';
 import { Tag } from '../Styles/tag';
+import { Searchbar } from './searchbar';
 
-export const MemberList = ({ members, filters, onClearFilters, ...props }) => {
+export const MemberList = ({ members, filters, onClearFilters, onSearch, ...props }) => {
   const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
   const dataSource = ds.cloneWithRows(members);
   return (
     <View style={styles.list}>
+      <Searchbar search={onSearch} />
       { renderActiveFilters(filters, onClearFilters) }
-      { renderSearchBar() }
       <ListView
         enableEmptySections
         renderRow={(member) => renderMemberRow(member, () => {
@@ -59,9 +58,6 @@ const renderActiveFilters = (filters, onClearFilters) => {
   );
 };
 
-const renderSearchBar = () => {
-};
-
 const renderMemberRow = (member, onPressDetail) => {
   return (
     <TouchableOpacity onPress={() => onPressDetail()}>
@@ -90,7 +86,8 @@ MemberList.propTypes = { // eslint-disable-line immutable/no-mutation
   members: React.PropTypes.array.isRequired,
   filters: React.PropTypes.array.isRequired,
   onClearFilters: React.PropTypes.func.isRequired,
-  onNavigate: React.PropTypes.func.isRequired
+  onNavigate: React.PropTypes.func.isRequired,
+  onSearch: React.PropTypes.func.isRequired
 };
 
 const styles = StyleSheet.create({
@@ -119,22 +116,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     height: 25,
-  },
-  searchBar: {
-    height: 35,
-    paddingLeft: 4,
-    paddingRight: 4,
-    borderBottomColor: color.blue,
-    backgroundColor: color.blue,
-    justifyContent: 'space-between',
-    flexDirection: 'row'
-  },
-  searchBarTextInput: {
-    paddingLeft: 4,
-    paddingRight: 4,
-    backgroundColor: 'white',
-    height: 30,
-    flex: 1
   },
   tagContainer: {
     backgroundColor: color.blue,

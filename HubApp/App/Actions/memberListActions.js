@@ -2,6 +2,7 @@ export const REQUEST_MEMBERLIST = 'REQUEST_MEMBERLIST';
 export const RECEIVE_MEMBERLIST = 'RECEIVE_MEMBERLIST';
 export const APPLY_FILTERS = 'APPLY_FILTERS';
 export const TOGGLE_FILTER = 'TOGGLE_FILTER';
+export const SEARCH = 'SEARCH';
 
 export const requestMemberList = () => {
   return {
@@ -27,5 +28,12 @@ export const clearFilters = () => {
   return {
     type: APPLY_FILTERS,
     filters: []
+  };
+};
+
+export const search = (searchText) => {
+  return {
+    type: SEARCH,
+    searchText
   };
 };
