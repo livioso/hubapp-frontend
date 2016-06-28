@@ -5,7 +5,8 @@ import {
   RECEIVE_MEMBERLIST,
   TOGGLE_FILTER,
   APPLY_FILTERS,
-  SEARCH
+  SEARCH,
+  RECEIVE_SMART_SEARCH
 } from '../Actions/memberListActions';
 
 const initialStateList = {
@@ -68,6 +69,11 @@ const search = (state = initialStateSearch, action) => {
       return {
         ...state,
         text: action.searchText
+      };
+    case RECEIVE_SMART_SEARCH:
+      return {
+        ...state,
+        suggestions: action.suggestions
       };
     default:
       return state;
@@ -142,8 +148,8 @@ export const filterMembersByJaccard = (memberlist, filters, threshold = 1 / 3) =
     });
 };
 
-export const calculateSimilarMembers = (members) => {
-  return members.map(member => {
+export const calculateSimilarMembers = (memberlist) => {
+  return memberlist.map(member => {
     // no skills => no similar members
     if (member.skills.length === 0) {
       return { ...member, similar: [] };
