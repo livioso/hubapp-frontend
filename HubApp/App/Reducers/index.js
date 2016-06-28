@@ -1,11 +1,11 @@
 import { globalNav, tabs } from './navigationReducer';
-import { memberList } from './memberListReducer';
+import { members } from './memberListReducer';
 import { tagList } from './tagListReducer';
 import { profile } from './profileReducer';
 
 export {
   globalNav,
-  memberList,
+  members,
   tagList,
   profile,
   tabs
