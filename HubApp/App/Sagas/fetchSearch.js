@@ -1,40 +1,22 @@
 import { takeLatest } from 'redux-saga';
 import { put, call } from 'redux-saga/effects';
-import { receiveMemberList } from '../Actions/memberListActions';
-import { request, membersURL } from '../Services/api';
+import { SEARCH, receiveSmartSearch } from '../Actions/memberListActions';
+import { request, similarURL } from '../Services/api';
 
-export function* fetchMemberList() {
-  const response = yield call(request, membersURL);
+export function* fetchSmartSearch({ searchText }) {
+  const searchquery = searchText.join(',');
+  const requestURL = `${similarURL}/q=${searchquery}`;
+  const response = yield call(request, requestURL);
   const isResponseOK = response.error === undefined || response.error === null;
 
   if (isResponseOK) {
-    const members = mapResponseToMembers(response);
-    yield put(receiveMemberList(members));
+    const suggestions = response;
+    yield put(receiveSmartSearch(suggestions));
   } else {
     console.log(response.error); // eslint-disable-line no-console
   }
 }
 
 export function* watchRequestMemberList() {
-  yield* takeLatest('REQUEST_MEMBERLIST', fetchMemberList);
+  yield* takeLatest(SEARCH, fetchSmartSearch);
 }
-
-/**
- * Helper function to map the returned API response
- * to our internal structure (as needed by components)
- * @param response the returned response from the API
- */
-const mapResponseToMembers = (response) => {
-  return response.data.map((member) => {
-    return {
-      id: member.id,
-      entryDate: member.entryDate,
-      firstname: member.firstname,
-      lastname: member.lastname,
-      picture: member.picture,
-      position: member.function,
-      shortDescription: member.shortDescription,
-      skills: member.skills
-    };
-  });
-};
