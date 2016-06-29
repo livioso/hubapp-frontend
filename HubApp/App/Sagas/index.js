@@ -4,6 +4,7 @@ import { startup } from './startup';
 import { watchRequestMemberList } from './fetchMemberList';
 import { watchRequestTagList } from './fetchTagList';
 import { watchAddTag, watchRemoveTag } from './updateSkills';
+import { watchSearch } from './fetchSearch';
 
 // The entry point for all the
 // sagas used in this application.
@@ -13,6 +14,7 @@ export default function* rootSaga() {
     fork(watchRemoveTag),
     fork(watchRequestMemberList),
     fork(watchRequestTagList),
+    fork(watchSearch),
     fork(startup)
   ];
 }

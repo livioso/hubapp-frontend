@@ -156,7 +156,7 @@ export const calculateSimilarMembers = (memberlist) => {
     }
 
     const skills = member.skills.map(skill => skill.name);
-    const similar = filterMembersByJaccard(members, skills)
+    const similar = filterMembersByJaccard(memberlist, skills)
       .filter(each => each.id !== member.id);
 
     return { ...member, similar };

@@ -3,9 +3,13 @@ import { put, call } from 'redux-saga/effects';
 import { SEARCH, receiveSmartSearch } from '../Actions/memberListActions';
 import { request, similarURL } from '../Services/api';
 
-export function* fetchSmartSearch({ searchText }) {
-  const searchquery = searchText.join(',');
-  const requestURL = `${similarURL}/q=${searchquery}`;
+function* fetchSmartSearch(action) {
+  const searchquery = action.searchText
+    .toLowerCase()
+    .split(' ')
+    .join(',');
+
+  const requestURL = `${similarURL}?q=${searchquery}`;
   const response = yield call(request, requestURL);
   const isResponseOK = response.error === undefined || response.error === null;
 
@@ -17,6 +21,6 @@ export function* fetchSmartSearch({ searchText }) {
   }
 }
 
-export function* watchRequestMemberList() {
+export function* watchSearch() {
   yield* takeLatest(SEARCH, fetchSmartSearch);
 }
