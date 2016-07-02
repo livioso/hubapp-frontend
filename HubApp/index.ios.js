@@ -7,6 +7,6 @@ import {
 } from 'react-native';
 
 // disable warnings :)
-console.disableYellowBox = true;
+// console.disableYellowBox = true;
 
 AppRegistry.registerComponent('HubApp', () => HubApp);
