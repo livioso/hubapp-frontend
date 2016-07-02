@@ -5,7 +5,8 @@ import * as memberListActions from '../Actions/memberListActions';
 
 import {
   filterMembersByJaccard,
-  filterMembersByLiveSearch
+  filterMembersByLiveSearch,
+  filterMembersBySmartSearch
 } from '../Reducers/memberListReducer';
 
 export default connect(
@@ -19,11 +20,12 @@ export default connect(
     const {
       data: { list: allMember },
       filter: { active: activeFilter },
-      search: { text: searchText }
+      search: { text: searchText, suggestions }
     } = members;
 
     // apply filter & search
-    const searchedMembers = filterMembersByLiveSearch(allMember, searchText);
+    // const searchedMembers = filterMembersByLiveSearch(allMember, searchText);
+    const searchedMembers = filterMembersBySmartSearch(allMember, searchText, suggestions);
     const membersFiltered = filterMembersByJaccard(searchedMembers, activeFilter);
 
     return {

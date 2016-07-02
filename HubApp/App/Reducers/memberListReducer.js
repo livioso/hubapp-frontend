@@ -114,6 +114,24 @@ export const filterMembersByLiveSearch = (memberlist, searchtext) => {
     });
 };
 
+export const filterMembersBySmartSearch = (memberlist, searchtext, suggestions) => {
+  if (searchtext === '') {
+    return memberlist; // nothing to search
+  }
+
+  if (searchtext !== '' && suggestions.length === 0) {
+    return []; // either no suggestions or not YET
+  }
+
+  return memberlist
+    .filter((member) => {
+      const { skills } = member;
+      const memberSkills = skills.map(skill => skill.name.toLowerCase());
+      console.log(suggestions);
+      return suggestions.some(skill => memberSkills.includes(skill));
+    });
+};
+
 export const filterMembers = (memberlist, filters) => {
   return memberlist
     .filter((member) => {
