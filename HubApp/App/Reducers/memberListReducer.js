@@ -127,8 +127,7 @@ export const filterMembersBySmartSearch = (memberlist, searchtext, suggestions) 
     .filter((member) => {
       const { skills } = member;
       const memberSkills = skills.map(skill => skill.name.toLowerCase());
-      console.log(suggestions);
-      return suggestions.some(skill => memberSkills.includes(skill));
+      return suggestions.some(suggestion => memberSkills.includes(suggestion));
     });
 };
 
