@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { MemberList } from '../Components/memberList';
 import * as memberListActions from '../Actions/memberListActions';
+import Immutable from 'immutable';
 
 import {
   filterMembersByJaccard,
@@ -23,13 +24,18 @@ export default connect(
       search: { text: searchText, suggestions }
     } = members;
 
-    // apply filter & search
-    // const searchedMembers = filterMembersByLiveSearch(allMember, searchText);
-    const searchedMembers = filterMembersBySmartSearch(allMember, searchText, suggestions);
-    const membersFiltered = filterMembersByJaccard(searchedMembers, activeFilter);
+    // get results for searches
+    const fulltextSearch = filterMembersByLiveSearch(allMember, searchText);
+    const smartSearch = filterMembersBySmartSearch(allMember, searchText, suggestions);
+
+    // Immutable.Set for unique results / objects
+    const mergedSearch = Immutable.Set(fulltextSearch).concat(smartSearch);
+
+    // filter the search results according the given filter
+    const filteredSearch = filterMembersByJaccard(mergedSearch.toJS(), activeFilter);
 
     return {
-      members: membersFiltered,
+      members: filteredSearch,
       filters: activeFilter,
       navigation
     };
