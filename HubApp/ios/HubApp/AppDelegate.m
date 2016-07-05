@@ -11,6 +11,8 @@
 
 #import "RCTRootView.h"
 
+#import <Lookback/Lookback.h>
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -31,7 +33,7 @@
    * on the same Wi-Fi network.
    */
 
-  jsCodeLocation = [NSURL URLWithString:@"http://Tateyama.local:8081/index.ios.bundle?platform=ios&dev=true"];
+  jsCodeLocation = [NSURL URLWithString:@"http://raphaels-mbp.edu.ds.fhnw.ch:8081/index.ios.bundle?platform=ios&dev=true"];
 
   /**
    * OPTION 2
@@ -53,7 +55,14 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  
+  [Lookback setupWithAppToken:@"gimfcukP6LEmJ66hT"];
+  [Lookback sharedLookback].shakeToRecord = YES;
+  [Lookback sharedLookback].feedbackBubbleVisible = YES;
+  
   return YES;
+  
+  
 }
 
 @end
