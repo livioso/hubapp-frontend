@@ -7,6 +7,7 @@ function* fetchSmartSearch(action) {
   const searchquery = action.searchText
     .toLowerCase()
     .split(' ')
+    .map(word => encodeURIComponent(word))
     .join(',');
 
   const debugFlag = '&debug=true';
