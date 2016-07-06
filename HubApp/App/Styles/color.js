@@ -5,5 +5,6 @@ export const color = {
   green: '#99b149',
   red: '#e46648',
   orange: '#d2930f',
-  gray: 'gray'
+  gray: 'gray',
+  lightblue: 'rgba(25, 140, 170, 0.9)'
 };

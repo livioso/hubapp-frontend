@@ -15,14 +15,21 @@ import { Tag } from '../Styles/tag';
 import { Searchbar } from './searchbar';
 
 export const MemberList = ({ members, filters, onClearFilters, onSearch, ...props }) => {
-  const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-  const dataSource = ds.cloneWithRows(members);
+  const ds = new ListView.DataSource({
+    rowHasChanged: (r1, r2) => r1 !== r2,
+    sectionHeaderHasChanged: (s1, s2) => s1 !== s2
+  });
+
+  const membersWithSections = groupMembersByCategories(members);
+  const dataSource = ds.cloneWithRowsAndSections(membersWithSections);
+
   return (
     <View style={styles.list}>
       <Searchbar search={onSearch} />
       { renderActiveFilters(filters, onClearFilters) }
       <ListView
         enableEmptySections
+        renderSectionHeader={renderSectionHeader}
         renderRow={(member) => renderMemberRow(member, () => {
           props.onNavigate({
             member,
@@ -57,6 +64,26 @@ const renderActiveFilters = (filters, onClearFilters) => {
     </View>
   );
 };
+
+const groupMembersByCategories = (members) => {
+  const groupSections = [];
+  members.forEach((member) => {
+    // add section if not yet there
+    if (!groupSections[member.category]) {
+      groupSections[member.category] = [];  // eslint-disable-line immutable/no-mutation
+    }
+    // and then push the member to this category
+    groupSections[member.category].push(member);
+  });
+
+  return groupSections.sort();
+};
+
+const renderSectionHeader = (sectionData, sectionName) => (
+  <View style={{ backgroundColor: color.lightblue }}>
+    <Text style={{ color: color.light, paddingLeft: 5 }}>{sectionName}</Text>
+  </View>
+);
 
 const renderMemberRow = (member, onPressDetail) => {
   return (

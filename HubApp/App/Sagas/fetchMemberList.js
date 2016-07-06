@@ -28,13 +28,13 @@ const mapResponseToMembers = (response) => {
   return response.data.map((member) => {
     return {
       id: member.id,
-      entryDate: member.entryDate,
       firstname: member.firstname,
       lastname: member.lastname,
+      skills: member.skills,
       picture: member.picture,
       position: member.function,
       shortDescription: member.shortDescription,
-      skills: member.skills
+      entryDate: member.entryDate,
     };
   });
 };

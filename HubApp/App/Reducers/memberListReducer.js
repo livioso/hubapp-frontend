@@ -68,7 +68,7 @@ const search = (state = initialStateSearch, action) => {
     case SEARCH:
       return {
         ...state,
-        text: action.searchText
+        text: action.searchText.toLowerCase()
       };
     case RECEIVE_SMART_SEARCH:
       return {
@@ -105,7 +105,7 @@ export const filterMembersByLiveSearch = (memberlist, searchtext) => {
       } = member;
       // merge all the fields into one big string for searching
       const memberSkills = skills.map(skill => skill.name).join(' ');
-      const memberAsText = `${firstname} ${lastname} ${memberSkills} ${description}`;
+      const memberAsText = `${firstname} ${lastname} ${memberSkills} ${description}`.toLowerCase();
       // search for each word in search text
       // example: "Raphael Swift" => Raphael and Swift
       const searchWords = searchtext.split(' ');

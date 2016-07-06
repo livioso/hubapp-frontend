@@ -17,25 +17,51 @@ export default connect(
     const { globalNav: navigation, members } = state;
 
     // destruct the slightly
-    // complicated state
+    // complicated state :)
     const {
-      data: { list: allMember },
+      data: { list },
       filter: { active: activeFilter },
       search: { text: searchText, suggestions }
     } = members;
 
-    // get results for searches
-    const fulltextSearch = filterMembersByLiveSearch(allMember, searchText);
-    const smartSearch = filterMembersBySmartSearch(allMember, searchText, suggestions);
+    const allMember = list.map((member) => {
+      return {
+        ...member,
+        category: member.lastname.charAt(0).toUpperCase(),
+      };
+    });
 
-    // Immutable.Set for unique results / objects
-    const mergedSearch = Immutable.Set(fulltextSearch).concat(smartSearch);
+    // get results for searches
+    const fulltextSearch =
+      Immutable.Set(filterMembersByLiveSearch(allMember, searchText));
+
+    const smartSearch =
+      Immutable.Set(filterMembersBySmartSearch(allMember, searchText, suggestions));
+
+    // annotated the search results with
+    // categories. Make sure to not do this
+    // before comparing (e.g. has()).
+    const smartSearchAnnotated = smartSearch
+      .filter(member => !fulltextSearch.has(member))
+      .map(member => {
+        return { ...member, category: 'So Smart' };
+      });
+
+    const fulltextSearchAnnotated = fulltextSearch
+      .map(member => {
+        return { ...member, category: 'So Context' };
+      });
+
+    const mergedSearch = fulltextSearchAnnotated
+      .concat(smartSearchAnnotated);
 
     // filter the search results according the given filter
     const filteredSearch = filterMembersByJaccard(mergedSearch.toJS(), activeFilter);
 
     return {
-      members: filteredSearch,
+      members: searchText === ''
+        ? allMember
+        : filteredSearch,
       filters: activeFilter,
       navigation
     };

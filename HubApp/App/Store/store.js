@@ -38,10 +38,10 @@ export default function configureStore(initialState) {
   // Create the one and only redux store. 🚀
   const store = createStoreWithMiddleware(reducer);
 
-  persistStore(store, {
-    transform: [immutableTransform({ records: null })],
-    storage: AsyncStorage,
-  });
+  // persistStore(store, {
+  //   transform: [immutableTransform({ records: null })],
+  //   storage: AsyncStorage,
+  // });
 
   if (module.hot) {
     // enable hot module replacement for reducers
