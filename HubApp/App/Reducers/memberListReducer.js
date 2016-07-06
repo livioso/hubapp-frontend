@@ -149,6 +149,11 @@ export const filterMembersByJaccard = (memberlist, filters, threshold = 1 / 3) =
   const membersWithJaccardSimilarity = memberlist.map(member => {
     const { skills } = member;
     const memberSkills = skills.map(skill => skill.name);
+
+    // TODO (livioso 07.06.2016) This is misleading! Why are we
+    // calculating the similarity here and append it here? We should
+    // really just filter here as the name of the function suggests.
+    // And not return an enhanced collection with similarity data.
     const similarity = calculateJaccardSimilarity(memberSkills, filters);
     return { ...member, similarity };
   });

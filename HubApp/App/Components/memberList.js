@@ -48,7 +48,6 @@ export const MemberList = ({ members, filters, onClearFilters, onSearch, ...prop
 };
 
 const renderActiveFilters = (filters, onClearFilters) => {
-  LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
   if (filters.length === 0) {
     return null;
   }

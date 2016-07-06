@@ -57,8 +57,8 @@ export default connect(
 
     return {
       members: searchText === ''
-        ? filterMembersByJaccard(allMember, activeFilter)
-        : filterMembersByJaccard(mergedSearch.toJS(), activeFilter),
+        ? filterMembersByJaccard(allMember, activeFilter, 1)
+        : filterMembersByJaccard(mergedSearch.toJS(), activeFilter, 1),
       filters: activeFilter,
       navigation
     };
