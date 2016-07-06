@@ -154,13 +154,7 @@ export const filterMembersByJaccard = (memberlist, filters, threshold = 1 / 3) =
   });
 
   return membersWithJaccardSimilarity
-    .filter(member => member.similarity >= threshold)
-    .sort((lhs, rhs) => {
-      if (filters.length === 0) return 0;
-      if (lhs.similarity < rhs.similarity) return 1;
-      if (lhs.similarity > rhs.similarity) return -1;
-      return 0;
-    });
+    .filter(member => member.similarity >= threshold);
 };
 
 export const calculateSimilarMembers = (memberlist) => {

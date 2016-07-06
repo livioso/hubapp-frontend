@@ -55,13 +55,10 @@ export default connect(
     const mergedSearch = fulltextSearchAnnotated
       .concat(smartSearchAnnotated);
 
-    // filter the search results according the given filter
-    const filteredSearch = filterMembersByJaccard(mergedSearch.toJS(), activeFilter);
-
     return {
       members: searchText === ''
-        ? allMember
-        : filteredSearch,
+        ? filterMembersByJaccard(allMember, activeFilter)
+        : filterMembersByJaccard(mergedSearch.toJS(), activeFilter),
       filters: activeFilter,
       navigation
     };
