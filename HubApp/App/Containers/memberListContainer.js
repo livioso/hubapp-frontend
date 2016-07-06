@@ -44,12 +44,12 @@ export default connect(
     const smartSearchAnnotated = smartSearch
       .filter(member => !fulltextSearch.has(member))
       .map(member => {
-        return { ...member, category: 'So Smart' };
+        return { ...member, category: 'Similar Matches' };
       });
 
     const fulltextSearchAnnotated = fulltextSearch
       .map(member => {
-        return { ...member, category: 'So Context' };
+        return { ...member, category: 'Best Matches' };
       });
 
     const mergedSearch = fulltextSearchAnnotated

@@ -2,7 +2,6 @@ import React from 'react';
 import {
   ListView,
   TouchableOpacity,
-  LayoutAnimation,
   StyleSheet,
   Image,
   View,
@@ -79,7 +78,7 @@ const groupMembersByCategories = (members) => {
 };
 
 const renderSectionHeader = (sectionData, sectionName) => (
-  <View style={{ backgroundColor: color.lightblue }}>
+  <View style={{ backgroundColor: color.raphi }}>
     <Text style={{ color: color.light, paddingLeft: 5 }}>{sectionName}</Text>
   </View>
 );
@@ -93,15 +92,7 @@ const renderMemberRow = (member, onPressDetail) => {
           style={styles.profilePicture} />
         <View style={styles.memberDescription}>
           <Text>{`${member.firstname} ${member.lastname}`}</Text>
-          <View style={{ flexDirection: 'row', flexWrap: 'wrap', flex: 1 }}>
-            {
-              member.skills.map(skill => {
-                return (
-                  <Tag key={skill.id}>{`${skill.name}`}</Tag>
-                );
-              })
-            }
-          </View>
+          <Text style={{color: 'gray' }}>President, Co-Founder of Oldi</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -128,7 +119,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     backgroundColor: color.light,
-    paddingTop: 10,
+    paddingTop: 5,
+    paddingBottom: 5,
     paddingLeft: 10,
     paddingRight: 10
   },

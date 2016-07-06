@@ -6,5 +6,5 @@ export const color = {
   red: '#e46648',
   orange: '#d2930f',
   gray: 'gray',
-  lightblue: 'rgba(25, 140, 170, 0.9)'
+  raphi: 'rgba(180, 180, 180, 0.7)'
 };
