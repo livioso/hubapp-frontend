@@ -23,6 +23,19 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		2126D88A2C0A4BC88AD5E7A8 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 754EE6A56409412CBBD8B066 /* libBVLinearGradient.a */; };
+		2F0AB7C01D2BAAE8003FAF3F /* Lookback.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2F0AB7BF1D2BAAE8003FAF3F /* Lookback.bundle */; };
+		2F0AB7D91D2BACFE003FAF3F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0AB7CD1D2BACFE003FAF3F /* AudioToolbox.framework */; };
+		2F0AB7DA1D2BACFE003FAF3F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0AB7CE1D2BACFE003FAF3F /* AVFoundation.framework */; };
+		2F0AB7DB1D2BACFE003FAF3F /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0AB7CF1D2BACFE003FAF3F /* CoreImage.framework */; };
+		2F0AB7DC1D2BACFE003FAF3F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0AB7D01D2BACFE003FAF3F /* CoreMedia.framework */; };
+		2F0AB7DD1D2BACFE003FAF3F /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0AB7D11D2BACFE003FAF3F /* CoreVideo.framework */; };
+		2F0AB7DE1D2BACFE003FAF3F /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0AB7D21D2BACFE003FAF3F /* ImageIO.framework */; };
+		2F0AB7DF1D2BACFE003FAF3F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0AB7D31D2BACFE003FAF3F /* MediaPlayer.framework */; };
+		2F0AB7E01D2BACFE003FAF3F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0AB7D41D2BACFE003FAF3F /* MessageUI.framework */; };
+		2F0AB7E11D2BACFE003FAF3F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0AB7D51D2BACFE003FAF3F /* MobileCoreServices.framework */; };
+		2F0AB7E21D2BACFE003FAF3F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0AB7D61D2BACFE003FAF3F /* QuartzCore.framework */; };
+		2F0AB7E31D2BACFE003FAF3F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0AB7D71D2BACFE003FAF3F /* SystemConfiguration.framework */; };
+		2F0AB7E41D2BACFE003FAF3F /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0AB7D81D2BACFE003FAF3F /* VideoToolbox.framework */; };
 		41579823596B406D97B89CE1 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0FE5D0725CAF48D8AE05A701 /* EvilIcons.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		89E985DBCEFC4CA69D326145 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7C469E716EC49B4B9AE1735 /* Octicons.ttf */; };
@@ -154,6 +167,19 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = HubApp/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		2AA6E611518A44A99C988C74 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		2F0AB7BF1D2BAAE8003FAF3F /* Lookback.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Lookback.bundle; sourceTree = "<group>"; };
+		2F0AB7CD1D2BACFE003FAF3F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		2F0AB7CE1D2BACFE003FAF3F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		2F0AB7CF1D2BACFE003FAF3F /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		2F0AB7D01D2BACFE003FAF3F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		2F0AB7D11D2BACFE003FAF3F /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		2F0AB7D21D2BACFE003FAF3F /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		2F0AB7D31D2BACFE003FAF3F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		2F0AB7D41D2BACFE003FAF3F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		2F0AB7D51D2BACFE003FAF3F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		2F0AB7D61D2BACFE003FAF3F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		2F0AB7D71D2BACFE003FAF3F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		2F0AB7D81D2BACFE003FAF3F /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		49642B3485ED4A168C4D480D /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		4C3D39E3AF2B4E8A8E0C191A /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		655FC55F85A24D379F198B10 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
@@ -184,6 +210,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F0AB7D91D2BACFE003FAF3F /* AudioToolbox.framework in Frameworks */,
+				2F0AB7DA1D2BACFE003FAF3F /* AVFoundation.framework in Frameworks */,
+				2F0AB7DB1D2BACFE003FAF3F /* CoreImage.framework in Frameworks */,
+				2F0AB7DC1D2BACFE003FAF3F /* CoreMedia.framework in Frameworks */,
+				2F0AB7DD1D2BACFE003FAF3F /* CoreVideo.framework in Frameworks */,
+				2F0AB7DE1D2BACFE003FAF3F /* ImageIO.framework in Frameworks */,
+				2F0AB7DF1D2BACFE003FAF3F /* MediaPlayer.framework in Frameworks */,
+				2F0AB7E01D2BACFE003FAF3F /* MessageUI.framework in Frameworks */,
+				2F0AB7E11D2BACFE003FAF3F /* MobileCoreServices.framework in Frameworks */,
+				2F0AB7E21D2BACFE003FAF3F /* QuartzCore.framework in Frameworks */,
+				2F0AB7E31D2BACFE003FAF3F /* SystemConfiguration.framework in Frameworks */,
+				2F0AB7E41D2BACFE003FAF3F /* VideoToolbox.framework in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
@@ -301,6 +339,7 @@
 		2E295D2B18A6458FB92FA815 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2F0AB7BE1D2BAAE8003FAF3F /* Lookback-Resources */,
 				4C3D39E3AF2B4E8A8E0C191A /* Entypo.ttf */,
 				0FE5D0725CAF48D8AE05A701 /* EvilIcons.ttf */,
 				BCBCD48391A541C8854608BF /* FontAwesome.ttf */,
@@ -311,6 +350,15 @@
 				49642B3485ED4A168C4D480D /* Zocial.ttf */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		2F0AB7BE1D2BAAE8003FAF3F /* Lookback-Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2F0AB7BF1D2BAAE8003FAF3F /* Lookback.bundle */,
+			);
+			name = "Lookback-Resources";
+			path = "lookback/Lookback-Resources";
 			sourceTree = "<group>";
 		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
@@ -351,6 +399,18 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				2F0AB7CD1D2BACFE003FAF3F /* AudioToolbox.framework */,
+				2F0AB7CE1D2BACFE003FAF3F /* AVFoundation.framework */,
+				2F0AB7CF1D2BACFE003FAF3F /* CoreImage.framework */,
+				2F0AB7D01D2BACFE003FAF3F /* CoreMedia.framework */,
+				2F0AB7D11D2BACFE003FAF3F /* CoreVideo.framework */,
+				2F0AB7D21D2BACFE003FAF3F /* ImageIO.framework */,
+				2F0AB7D31D2BACFE003FAF3F /* MediaPlayer.framework */,
+				2F0AB7D41D2BACFE003FAF3F /* MessageUI.framework */,
+				2F0AB7D51D2BACFE003FAF3F /* MobileCoreServices.framework */,
+				2F0AB7D61D2BACFE003FAF3F /* QuartzCore.framework */,
+				2F0AB7D71D2BACFE003FAF3F /* SystemConfiguration.framework */,
+				2F0AB7D81D2BACFE003FAF3F /* VideoToolbox.framework */,
 				13B07FAE1A68108700A75B9A /* HubApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* HubAppTests */,
@@ -626,6 +686,7 @@
 				07311C12F87D4EE3A8BD40CE /* Entypo.ttf in Resources */,
 				41579823596B406D97B89CE1 /* EvilIcons.ttf in Resources */,
 				E9AB85C55D334312B07327F3 /* FontAwesome.ttf in Resources */,
+				2F0AB7C01D2BAAE8003FAF3F /* Lookback.bundle in Resources */,
 				97DE622400584F99A3D8317C /* Foundation.ttf in Resources */,
 				918996A62F4D4F53A62A6CAC /* Ionicons.ttf in Resources */,
 				D2E1D2B4BB604F71A416DA0D /* MaterialIcons.ttf in Resources */,
@@ -750,6 +811,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEAD_CODE_STRIPPING = NO;
+				FRAMEWORK_SEARCH_PATHS = lookback/HD;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -762,6 +824,8 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
+					"-framework",
+					Lookback,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ch.impacthub.HubApp;
 				PRODUCT_NAME = HubApp;
@@ -772,6 +836,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = lookback/HD;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -784,6 +849,8 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
+					"-framework",
+					Lookback,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ch.impacthub.HubApp;
 				PRODUCT_NAME = HubApp;
