@@ -1,9 +1,11 @@
-import { takeLatest } from 'redux-saga';
-import { put, call } from 'redux-saga/effects';
+import { takeLatest, delay } from 'redux-saga';
+import { put, call, cancel } from 'redux-saga/effects';
 import { SEARCH, receiveSmartSearch } from '../Actions/memberListActions';
 import { request, similarURL } from '../Services/api';
 
 function* fetchSmartSearch(action) {
+  yield call(delay, 250);
+
   const searchquery = action.searchText
     .toLowerCase()
     .split(' ')

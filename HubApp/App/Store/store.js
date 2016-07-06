@@ -9,7 +9,7 @@ import * as reducers from '../Reducers';
 import rootSaga from '../Sagas';
 
 // create a saga middleware from our sagas
-const sagaMiddleware = createSagaMiddleware(rootSaga);
+const sagaMiddleware = createSagaMiddleware();
 
 let createStoreWithMiddleware = () => { // eslint-disable-line immutable/no-let
   throw String('Missing createStore assignment');
@@ -50,6 +50,9 @@ export default function configureStore(initialState) {
       store.replaceReducer(nextRootReducer);
     });
   }
+
+  // run the saga
+  sagaMiddleware.run(rootSaga);
 
   return store;
 }
