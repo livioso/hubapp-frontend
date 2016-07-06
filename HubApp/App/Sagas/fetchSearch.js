@@ -1,5 +1,5 @@
 import { takeLatest, delay } from 'redux-saga';
-import { put, call, cancel } from 'redux-saga/effects';
+import { put, call } from 'redux-saga/effects';
 import { SEARCH, receiveSmartSearch } from '../Actions/memberListActions';
 import { request, similarURL } from '../Services/api';
 

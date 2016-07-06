@@ -7,10 +7,9 @@ import {
   View,
   ScrollView,
 } from 'react-native';
-
+import Immutable from 'immutable';
 import { Text } from '../Styles/text';
 import { color } from '../Styles/color';
-import { Tag } from '../Styles/tag';
 import { Searchbar } from './searchbar';
 
 export const MemberList = ({ members, filters, onClearFilters, onSearch, ...props }) => {
@@ -19,7 +18,12 @@ export const MemberList = ({ members, filters, onClearFilters, onSearch, ...prop
     sectionHeaderHasChanged: (s1, s2) => s1 !== s2
   });
 
-  const membersWithSections = groupMembersByCategories(members);
+  const membersWithSections = Immutable.Set(members)
+    .sortBy(member => member.lastname)
+    .sortBy(member => member.category)
+    .groupBy(member => member.category)
+    .toJS();
+
   const dataSource = ds.cloneWithRowsAndSections(membersWithSections);
 
   return (
@@ -61,20 +65,6 @@ const renderActiveFilters = (filters, onClearFilters) => {
       </TouchableOpacity>
     </View>
   );
-};
-
-const groupMembersByCategories = (members) => {
-  const groupSections = [];
-  members.forEach((member) => {
-    // add section if not yet there
-    if (!groupSections[member.category]) {
-      groupSections[member.category] = [];  // eslint-disable-line immutable/no-mutation
-    }
-    // and then push the member to this category
-    groupSections[member.category].push(member);
-  });
-
-  return groupSections;
 };
 
 const renderSectionHeader = (sectionData, sectionName) => (

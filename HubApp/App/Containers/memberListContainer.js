@@ -44,7 +44,7 @@ export default connect(
     const smartSearchAnnotated = smartSearch
       .filter(member => !fulltextSearch.has(member))
       .map(member => {
-        return { ...member, category: 'Similar Matches' };
+        return { ...member, category: 'Good Matches' };
       });
 
     const fulltextSearchAnnotated = fulltextSearch
@@ -52,8 +52,7 @@ export default connect(
         return { ...member, category: 'Best Matches' };
       });
 
-    const mergedSearch = fulltextSearchAnnotated
-      .concat(smartSearchAnnotated);
+    const mergedSearch = fulltextSearchAnnotated.concat(smartSearchAnnotated);
 
     return {
       members: searchText === ''
