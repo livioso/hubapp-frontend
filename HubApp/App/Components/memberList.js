@@ -76,7 +76,7 @@ const groupMembersByCategories = (members) => {
     groupSections[member.category].push(member);
   });
 
-  return groupSections.sort();
+  return groupSections;
 };
 
 const renderSectionHeader = (sectionData, sectionName) => (
