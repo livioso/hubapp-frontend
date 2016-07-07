@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import ApplicationTabs from './Containers/navigationTabContainer';
 import MemberListFilterContainer from './Containers/memberListFilterContainer';
@@ -177,7 +177,6 @@ export default connect(
     };
   },
 
-  // 😂
   (stateProps, dispatchProps, ownProps) => {
     return {
       ...ownProps,

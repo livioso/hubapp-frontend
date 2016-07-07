@@ -12,17 +12,19 @@ import { Text, HeaderText } from '../Styles/text';
 import { Tag } from '../Styles/tag';
 
 export const MemberDetails = ({ member, ...props }) => (
-  <View style={styles.container}>
-    <Image style={styles.image} source={{ uri: member.picture }}
-      defaultSource={require('../Styles/Assets/ic_account_circle.png')} />
-    <HeaderText>{`${member.firstname} ${member.lastname}`}</HeaderText>
-    <View style={{ padding: 10, alignItems: 'center' }} >
-      <Text>{member.position}</Text>
-      <Text>{member.shortDescription}</Text>
-      { renderSkills(member) }
-      { renderSimilar({ ...member, ...props }) }
+  <ScrollView>
+    <View style={styles.container}>
+      <Image style={styles.image} source={{ uri: member.picture }}
+        defaultSource={require('../Styles/Assets/ic_account_circle.png')} />
+      <HeaderText>{`${member.firstname} ${member.lastname}`}</HeaderText>
+      <View style={{ padding: 10, alignItems: 'center' }} >
+        <Text>{member.position}</Text>
+        <Text>{member.shortDescription}</Text>
+        { renderSkills(member) }
+        { renderSimilar({ ...member, ...props }) }
+      </View>
     </View>
-  </View>
+  </ScrollView>
 );
 
 const renderSkills = ({ skills }) => (
