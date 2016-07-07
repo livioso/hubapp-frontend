@@ -18,24 +18,8 @@ const initialState = {
 export const profile = (state = initialState, action) => { // eslint-disable-line complexity
   switch (action.type) {
     case RECEIVE_MEMBERLIST: {
-      const {
-        firstname,
-        lastname,
-        skills,
-        picture,
-        position,
-        shortDescription,
-      } = action.members.filter(member => member.id === 12)[0];
-
-      return {
-        ...state,
-        firstname,
-        lastname,
-        picture,
-        position,
-        shortDescription,
-        skills,
-      };
+      const me = action.members.filter(member => member.id === 12)[0];
+      return {...me};
     }
 
     case ADD_TAG:

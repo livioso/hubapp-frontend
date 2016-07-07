@@ -35,6 +35,9 @@ const mapResponseToMembers = (response) => {
       position: member.function,
       shortDescription: member.shortDescription,
       entryDate: member.entryDate,
+      email: member.email,
+      phone: member.phone,
+      location: member.location,
     };
   });
 };
