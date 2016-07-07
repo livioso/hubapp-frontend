@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   StyleSheet,
+  ScrollView,
   Dimensions,
   Image,
   View
@@ -8,6 +9,7 @@ import {
 
 import { Text, HeaderText } from '../Styles/text';
 import { color } from '../Styles/color';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Skills } from './skills';
 
 export const Profile = ({ me }) => {
@@ -15,14 +17,27 @@ export const Profile = ({ me }) => {
     return null;
   }
   return (
-    <View style={ [styles.container, { backgroundColor: color.light }] }>
-      <Image style={ styles.image } source={{ uri: me.picture }}
-        defaultSource={require('../Styles/Assets/ic_account_circle.png')} />
-      <HeaderText>{`${me.firstname} ${me.lastname}`}</HeaderText>
-      <Text>{me.position}</Text>
-      <Text>{me.shortDescription}</Text>
-      <Skills skills={me.skills} />
+  <ScrollView>
+    <View style={[styles.container, {alignItems: 'stretch'}]}>
+      <View style={ styles.card }>
+          <Image style={ styles.image } source={{ uri: me.picture }} defaultSource={require('../Styles/Assets/ic_account_circle.png')} />
+          <View style={ styles.businesscard }>
+            <HeaderText style={ styles.cardText }>{`${me.firstname} ${me.lastname}`}</HeaderText>
+            <Text style={ styles.cardText }>{ me.position }</Text>
+            <View style={{marginTop:10}}>
+              <View style={{flexDirection: 'row'}}>
+                <Icon name="phone" size={16} style={ styles.cardText }/><Text style={{color: color.light, paddingLeft: 5}}>{ me.phone }</Text>
+              </View>
+              <View style={{flexDirection: 'row'}}>
+                <Icon name="mail" size={16} style={ styles.cardText }/><Text style={{color: color.light, paddingLeft: 5}}>{ me.email }</Text>
+              </View>
+            </View>
+          </View>
+          <Skills skills={ me.skills } style={{paddingTop: 20}}/>
+          <Text style={ styles.bio }>{ me.shortDescription }</Text>
       </View>
+    </View>
+  </ScrollView>
   );
 };
 
@@ -33,14 +48,40 @@ Profile.propTypes = { // eslint-disable-line immutable/no-mutation
 const imageSize = Dimensions.get('window').width / 3;
 const styles = StyleSheet.create({
   container: {
+    flex:1,
+    justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20,
-    flex: 1
   },
   image: {
     alignSelf: 'center',
     borderRadius: imageSize / 2,
     height: imageSize,
     width: imageSize,
+  },
+  card: {
+    margin:10,
+    marginBottom: 20,
+    shadowRadius:5,
+    shadowColor: color.blue,
+    shadowOffset: {
+      width:2,
+      height:6
+    },
+    shadowOpacity:0.5,
+    backgroundColor: color.blue,
+    padding:40
+  },
+  businesscard: {
+    marginLeft:0,
+    paddingTop:10,
+    alignItems:'flex-start'
+  },
+  cardText: {
+    color: color.light
+  },
+  bio: {
+    color: color.light,
+    paddingTop: 20,
+    paddingBottom: 10
   }
 });

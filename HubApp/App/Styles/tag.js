@@ -11,7 +11,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 export const Tag = ({ onPress, style, ...props }) => {
   return (
     <TouchableOpacity onPress={onPress} style={ [styles.tagContainer, style] }>
-      <Text style={ styles.tagCaption } {...props} />
+      <Text style={ [styles.tagCaption, style] } {...props} />
     </TouchableOpacity>
   );
 };
