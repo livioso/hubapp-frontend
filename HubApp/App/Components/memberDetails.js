@@ -58,7 +58,7 @@ const renderSimilar = ({ similar, firstname, ...props }) => {
   }
 
   return (
-    <View style={styles.similar}>
+    <View style={ styles.seperator }>
       <View style={{alignItems: 'center'}}>
         <ScrollView horizontal>
           {
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     height: imageSize,
     width: imageSize,
   },
-  similar: {
+  seperator: {
     paddingTop: 10,
     borderTopColor: 'rgba(255,255,255,0.5)',
     borderTopWidth: 1
