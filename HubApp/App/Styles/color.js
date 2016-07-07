@@ -5,6 +5,5 @@ export const color = {
   green: '#99b149',
   red: '#e46648',
   orange: '#d2930f',
-  gray: 'gray',
-  raphi: 'rgba(180, 180, 180, 0.7)'
+  gray: 'gray'
 };

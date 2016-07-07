@@ -69,7 +69,7 @@ const renderActiveFilters = (filters, onClearFilters) => {
 };
 
 const renderSectionHeader = (sectionData, sectionName) => (
-  <View style={{ backgroundColor: color.raphi }}>
+  <View style={{ backgroundColor: 'rgba(180, 180, 180, 0.7)' }}>
     <Text style={{ color: color.light, paddingLeft: 5 }}>{sectionName}</Text>
   </View>
 );
@@ -83,7 +83,7 @@ const renderMemberRow = (member, onPressDetail) => {
           style={styles.profilePicture} />
         <View style={styles.memberDescription}>
           <Text>{`${member.firstname} ${member.lastname}`}</Text>
-          <Text style={{color: 'gray' }}>{member.position}</Text>
+          <Text style={{ color: color.gray }}>{member.position}</Text>
         </View>
       </View>
     </TouchableOpacity>
