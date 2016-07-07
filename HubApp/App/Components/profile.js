@@ -2,6 +2,7 @@ import React from 'react';
 import {
   StyleSheet,
   ScrollView,
+  Switch,
   Dimensions,
   Image,
   View
@@ -35,6 +36,12 @@ export const Profile = ({ me }) => {
           </View>
           <Skills skills={ me.skills } style={{paddingTop: 20}}/>
           <Text style={ styles.bio }>{ me.shortDescription }</Text>
+          <View style={ styles.seperator }/>
+          <HeaderText style={ styles.cardText }>Settings</HeaderText>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text style={ styles.cardText }>Location Tracking</Text>
+            <Switch onValueChange={value => console.log(value)} value={true} />
+          </View>
       </View>
     </View>
   </ScrollView>
@@ -57,6 +64,11 @@ const styles = StyleSheet.create({
     borderRadius: imageSize / 2,
     height: imageSize,
     width: imageSize,
+  },
+  seperator: {
+    paddingTop: 10,
+    borderTopColor: 'rgba(255,255,255,0.5)',
+    borderTopWidth: 1
   },
   card: {
     margin:10,
