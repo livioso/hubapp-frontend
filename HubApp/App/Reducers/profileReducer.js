@@ -41,7 +41,10 @@ export const profile = (state = initialState, action) => { // eslint-disable-lin
     case ADD_TAG:
       return {
         ...state,
-        skills: state.skills.concat(action.tag)
+        skills: state.skills.concat({
+          name: action.tag,
+          id: action.tag
+        })
       };
 
     case REMOVE_TAG:

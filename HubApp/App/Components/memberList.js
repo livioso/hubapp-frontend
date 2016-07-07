@@ -7,10 +7,11 @@ import {
   View,
   ScrollView,
 } from 'react-native';
-import Immutable from 'immutable';
+
 import { Text } from '../Styles/text';
 import { color } from '../Styles/color';
 import { Searchbar } from './searchbar';
+import Immutable from 'immutable';
 
 export const MemberList = ({ members, filters, onClearFilters, onSearch, ...props }) => {
   const ds = new ListView.DataSource({
