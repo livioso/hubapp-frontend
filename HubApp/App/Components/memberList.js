@@ -7,10 +7,11 @@ import {
   View,
   ScrollView,
 } from 'react-native';
-import Immutable from 'immutable';
+
 import { Text } from '../Styles/text';
 import { color } from '../Styles/color';
 import { Searchbar } from './searchbar';
+import Immutable from 'immutable';
 
 export const MemberList = ({ members, filters, onClearFilters, onSearch, ...props }) => {
   const ds = new ListView.DataSource({
@@ -68,7 +69,7 @@ const renderActiveFilters = (filters, onClearFilters) => {
 };
 
 const renderSectionHeader = (sectionData, sectionName) => (
-  <View style={{ backgroundColor: color.raphi }}>
+  <View style={{ backgroundColor: 'rgba(180, 180, 180, 0.7)' }}>
     <Text style={{ color: color.light, paddingLeft: 5 }}>{sectionName}</Text>
   </View>
 );
@@ -82,7 +83,7 @@ const renderMemberRow = (member, onPressDetail) => {
           style={styles.profilePicture} />
         <View style={styles.memberDescription}>
           <Text>{`${member.firstname} ${member.lastname}`}</Text>
-          <Text style={{color: 'gray' }}>{member.position}</Text>
+          <Text style={{ color: color.gray }}>{member.position}</Text>
         </View>
       </View>
     </TouchableOpacity>

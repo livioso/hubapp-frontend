@@ -9,7 +9,7 @@ function* updateSkills() {
   const state = yield select();
   yield call(request, currentMeURL, {
     method: 'PUT',
-    body: JSON.stringify(state.profile.skills),
+    body: JSON.stringify(state.profile.skills.map(tag => tag.name)),
     headers: {
       'Content-Type': 'application/json'
     },

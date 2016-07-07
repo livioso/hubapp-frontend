@@ -2,9 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ProfileContainer from './profileContainer';
 import MemberListContainer from './memberListContainer';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { color } from '../Styles/color';
 
 import {
-  View,
   TabBarIOS,
   NavigationExperimental
 } from 'react-native';
@@ -32,20 +33,21 @@ const renderTabContent = (tab) => {
 const ApplicationTabs = ({ navigation, onNavigate }) => {
   const children = navigation.children.map((tab, i) => {
     return (
-      <TabBarIOS.Item key={tab.key}
-        icon={tab.icon}
-        systemIcon={tab.title === 'Members' ? 'contacts' : 'more'}
-        selectedIcon={tab.selectedIcon}
-        title={tab.title}
-        onPress={() => onNavigate(JumpToAction(i))}
-        selected={navigation.index === i}>
+     <Icon.TabBarItem
+       title={tab.title}
+       iconName={tab.icon}
+       selectedIconName={tab.icon}
+       onPress={() => onNavigate(JumpToAction(i))}
+       selected={navigation.index === i}>
       { renderTabContent(tab) }
-      </TabBarIOS.Item>
+      </Icon.TabBarItem>
     );
   });
 
   return (
-    <TabBarIOS tintColor="black">
+    <TabBarIOS
+      tintColor={color.blue}
+      barTintColor={color.light}>
       {children}
     </TabBarIOS>
   );
