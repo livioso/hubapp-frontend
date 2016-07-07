@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import { Text, HeaderText } from '../Styles/text';
-import { Tag } from '../Styles/tag';
+import { Skills } from './skills';
 
 export const MemberDetails = ({ member, ...props }) => (
   <ScrollView>
@@ -20,17 +20,11 @@ export const MemberDetails = ({ member, ...props }) => (
       <View style={{ padding: 10, alignItems: 'center' }} >
         <Text>{member.position}</Text>
         <Text>{member.shortDescription}</Text>
-        { renderSkills(member) }
+        <Skills skills={member.skills} />
         { renderSimilar({ ...member, ...props }) }
       </View>
     </View>
   </ScrollView>
-);
-
-const renderSkills = ({ skills }) => (
-  <View style={styles.skills}>
-    { skills.map(skill => (<Tag key={skill.id}>{`${skill.name}`}</Tag>)) }
-  </View>
 );
 
 const onNavigateToSimilarMember = (member, props) => {
@@ -71,10 +65,6 @@ MemberDetails.propTypes = { // eslint-disable-line immutable/no-mutation
   member: PropTypes.object.isRequired,
 };
 
-renderSkills.propTypes = { // eslint-disable-line immutable/no-mutation
-  skills: PropTypes.array.isRequired
-};
-
 renderSimilar.propTypes = { // eslint-disable-line immutable/no-mutation
   firstname: PropTypes.string.isRequired,
   similar: PropTypes.array.isRequired
@@ -97,13 +87,6 @@ const styles = StyleSheet.create({
     borderRadius: imageSize / 2,
     height: imageSize,
     width: imageSize,
-  },
-  skills: {
-    paddingTop: 20,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    width: containerWidth - 40
   },
   similar: {
     paddingTop: 40,

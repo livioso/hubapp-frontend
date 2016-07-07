@@ -8,13 +8,12 @@ import {
 
 import { Text, HeaderText } from '../Styles/text';
 import { color } from '../Styles/color';
-import { Tag } from '../Styles/tag';
+import { Skills } from './skills';
 
 export const Profile = ({ me }) => {
   if (me === undefined) {
     return null;
   }
-
   return (
     <View style={ [styles.container, { backgroundColor: color.light }] }>
       <Image style={ styles.image } source={{ uri: me.picture }}
@@ -22,20 +21,8 @@ export const Profile = ({ me }) => {
       <HeaderText>{`${me.firstname} ${me.lastname}`}</HeaderText>
       <Text>{me.position}</Text>
       <Text>{me.shortDescription}</Text>
-      { renderSkills(me.skills) }
-    </View>
-  );
-};
-
-const renderSkills = (skills) => {
-  return (
-    skills.map(skill => {
-      return (
-        <Tag key={skill}>
-          {`${skill}`}
-        </Tag>
-      );
-    })
+      <Skills skills={me.skills} />
+      </View>
   );
 };
 

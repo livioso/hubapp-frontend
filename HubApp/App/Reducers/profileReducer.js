@@ -34,7 +34,7 @@ export const profile = (state = initialState, action) => { // eslint-disable-lin
         picture,
         position,
         shortDescription,
-        skills: skills.map(skill => skill.name),
+        skills,
       };
     }
 
