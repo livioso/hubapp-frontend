@@ -82,7 +82,7 @@ const renderMemberRow = (member, onPressDetail) => {
           style={styles.profilePicture} />
         <View style={styles.memberDescription}>
           <Text>{`${member.firstname} ${member.lastname}`}</Text>
-          <Text style={{color: 'gray' }}>President, Co-Founder of Oldi</Text>
+          <Text style={{color: 'gray' }}>{member.position}</Text>
         </View>
       </View>
     </TouchableOpacity>
