@@ -15,10 +15,15 @@ export default connect(
   // which action creators does
   // it want to receive by props?
   (dispatch) => {
-    const { addTag, removeTag } = bindActionCreators(profileActions, dispatch);
+    const {
+      addTag,
+      removeTag,
+      toggleDisturb
+    } = bindActionCreators(profileActions, dispatch);
     return {
       onAddTag: addTag,
-      onRemoveTag: removeTag
+      onRemoveTag: removeTag,
+      toggleDisturb
     };
   }
 )(Profile);

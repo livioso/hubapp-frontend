@@ -13,7 +13,7 @@ import { color } from '../Styles/color';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Skills } from './skills';
 
-export const Profile = ({ me }) => {
+export const Profile = ({ me, toggleDisturb }) => {
   if (me === undefined) {
     return null;
   }
@@ -39,8 +39,8 @@ export const Profile = ({ me }) => {
           <View style={ styles.seperator }/>
           <HeaderText style={ styles.cardText }>Settings</HeaderText>
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={ styles.cardText }>Location Tracking</Text>
-            <Switch onValueChange={value => console.log(value)} value={true} />
+            <Text style={ styles.cardText }>Do Not Disturb</Text>
+            <Switch onValueChange={value => toggleDisturb()} value={me.disturbEnabled} />
           </View>
       </View>
     </View>

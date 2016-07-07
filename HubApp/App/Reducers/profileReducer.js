@@ -4,7 +4,8 @@ import {
 
 import {
   ADD_TAG,
-  REMOVE_TAG
+  REMOVE_TAG,
+  TOGGLE_DISTURB,
 } from '../Actions/profileActions';
 
 const initialState = {
@@ -13,13 +14,14 @@ const initialState = {
   skills: [],
   position: '',
   shortDescription: '',
+  disturbEnabled: false,
 };
 
 export const profile = (state = initialState, action) => { // eslint-disable-line complexity
   switch (action.type) {
     case RECEIVE_MEMBERLIST: {
       const me = action.members.filter(member => member.id === 12)[0];
-      return {...me};
+      return { ...me };
     }
 
     case ADD_TAG:
@@ -35,6 +37,12 @@ export const profile = (state = initialState, action) => { // eslint-disable-lin
       return {
         ...state,
         skills: state.skills.filter(skill => skill !== action.tag)
+      };
+
+    case TOGGLE_DISTURB:
+      return {
+        ...state,
+        disturbEnabled: !state.disturbEnabled
       };
 
     default:
