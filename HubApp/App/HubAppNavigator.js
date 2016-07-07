@@ -27,7 +27,6 @@ const HubAppNavigator = ({ navigation, onNavigate, tabs }) => {
   StatusBar.setBarStyle('light-content', true);
   return (
     <NavigationCardStack
-      direction={'vertical'}
       navigationState={navigation}
       onNavigate={onNavigate}
       renderScene={_renderScene}
