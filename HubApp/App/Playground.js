@@ -2,7 +2,7 @@
 /* eslint-disable no-alert, no-console, max-len */
 import React from 'react';
 import ReactNative from 'react-native';
-import { MemberDetails } from './Components/memberDetails';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const {
   View,
@@ -24,7 +24,7 @@ export const Playground = () => {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <MemberDetails member={member} />
+        <Icon name="home" size={30} color="#900" />
       </View>
     </ScrollView>
   );

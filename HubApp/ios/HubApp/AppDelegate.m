@@ -56,9 +56,9 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   
-  [Lookback setupWithAppToken:@"gimfcukP6LEmJ66hT"];
-  [Lookback sharedLookback].shakeToRecord = YES;
-  [Lookback sharedLookback].feedbackBubbleVisible = YES;
+  // [Lookback setupWithAppToken:@"gimfcukP6LEmJ66hT"];
+  // [Lookback sharedLookback].shakeToRecord = YES;
+  // [Lookback sharedLookback].feedbackBubbleVisible = YES;
   
   return YES;
   

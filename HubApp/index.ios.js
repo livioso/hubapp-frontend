@@ -7,6 +7,6 @@ import {
 } from 'react-native';
 
 // disable warnings :)
-console.disableYellowBox = true;
+console.disableYellowBox = true; // eslint-disable-line immutable/no-mutation
 
 AppRegistry.registerComponent('HubApp', () => HubApp);

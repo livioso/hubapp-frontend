@@ -2,14 +2,9 @@
 import { NavigationExperimental } from 'react-native';
 const { Reducer: NavigationReducer } = NavigationExperimental;
 
-const simpleIcon = {
-  uri: '',
-  scale: 3
-};
-
 const allTabs = [
-  { key: 'members', icon: simpleIcon, title: 'Members' },
-	{ key: 'profile', icon: simpleIcon, title: 'Profile' },
+  { key: 'members', icon: 'list', title: 'Members' },
+	{ key: 'profile', icon: 'account-box', title: 'Profile' },
 ];
 
 export const tabs = NavigationReducer.TabsReducer({
