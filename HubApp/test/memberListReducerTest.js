@@ -1,7 +1,7 @@
 import expect from 'expect';
 
 import {
-  memberList,
+  members,
   filterMembers,
   filterMembersByJaccard
 } from '../App/Reducers/memberListReducer';
@@ -16,41 +16,69 @@ import {
 describe('Memberlist Reducer', () => {
   it('should return the initial state', () => {
     expect(
-      memberList(undefined, {})
+      members(undefined, {})
     ).toEqual({
-      members: [],
-      loading: true,
-      filters: []
+      data: {
+        list: [],
+        loading: true
+      },
+      search: {
+        text: '',
+        suggestions: []
+      },
+      filter: {
+        active: []
+      }
     });
   });
 
   it('should handle requestMemberList', () => {
     expect(
-      memberList({
-        loading: false,
-        members: [],
+      members({
+        data: {
+          list: [],
+          loading: true
+        },
       }, requestMemberList())
     ).toEqual({
-      members: [],
-      loading: true,
+      data: {
+        list: [],
+        loading: true
+      },
+      search: {
+        text: '',
+        suggestions: []
+      },
+      filter: {
+        active: []
+      }
     });
   });
 
   const expectedMemberList = [
-    { lastName: 'Brunner', firstName: 'Raphi' },
-    { lastName: 'Blatter', firstName: 'Sepp' },
-    { lastName: 'Bieri', firstName: 'Livio' }
+    { lastName: 'Brunner', firstName: 'Raphi', skills: [] },
+    { lastName: 'Blatter', firstName: 'Sepp', skills: [] },
+    { lastName: 'Bieri', firstName: 'Livio', skills: [] }
   ];
 
   it('should handle receiveMemberList', () => {
     expect(
-      memberList({
-        loading: true,
-        members: [],
+      members({
+        data: {
+          list: [],
+          loading: true
+        }
       }, receiveMemberList(expectedMemberList))
     ).toEqual({
-      members: expectedMemberList,
-      loading: false,
+      data: {
+        list: expectedMemberList.map(member => {
+          return {
+            ...member,
+            similar: []
+          };
+        }),
+        loading: true
+      }
     });
   });
 
@@ -98,7 +126,7 @@ describe('Memberlist Reducer', () => {
     );
   });
 
-  it('should handle empty filter (Jaccard) Similarity => 1', () => {
+  it('should handle empty filter (Jaccard) => no changes', () => {
     expect(
       filterMembersByJaccard([{
         lastName: 'Blatter',
@@ -108,7 +136,6 @@ describe('Memberlist Reducer', () => {
       }], [])
     ).toEqual(
       [{
-        similarity: 1,
         lastName: 'Blatter',
         skills: [
           { name: 'Java' }
