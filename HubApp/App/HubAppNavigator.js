@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import ApplicationTabs from './Containers/navigationTabContainer';
 import MemberListFilterContainer from './Containers/memberListFilterContainer';
@@ -15,7 +15,7 @@ import {
   StatusBar,
   Platform,
   StyleSheet,
-  Image
+  Image,
 } from 'react-native';
 
 const {
@@ -29,12 +29,12 @@ const HubAppNavigator = ({ navigation, onNavigate, tabs }) => {
     <NavigationCardStack
       navigationState={navigation}
       onNavigate={onNavigate}
-      renderScene={_renderScene}
-      renderOverlay={(props) => renderHeader({ ...props, tabs: tabs })} />
+      renderScene={renderScene}
+      renderOverlay={(props) => renderHeader({ ...props, tabs })} />
   );
 };
 
-const _renderScene = (props) => {
+const renderScene = (props) => {
   const { key } = props.scene.navigationState;
 
   if (key === 'applicationTabs') {
@@ -63,7 +63,6 @@ const _renderScene = (props) => {
   }
 
   if (key === 'modifyTags') {
-    const { member } = props.scene.navigationState;
     return (
       <View style={styles.sceneContainer}>
         <ModifyTagsContainer {...props} />
@@ -155,9 +154,58 @@ const renderRightComponent = (props) => {
       renderMoreButton(props)
     );
   }
-
   return null;
 };
+
+HubAppNavigator.propTypes = { // eslint-disable-line immutable/no-mutation
+  navigation: PropTypes.object.isRequired,
+  onNavigate: PropTypes.func.isRequired,
+  tabs: PropTypes.object.isRequired
+};
+
+renderScene.propTypes = { // eslint-disable-line immutable/no-mutation
+  scene: PropTypes.object.isRequired,
+};
+
+renderBackButton.propTypes = { // eslint-disable-line immutable/no-mutation
+  onNavigate: PropTypes.func.isRequired,
+  scene: PropTypes.object.isRequired,
+};
+
+renderTitleComponent.propTypes = { // eslint-disable-line immutable/no-mutation
+  scene: PropTypes.object.isRequired,
+};
+
+renderFilterButton.propTypes = { // eslint-disable-line immutable/no-mutation
+  onNavigate: PropTypes.func.isRequired,
+};
+
+renderMoreButton.propTypes = { // eslint-disable-line immutable/no-mutation
+  onNavigate: PropTypes.func.isRequired,
+};
+
+const styles = StyleSheet.create({
+  sceneContainer: {
+    marginTop: NavigationHeader.HEIGHT,
+    backgroundColor: 'white',
+    flex: 1,
+  },
+  animatedView: {
+    flex: 1,
+  },
+  titleButtonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  titleButton: {
+    height: 24,
+    width: 24,
+    margin: Platform.OS === 'ios' ? 10 : 16,
+    resizeMode: 'contain'
+  }
+});
 
 export default connect(
   // which part of the Redux global state does
@@ -191,26 +239,3 @@ export default connect(
     };
   }
 )(HubAppNavigator);
-
-const styles = StyleSheet.create({
-  sceneContainer: {
-    marginTop: NavigationHeader.HEIGHT,
-    backgroundColor: 'white',
-    flex: 1,
-  },
-  animatedView: {
-    flex: 1,
-  },
-  titleButtonContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  titleButton: {
-    height: 24,
-    width: 24,
-    margin: Platform.OS === 'ios' ? 10 : 16,
-    resizeMode: 'contain'
-  }
-});
