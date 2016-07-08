@@ -4,6 +4,9 @@ import { SEARCH, receiveSmartSearch } from '../Actions/memberListActions';
 import { request, similarURL } from '../Services/api';
 
 function* fetchSmartSearch(action) {
+  // throttling: give the watcher some time
+  // to cancel fetching in case we just
+  // receive another search string
   yield call(delay, 250);
 
   const searchquery = action.searchText
