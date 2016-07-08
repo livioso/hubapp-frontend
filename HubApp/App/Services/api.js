@@ -1,4 +1,4 @@
-export const host = 'http://localhost:8080';
+export const host = 'http://Raffi.local:8080';
 export const membersURL = `${host}/api/members`;
 export const currentMeURL = `${host}/api/members/me/skills`;
 export const skillsURL = `${host}/api/skills`;
