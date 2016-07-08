@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import {
+  Linking,
   TouchableOpacity,
   StyleSheet,
   ScrollView,
@@ -23,12 +24,12 @@ export const MemberDetails = ({ member, ...props }) => (
             <HeaderText style={ styles.cardText }>{`${member.firstname} ${member.lastname}`}</HeaderText>
             <Text style={ styles.cardText }>{ member.position }</Text>
             <View style={{marginTop:10}}>
-              <View style={{flexDirection: 'row'}}>
+              <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => Linking.openURL('tel:' + member.phone)}>
                 <Icon name="phone" size={16} style={ styles.cardText }/><Text style={{color: color.light, paddingLeft: 5}}>{ member.phone }</Text>
-              </View>
-              <View style={{flexDirection: 'row'}}>
+              </TouchableOpacity>
+              <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => Linking.openURL('mailto:' + member.email)}>
                 <Icon name="mail" size={16} style={ styles.cardText }/><Text style={{color: color.light, paddingLeft: 5}}>{ member.email }</Text>
-              </View>
+              </TouchableOpacity>
             </View>
           </View>
           <Skills skills={ member.skills } style={{paddingTop: 20}}/>
@@ -59,6 +60,7 @@ const renderSimilar = ({ similar, firstname, ...props }) => {
 
   return (
     <View style={ styles.seperator }>
+    <Text style={ styles.cardText }>Similar to {firstname}:</Text>
       <View style={{alignItems: 'center'}}>
         <ScrollView horizontal>
           {
