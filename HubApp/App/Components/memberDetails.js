@@ -17,24 +17,32 @@ import { Skills } from './skills';
 
 export const MemberDetails = ({ member, ...props }) => (
   <ScrollView>
-    <View style={[styles.container, {alignItems: 'stretch'}]}>
-      <View style={ styles.card }>
-          <Image style={ styles.image } source={{ uri: member.picture }} defaultSource={require('../Styles/Assets/ic_account_circle.png')} />
-          <View style={ styles.businesscard }>
-            <HeaderText style={ styles.cardText }>{`${member.firstname} ${member.lastname}`}</HeaderText>
-            <Text style={ styles.cardText }>{ member.position }</Text>
-            <View style={{marginTop:10}}>
-              <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => Linking.openURL('tel:' + member.phone)}>
-                <Icon name="phone" size={16} style={ styles.cardText }/><Text style={{color: color.light, paddingLeft: 5}}>{ member.phone }</Text>
+    <View style={ [styles.container, { alignItems: 'stretch' }] }>
+      <View style={styles.card}>
+        <Image style={styles.image}
+          source={{ uri: member.picture }}
+          defaultSource={require('../Styles/Assets/ic_account_circle.png')} />
+          <View style={styles.businesscard}>
+            <HeaderText style={styles.cardText}>
+              {`${member.firstname} ${member.lastname}`}
+            </HeaderText>
+            <Text style={styles.cardText}>{member.position}</Text>
+            <View style={{ marginTop: 10 }}>
+              <TouchableOpacity style={{ flexDirection: 'row' }}
+                onPress={() => Linking.openURL(`tel:${member.phone}`)}>
+                <Icon name="phone" size={16} style={styles.cardText} />
+                <Text style={{ color: color.light, paddingLeft: 5 }}>{member.phone}</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => Linking.openURL('mailto:' + member.email)}>
-                <Icon name="mail" size={16} style={ styles.cardText }/><Text style={{color: color.light, paddingLeft: 5}}>{ member.email }</Text>
+              <TouchableOpacity style={{ flexDirection: 'row' }}
+                onPress={() => Linking.openURL(`tel:${member.email}`)}>
+                <Icon name="mail" size={16} style={styles.cardText} />
+                <Text style={{ color: color.light, paddingLeft: 5 }}>{member.email}</Text>
               </TouchableOpacity>
             </View>
           </View>
-          <Skills skills={ member.skills } style={{paddingTop: 20}}/>
-          <Text style={ styles.bio }>{ member.shortDescription }</Text>
-          {renderSimilar({...member, ...props})}
+          <Skills skills={member.skills} style={{ paddingTop: 20 }} />
+          <Text style={styles.bio}>{member.shortDescription}</Text>
+          {renderSimilar({ ...member, ...props })}
       </View>
     </View>
   </ScrollView>
@@ -59,14 +67,16 @@ const renderSimilar = ({ similar, firstname, ...props }) => {
   }
 
   return (
-    <View style={ styles.seperator }>
-    <Text style={ styles.cardText }>Similar to {firstname}:</Text>
-      <View style={{alignItems: 'center'}}>
+    <View style={styles.seperator}>
+    <Text style={styles.cardText}>Similar to {firstname}:</Text>
+      <View style={{ alignItems: 'center' }}>
         <ScrollView horizontal>
           {
             Immutable.Set(similar).sortBy(m => m.similarity).take(4).map(member => (
-              <TouchableOpacity key={member.id} onPress={() => onNavigateToSimilarMember(member, props)}>
-                <Image source={{ uri: member.picture }} style={ styles.similarImages } />
+              <TouchableOpacity key={member.id}
+                onPress={() => onNavigateToSimilarMember(member, props)}>
+                <Image source={{ uri: member.picture }}
+                  style={ styles.similarImages } />
               </TouchableOpacity>
             ))
           }
@@ -89,7 +99,7 @@ const imageSize = Dimensions.get('window').width / 3;
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -105,22 +115,22 @@ const styles = StyleSheet.create({
     borderTopWidth: 1
   },
   card: {
-    margin:10,
+    margin: 10,
     marginBottom: 20,
-    shadowRadius:5,
+    shadowRadius: 5,
     shadowColor: color.blue,
     shadowOffset: {
-      width:2,
-      height:6
+      width: 2,
+      height: 6
     },
-    shadowOpacity:0.5,
+    shadowOpacity: 0.5,
     backgroundColor: color.blue,
-    padding:40
+    padding: 40
   },
   businesscard: {
-    marginLeft:0,
-    paddingTop:10,
-    alignItems:'flex-start'
+    marginLeft: 0,
+    paddingTop: 10,
+    alignItems: 'flex-start'
   },
   cardText: {
     color: color.light
@@ -136,6 +146,6 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     marginRight: 3,
     marginLeft: 3,
-    marginTop:5
+    marginTop: 5
   }
 });
