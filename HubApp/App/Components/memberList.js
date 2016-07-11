@@ -13,40 +13,12 @@ import { color } from '../Styles/color';
 import { Searchbar } from './searchbar';
 import Immutable from 'immutable';
 
-export const MemberList = ({ members, filters, onClearFilters, onSearch, ...props }) => {
-  const ds = new ListView.DataSource({
-    rowHasChanged: (r1, r2) => r1 !== r2,
-    sectionHeaderHasChanged: (s1, s2) => s1 !== s2
-  });
-
-  const membersWithSections = Immutable.Set(members)
-    .sortBy(member => member.lastname)
-    .sortBy(member => member.category)
-    .groupBy(member => member.category)
-    .toJS();
-
-  const dataSource = ds.cloneWithRowsAndSections(membersWithSections);
-
+export const MemberList = ({ members, filters, onNavigate, onClearFilters, onSearch }) => {
   return (
     <View style={styles.list}>
       <Searchbar search={onSearch} />
       { renderActiveFilters(filters, onClearFilters) }
-      <ListView
-        enableEmptySections
-        renderSectionHeader={renderSectionHeader}
-        renderRow={(member) => renderMemberRow(member, () => {
-          props.onNavigate({
-            member,
-            type: 'push',
-            route: {
-              key: `details_${member.id}`,
-              title: `Details for ${member.firstname}`,
-              showBackButton: true,
-              member
-            }
-          });
-        })}
-        dataSource={dataSource} />
+      { renderMemberList(members, onNavigate) }
     </View>
   );
 };
@@ -65,6 +37,39 @@ const renderActiveFilters = (filters, onClearFilters) => {
         <Text style={{ color: color.light, marginRight: 5 }}>Reset</Text>
       </TouchableOpacity>
     </View>
+  );
+};
+
+const renderMemberList = (members, onNavigate) => {
+  const ds = new ListView.DataSource({
+    rowHasChanged: (r1, r2) => r1 !== r2,
+    sectionHeaderHasChanged: (s1, s2) => s1 !== s2
+  });
+
+  const membersWithSections = Immutable.Set(members)
+    .sortBy(member => member.lastname)
+    .sortBy(member => member.category)
+    .groupBy(member => member.category)
+    .toJS();
+
+  const dataSource = ds.cloneWithRowsAndSections(membersWithSections);
+  return (
+    <ListView
+      enableEmptySections
+      renderSectionHeader={renderSectionHeader}
+      dataSource={dataSource}
+      renderRow={(member) => renderMemberRow(member, () => {
+        onNavigate({
+          member,
+          type: 'push',
+          route: {
+            key: `details_${member.id}`,
+            title: `Details for ${member.firstname}`,
+            showBackButton: true,
+            member
+          }
+        });
+      })} />
   );
 };
 
