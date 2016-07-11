@@ -52,6 +52,7 @@ export default connect(
         return { ...member, category: 'Best Matches' };
       });
 
+    // merge it all together :)
     const mergedSearch = fulltextSearchAnnotated.concat(smartSearchAnnotated);
 
     return {
@@ -59,6 +60,7 @@ export default connect(
         ? filterMembersByJaccard(allMember, activeFilter, 1)
         : filterMembersByJaccard(mergedSearch.toJS(), activeFilter, 1),
       filters: activeFilter,
+      searchText,
       navigation
     };
   },

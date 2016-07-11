@@ -5,40 +5,21 @@ import {
   StyleSheet,
   Image,
   View,
-  ScrollView,
 } from 'react-native';
 
 import { Text } from '../Styles/text';
 import { color } from '../Styles/color';
 import { Searchbar } from './searchbar';
+import Tabbar from '../Containers/tagbarContainer';
 import Immutable from 'immutable';
 
-export const MemberList = ({ members, filters, onNavigate, onClearFilters, onSearch }) => {
-  return (
-    <View style={styles.list}>
-      <Searchbar search={onSearch} />
-      { renderActiveFilters(filters, onClearFilters) }
-      { renderMemberList(members, onNavigate) }
-    </View>
-  );
-};
-
-const renderActiveFilters = (filters, onClearFilters) => {
-  if (filters.length === 0) {
-    return null;
-  }
-
-  return (
-    <View style={ styles.activeFilter }>
-      <ScrollView horizontal>
-        <Text style={{ color: color.light, marginLeft: 5 }}>{filters.join(', ')}</Text>
-      </ScrollView>
-      <TouchableOpacity onPress={onClearFilters}>
-        <Text style={{ color: color.light, marginRight: 5 }}>Reset</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};
+export const MemberList = ({ members, searchText, onNavigate, onSearch }) => (
+  <View style={styles.list}>
+    <Searchbar searchText={searchText} search={onSearch} />
+    <Tabbar />
+    { renderMemberList(members, onNavigate) }
+  </View>
+);
 
 const renderMemberList = (members, onNavigate) => {
   const ds = new ListView.DataSource({
@@ -98,6 +79,7 @@ const renderMemberRow = (member, onPressDetail) => {
 MemberList.propTypes = { // eslint-disable-line immutable/no-mutation
   members: React.PropTypes.array.isRequired,
   filters: React.PropTypes.array.isRequired,
+  searchSuggetions: React.PropTypes.array.isRequired,
   onClearFilters: React.PropTypes.func.isRequired,
   onNavigate: React.PropTypes.func.isRequired,
   onSearch: React.PropTypes.func.isRequired

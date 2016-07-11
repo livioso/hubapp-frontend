@@ -8,17 +8,20 @@ import {
 import { color } from '../Styles/color';
 import { font } from '../Styles/font';
 
-export const Searchbar = ({ search }) => (
+export const Searchbar = ({ search, searchText }) => (
   <View style={styles.searchBar}>
     <TextInput onChangeText={search}
+      value={searchText}
+      clearButtonMode="always"
       style={[font.text, styles.searchBarTextInput]}
-      returnKeyType="done" clearButtonMode="while-editing"
+      returnKeyType="done"
       placeholder="Search for members or skills..." />
   </View>
 );
 
 Searchbar.propTypes = { // eslint-disable-line immutable/no-mutation
-  search: PropTypes.func.isRequired
+  search: PropTypes.func.isRequired,
+  searchText: PropTypes.string.isRequired
 };
 
 const styles = StyleSheet.create({

@@ -15,7 +15,8 @@ export const Skills = ({ skills, style }) => (
 );
 
 Skills.propTypes = { // eslint-disable-line immutable/no-mutation
-  skills: PropTypes.array.isRequired
+  skills: PropTypes.array.isRequired,
+  style: PropTypes.object
 };
 
 const containerWidth = Dimensions.get('window').width;
@@ -24,7 +25,6 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    // justifyContent: 'center',
     width: containerWidth - 80
   },
   tag: {
