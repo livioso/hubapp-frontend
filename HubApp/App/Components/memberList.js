@@ -79,6 +79,7 @@ const renderMemberRow = (member, onPressDetail) => {
 MemberList.propTypes = { // eslint-disable-line immutable/no-mutation
   members: React.PropTypes.array.isRequired,
   filters: React.PropTypes.array.isRequired,
+  searchText: React.PropTypes.string.isRequired,
   searchSuggetions: React.PropTypes.array.isRequired,
   onClearFilters: React.PropTypes.func.isRequired,
   onNavigate: React.PropTypes.func.isRequired,
