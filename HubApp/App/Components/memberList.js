@@ -10,13 +10,13 @@ import {
 import { Text } from '../Styles/text';
 import { color } from '../Styles/color';
 import { Searchbar } from './searchbar';
-import Tabbar from '../Containers/tagbarContainer';
+import Searchsuggestions from '../Containers/searchSuggestionsContainer';
 import Immutable from 'immutable';
 
 export const MemberList = ({ members, searchText, onNavigate, onSearch }) => (
-  <View style={styles.list}>
+  <View>
     <Searchbar searchText={searchText} search={onSearch} />
-    <Tabbar />
+    <Searchsuggestions />
     { renderMemberList(members, onNavigate) }
   </View>
 );

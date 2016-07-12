@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Tagbar } from '../Components/tagbar';
+import { SearchSuggestions } from '../Components/searchSuggestions';
 import * as memberListActions from '../Actions/memberListActions';
 
 export default connect(
@@ -24,7 +24,7 @@ export default connect(
     const suggestions = allTags
       .map(tag => tag.name)
       .filter(() => lastWord !== '')
-      .filter(tag => !searchWords.includes(tag))
+      .filter(tag => !searchText.includes(tag))
       .filter(tag => {
         const lowerCaseTag = tag.toLowerCase();
         const lowerCaseLastWord = lastWord.toLowerCase();
@@ -67,4 +67,4 @@ export default connect(
       }
     };
   }
-)(Tagbar);
+)(SearchSuggestions);
