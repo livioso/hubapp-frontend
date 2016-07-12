@@ -14,7 +14,7 @@ import Searchsuggestions from '../Containers/searchSuggestionsContainer';
 import Immutable from 'immutable';
 
 export const MemberList = ({ members, searchText, onNavigate, onSearch }) => (
-  <View>
+  <View style={{ flex: 1 }}>
     <Searchbar searchText={searchText} search={onSearch} />
     <Searchsuggestions />
     { renderMemberList(members, onNavigate) }
@@ -36,6 +36,7 @@ const renderMemberList = (members, onNavigate) => {
   const dataSource = ds.cloneWithRowsAndSections(membersWithSections);
   return (
     <ListView
+      style={{ flex: 1 }}
       enableEmptySections
       renderSectionHeader={renderSectionHeader}
       dataSource={dataSource}

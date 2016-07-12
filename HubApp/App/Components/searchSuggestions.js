@@ -15,7 +15,7 @@ export const SearchSuggestions = ({ suggestions, search }) => {
 
   return (
     <ScrollView automaticallyAdjustContentInsets={false} horizontal
-      style={{ paddingLeft: 7, height: 30, backgroundColor: color.blue }}>
+      style={{ flex: 0, paddingLeft: 7, height: 30, backgroundColor: color.blue }}>
       <View style={{ flexDirection: 'row' }}>
         {
           suggestions.map(suggestion => (
