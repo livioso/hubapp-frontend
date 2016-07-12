@@ -34,24 +34,27 @@ const renderMemberList = (members, onNavigate) => {
     .toJS();
 
   const dataSource = ds.cloneWithRowsAndSections(membersWithSections);
+
+  const onNavigateToMember = member => {
+    onNavigate({
+      member,
+      type: 'push',
+      route: {
+        title: `Details for ${member.firstname}`,
+        key: `details_${member.id}`,
+        showBackButton: true,
+        member
+      }
+    });
+  };
+
   return (
     <ListView
       style={{ flex: 1 }}
       enableEmptySections
       renderSectionHeader={renderSectionHeader}
       dataSource={dataSource}
-      renderRow={(member) => renderMemberRow(member, () => {
-        onNavigate({
-          member,
-          type: 'push',
-          route: {
-            key: `details_${member.id}`,
-            title: `Details for ${member.firstname}`,
-            showBackButton: true,
-            member
-          }
-        });
-      })} />
+      renderRow={member => renderMemberRow(member, () => onNavigateToMember(member))} />
   );
 };
 
