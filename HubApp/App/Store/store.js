@@ -18,12 +18,12 @@ let createStoreWithMiddleware = () => { // eslint-disable-line immutable/no-let
 // Disable development tools on production!
 if (process.env.NODE_ENV === 'production') {
   createStoreWithMiddleware = compose(
-    autoRehydrate(),
+    // autoRehydrate(),
     applyMiddleware(thunk, sagaMiddleware),
   )(createStore);
 } else {
   createStoreWithMiddleware = compose(
-    autoRehydrate(),
+    // autoRehydrate(),
     applyMiddleware(thunk, sagaMiddleware),
     global.reduxNativeDevTools
       ? global.reduxNativeDevTools()

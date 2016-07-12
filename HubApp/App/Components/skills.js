@@ -8,14 +8,21 @@ import {
 import { Tag } from '../Styles/tag';
 import { color } from '../Styles/color';
 
-export const Skills = ({ skills, style }) => (
+export const Skills = ({ skills, style, onPressTag = () => {} }) => (
   <View style={ [styles.skills, style] }>
-    { skills.map(skill => (<Tag key={ skill.id } style={ styles.tag }> { `${skill.name}` }</Tag>)) }
+    {
+      skills.map(skill => (
+        <Tag key={skill.id} style={styles.tag} onPress={() => onPressTag(skill.name)}>
+          {`${skill.name}`}
+        </Tag>)
+      )
+    }
   </View>
 );
 
 Skills.propTypes = { // eslint-disable-line immutable/no-mutation
   skills: PropTypes.array.isRequired,
+  onPressTag: PropTypes.func,
   style: PropTypes.object
 };
 

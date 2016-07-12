@@ -15,38 +15,47 @@ import { Text, HeaderText } from '../Styles/text';
 import { color } from '../Styles/color';
 import { Skills } from './skills';
 
-export const MemberDetails = ({ member, ...props }) => (
-  <ScrollView>
-    <View style={ [styles.container, { alignItems: 'stretch' }] }>
-      <View style={styles.card}>
-        <Image style={styles.image}
-          source={{ uri: member.picture }}
-          defaultSource={require('../Styles/Assets/ic_account_circle.png')} />
-          <View style={styles.businesscard}>
-            <HeaderText style={styles.cardText}>
-              {`${member.firstname} ${member.lastname}`}
-            </HeaderText>
-            <Text style={styles.cardText}>{member.position}</Text>
-            <View style={{ marginTop: 10 }}>
-              <TouchableOpacity style={{ flexDirection: 'row' }}
-                onPress={() => Linking.openURL(`tel:${member.phone}`)}>
-                <Icon name="phone" size={16} style={styles.cardText} />
-                <Text style={{ color: color.light, paddingLeft: 5 }}>{member.phone}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={{ flexDirection: 'row' }}
-                onPress={() => Linking.openURL(`tel:${member.email}`)}>
-                <Icon name="mail" size={16} style={styles.cardText} />
-                <Text style={{ color: color.light, paddingLeft: 5 }}>{member.email}</Text>
-              </TouchableOpacity>
+export const MemberDetails = ({ member, ...props, searchForTag }) => {
+  // search and then go back to where we came from
+  const onPressSkillTag = (text) => {
+    searchForTag(text);
+    props.onNavigate({ type: 'BackAction' });
+  };
+
+  return (
+    <ScrollView>
+      <View style={ [styles.container, { alignItems: 'stretch' }] }>
+        <View style={styles.card}>
+          <Image style={styles.image}
+            source={{ uri: member.picture }}
+            defaultSource={require('../Styles/Assets/ic_account_circle.png')} />
+            <View style={styles.businesscard}>
+              <HeaderText style={styles.cardText}>
+                {`${member.firstname} ${member.lastname}`}
+              </HeaderText>
+              <Text style={styles.cardText}>{member.position}</Text>
+              <View style={{ marginTop: 10 }}>
+                <TouchableOpacity style={{ flexDirection: 'row' }}
+                  onPress={() => Linking.openURL(`tel:${member.phone}`)}>
+                  <Icon name="phone" size={16} style={styles.cardText} />
+                  <Text style={{ color: color.light, paddingLeft: 5 }}>{member.phone}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={{ flexDirection: 'row' }}
+                  onPress={() => Linking.openURL(`tel:${member.email}`)}>
+                  <Icon name="mail" size={16} style={styles.cardText} />
+                  <Text style={{ color: color.light, paddingLeft: 5 }}>{member.email}</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
-          <Skills skills={member.skills} style={{ paddingTop: 20 }} />
-          <Text style={styles.bio}>{member.shortDescription}</Text>
-          {renderSimilar({ ...member, ...props })}
+            <Skills onPressTag={onPressSkillTag}
+              skills={member.skills} style={{ paddingTop: 20 }} />
+            <Text style={styles.bio}>{member.shortDescription}</Text>
+            {renderSimilar({ ...member, ...props })}
+        </View>
       </View>
-    </View>
-  </ScrollView>
-);
+    </ScrollView>
+  );
+};
 
 const onNavigateToSimilarMember = (member, props) => {
   props.onNavigate({

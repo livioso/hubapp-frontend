@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import ApplicationTabs from './Containers/navigationTabContainer';
-import MemberListFilterContainer from './Containers/memberListFilterContainer';
-import ModifyTagsContainer from './Containers/modifyTagsContainer';
-import { MemberDetails } from './Components/memberDetails';
+import MemberListFilter from './Containers/memberListFilterContainer';
+import ModifyTags from './Containers/modifyTagsContainer';
+import MemberDetails from './Containers/memberDetailsContainer';
 import { color } from './Styles/color';
 import { Text } from './Styles/text';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -57,7 +57,7 @@ const renderScene = (props) => {
   if (key === 'filter') {
     return (
       <View style={styles.sceneContainer}>
-        <MemberListFilterContainer {...props} />
+        <MemberListFilter {...props} />
       </View>
     );
   }
@@ -65,7 +65,7 @@ const renderScene = (props) => {
   if (key === 'modifyTags') {
     return (
       <View style={styles.sceneContainer}>
-        <ModifyTagsContainer {...props} />
+        <ModifyTags {...props} />
       </View>
     );
   }
