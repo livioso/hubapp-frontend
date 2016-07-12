@@ -87,9 +87,6 @@ MemberList.propTypes = { // eslint-disable-line immutable/no-mutation
 };
 
 const styles = StyleSheet.create({
-  list: {
-    flex: 1,
-  },
   memberDescription: {
     flex: 1,
     paddingLeft: 10,
