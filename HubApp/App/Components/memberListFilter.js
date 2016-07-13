@@ -1,37 +1,39 @@
 import React from 'react';
 import {
-  Animated,
+  Dimensions,
   ScrollView,
   StyleSheet,
   View
 } from 'react-native';
 
 import { color } from '../Styles/color';
+import { Text } from '../Styles/text';
 import { CoolButton } from '../Styles/button';
 import { ListFilterItem } from './listFilterItem';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export const MemberListFilter = ({ allFilters, activeFilters, onToggleFilter, ...props }) => {
   return (
-    <View style={{ flex: 1 }}>
-      <Animated.View style={styles.container}>
-        <ScrollView style={{ flex: 1 }}>
-          {
-            allFilters.map((filter) => (
-
-              <ListFilterItem
-                key={filter.id}
-                filter={filter.name}
-                color={color.blue}
-                isChecked={activeFilters.includes(filter.name)}
-                onToggle={() => {onToggleFilter(filter.name);}} />
-
-            ))
-          }
-        </ScrollView>
-      </Animated.View>
-      <CoolButton onPress={() => props.onNavigate({ type: 'BackAction' })}
-        caption={'Apply Filters'} />
-    </View>
+    <ScrollView>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', flex: 1 }}>
+        <View style={[styles.tile, { backgroundColor: color.red }]}>
+          <Icon name="map" size={30} color="white" />
+          <Text style={{ color: 'white', paddingTop: 3 }}>Currently Here</Text>
+        </View>
+        <View style={[styles.tile, { backgroundColor: color.green }]}>
+          <Icon name="today" size={30} color="white" />
+          <Text style={{ color: 'white', paddingTop: 3 }}>New Members</Text>
+        </View>
+        <View style={[styles.tile, { backgroundColor: color.orange }]}>
+          <Icon name="home" size={30} color="white" />
+          <Text style={{ color: 'white', paddingTop: 3 }}>Staff</Text>
+        </View>
+        <View style={[styles.tile, { backgroundColor: color.blue }]}>
+          <Icon name="public" size={30} color="white" />
+          <Text style={{ color: 'white', paddingTop: 3 }}>All Members</Text>
+        </View>
+      </View>
+    </ScrollView>
   );
 };
 
@@ -42,10 +44,18 @@ MemberListFilter.propTypes = { // eslint-disable-line immutable/no-mutation
   allFilters: React.PropTypes.array.isRequired,
 };
 
+const width = Dimensions.get('window').width;
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    margin: 10,
-    backgroundColor: 'white'
+  tile: {
+    height: width / 2,
+    width: width / 2,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  row: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: width / 4,
+    width,
   },
 });
