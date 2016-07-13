@@ -111,7 +111,9 @@ export const filterMembersByLiveSearch = (memberlist, searchtext) => {
       const searchWords = searchtext
         .toLowerCase()
         .split(' ');
-      // every word must be mentioned in the member text
+
+      // TODO (livioso 07.13.2016) Continue here!!! :)
+      // return searchWords.every(word => /\bjava\b/i.test(memberAsText));;
       return searchWords.every(word => memberAsText.includes(word));
     });
 };
