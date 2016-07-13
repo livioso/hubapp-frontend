@@ -59,8 +59,8 @@ const renderMemberList = (members, onNavigate) => {
 };
 
 const renderSectionHeader = (sectionData, sectionName) => (
-  <View style={{ backgroundColor: 'rgba(180, 180, 180, 0.7)' }}>
-    <Text style={{ color: color.light, paddingLeft: 5 }}>{sectionName}</Text>
+  <View style={{ backgroundColor: 'rgba(146, 146, 146, 0.5)' }}>
+    <Text style={{ color: color.light, paddingLeft: 7, margin: 4 }}>{sectionName}</Text>
   </View>
 );
 
@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     backgroundColor: color.light,
+    margin: 3,
     paddingTop: 5,
     paddingBottom: 5,
     paddingLeft: 10,

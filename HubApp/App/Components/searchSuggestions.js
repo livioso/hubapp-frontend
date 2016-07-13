@@ -20,6 +20,7 @@ export const SearchSuggestions = ({ suggestions, search }) => {
         {
           suggestions.map(suggestion => (
             <TouchableOpacity key={ suggestion.text }
+              style={{ margin: 3 }}
               onPress={() => search(suggestion.adjustedSearch)}>
               <Text style={{ color: color.light, borderColor: color.blue }}>
                 { `${suggestion.text}  ` }
