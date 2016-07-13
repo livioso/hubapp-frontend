@@ -129,7 +129,9 @@ export const filterMembersBySmartSearch = (memberlist, searchtext, suggestions) 
     .filter((member) => {
       const { skills } = member;
       const memberSkills = skills.map(skill => skill.name.toLowerCase());
-      return suggestions.some(suggestion => memberSkills.includes(suggestion));
+      return suggestions
+        .map(suggestion => suggestion.toLowerCase())
+        .some(suggestion => memberSkills.includes(suggestion));
     });
 };
 

@@ -15,10 +15,7 @@ function* fetchSmartSearch(action) {
     .map(word => encodeURIComponent(word))
     .join(',');
 
-  // TODO (livioso 07.12.2016) This call is not working without debug flag?!
-  // E.g. like this: const requestURL = `${similarURL}?q=${searchquery}`;
-  const debugFlag = '&debug=true';
-  const requestURL = `${similarURL}?q=${searchquery}${debugFlag}`;
+  const requestURL = `${similarURL}?q=${searchquery}`;
   const response = yield call(request, requestURL);
   const isResponseOK = response.error === undefined || response.error === null;
 
