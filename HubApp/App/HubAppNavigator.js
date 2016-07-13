@@ -98,7 +98,7 @@ const renderBackButton = (props) => {
 
 const renderTitleComponent = (props) => (
   <NavigationHeader.Title>
-    <Text style={{ color: color.light }}>
+    <Text style={{ color: color.light, fontWeight: 'bold' }}>
       { props.scene.navigationState.title }
     </Text>
   </NavigationHeader.Title>
@@ -116,9 +116,9 @@ const renderFilterButton = (props) => (
         }
       });
     }} >
-    <Text style={{ color: color.light, marginRight: 5 }}>
-      Filter
-    </Text>
+    <View style={{ color: color.light, marginRight: 5, marginLeft: 15, paddingRight: 10 }}>
+      <Icon name="filter-list" size={24} style={{ color: color.light }} />
+    </View>
   </TouchableOpacity>
 );
 
@@ -134,9 +134,9 @@ const renderMoreButton = (props) => (
         }
       });
     }} >
-    <Text style={{ color: color.light, marginRight: 5 }}>
-      <Icon name="more-horiz" size={24} />
-    </Text>
+    <View style={{ color: color.light, marginRight: 5, marginLeft: 15, paddingRight: 10 }}>
+      <Icon name="local-offer" size={24} style={{ color: color.light }} />
+    </View>
   </TouchableOpacity>
 );
 

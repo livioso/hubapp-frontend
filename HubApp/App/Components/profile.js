@@ -21,6 +21,7 @@ export const Profile = ({ me, toggleDisturb }) => {
   <ScrollView>
     <View style={[styles.container, { alignItems: 'stretch' }]}>
       <View style={styles.card}>
+        { renderCollobrationFlag(me.disturbEnabled) }
         <Image style={styles.image} source={{ uri: me.picture }}
           defaultSource={require('../Styles/Assets/ic_account_circle.png')} />
           <View style={styles.businesscard}>
@@ -29,11 +30,11 @@ export const Profile = ({ me, toggleDisturb }) => {
             </HeaderText>
             <Text style={styles.cardText }>{me.position}</Text>
             <View style={{ marginTop: 10 }}>
-              <View style={{ flexDirection: 'row' }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Icon name="phone" size={16} style={styles.cardText} />
                 <Text style={{ color: color.light, paddingLeft: 5 }}>{me.phone}</Text>
               </View>
-              <View style={{ flexDirection: 'row' }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Icon name="mail" size={16} style={styles.cardText} />
                 <Text style={{ color: color.light, paddingLeft: 5 }}>{me.email}</Text>
               </View>
@@ -43,14 +44,28 @@ export const Profile = ({ me, toggleDisturb }) => {
           <Text style={styles.bio}>{me.shortDescription}</Text>
           <View style={styles.seperator} />
           <HeaderText style={styles.cardText}>Settings</HeaderText>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-            <Text style={styles.cardText}>Do Not Disturb</Text>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
+            <Text style={{ color: color.light, paddingLeft: 5 }}>Open for Collaboration</Text>
             <Switch onValueChange={() => toggleDisturb()} value={me.disturbEnabled} />
+          </View>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
+            <Text style={{ color: color.light, paddingLeft: 5 }}>Show my Phonenumber</Text>
+            <Switch onValueChange={() => alert('This feature will be implemented soon!')} value={true} />
           </View>
       </View>
     </View>
   </ScrollView>
   );
+};
+
+const renderCollobrationFlag = (isCollobarationEnabled) => {
+  if (isCollobarationEnabled) {
+    return (
+      <Icon name="people" size={30} style={{ color: color.light, position: 'absolute', top: 5, right: 10 }} />
+    );
+  } else {
+    return null;
+  }
 };
 
 Profile.propTypes = { // eslint-disable-line immutable/no-mutation
@@ -95,7 +110,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start'
   },
   cardText: {
-    color: color.light
+    color: color.light,
   },
   bio: {
     color: color.light,
