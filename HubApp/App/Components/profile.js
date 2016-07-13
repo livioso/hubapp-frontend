@@ -52,6 +52,10 @@ export const Profile = ({ me, toggleDisturb }) => {
             <Text style={{ color: color.light, paddingLeft: 5 }}>Show my Phonenumber</Text>
             <Switch onValueChange={() => alert('This feature will be implemented soon!')} value={true} />
           </View>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
+            <Text style={{ color: color.light, paddingLeft: 5 }}>Show my Location</Text>
+            <Switch onValueChange={() => alert('This feature will be implemented soon!')} value={true} />
+          </View>
       </View>
     </View>
   </ScrollView>
