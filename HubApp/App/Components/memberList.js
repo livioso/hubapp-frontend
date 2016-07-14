@@ -66,7 +66,7 @@ const renderSectionHeader = (sectionData, sectionName) => (
 
 const renderMemberRow = (member, onPressDetail) => {
   return (
-    <TouchableOpacity onPress={() => onPressDetail()}>
+    <TouchableOpacity style={{ flexDirection: 'row' }}onPress={() => onPressDetail()}>
       <View style={styles.memberRowContainer}>
         <Image source={{ uri: member.picture }}
           defaultSource={require('../Styles/Assets/ic_account_circle.png')}

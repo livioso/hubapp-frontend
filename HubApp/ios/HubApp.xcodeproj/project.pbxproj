@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -128,6 +129,13 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		BA06A23F1D37D38A003DBA76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BA06A23B1D37D389003DBA76 /* ART.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0CF68AC11AF0540F00FF9E5C;
+			remoteInfo = ART;
+		};
 		BA4B1C0F1CF0C64B008A8DCA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E998A8CF9CED46E597A63967 /* BVLinearGradient.xcodeproj */;
@@ -187,6 +195,7 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		9167E2B90AD34423B6EA9517 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		B8A6D3CD0A0342CA899F9106 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
+		BA06A23B1D37D389003DBA76 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 		BA4B1C231CF0C918008A8DCA /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Bold.ttf"; path = "HubApp/Fonts/OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		BA4B1C241CF0C918008A8DCA /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-ExtraBold.ttf"; path = "HubApp/Fonts/OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		BA4B1C251CF0C918008A8DCA /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Light.ttf"; path = "HubApp/Fonts/OpenSans-Light.ttf"; sourceTree = "<group>"; };
@@ -371,6 +380,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				BA06A23B1D37D389003DBA76 /* ART.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
 				00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */,
@@ -425,6 +435,14 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* HubApp.app */,
 				00E356EE1AD99517003FC87E /* HubAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BA06A23C1D37D389003DBA76 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BA06A2401D37D38A003DBA76 /* libART.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -522,6 +540,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = BA06A23C1D37D389003DBA76 /* Products */;
+					ProjectRef = BA06A23B1D37D389003DBA76 /* ART.xcodeproj */;
+				},
 				{
 					ProductGroup = BA4B1C0A1CF0C64A008A8DCA /* Products */;
 					ProjectRef = E998A8CF9CED46E597A63967 /* BVLinearGradient.xcodeproj */;
@@ -648,6 +670,13 @@
 			fileType = archive.ar;
 			path = libRCTText.a;
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BA06A2401D37D38A003DBA76 /* libART.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libART.a;
+			remoteRef = BA06A23F1D37D38A003DBA76 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		BA4B1C101CF0C64B008A8DCA /* libBVLinearGradient.a */ = {
