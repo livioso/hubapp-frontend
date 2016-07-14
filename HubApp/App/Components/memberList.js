@@ -82,10 +82,8 @@ const renderMemberRow = (member, onPressDetail) => {
 
 MemberList.propTypes = { // eslint-disable-line immutable/no-mutation
   members: React.PropTypes.array.isRequired,
-  filters: React.PropTypes.array.isRequired,
   searchText: React.PropTypes.string.isRequired,
   searchSuggetions: React.PropTypes.array.isRequired,
-  onClearFilters: React.PropTypes.func.isRequired,
   onNavigate: React.PropTypes.func.isRequired,
   onSearch: React.PropTypes.func.isRequired
 };
@@ -103,31 +101,11 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 5,
     paddingLeft: 10,
-    paddingRight: 10
+    paddingRight: 10,
   },
   profilePicture: {
     borderRadius: 30,
     width: 60,
     height: 60
   },
-  activeFilter: {
-    backgroundColor: color.green,
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    height: 25,
-  },
-  tagContainer: {
-    backgroundColor: color.blue,
-    marginRight: 3,
-    marginBottom: 3,
-    borderRadius: 55,
-    height: 20,
-    padding: 5,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  tagCaption: {
-    fontSize: 12,
-    color: color.light
-  }
 });

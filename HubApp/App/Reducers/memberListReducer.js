@@ -112,9 +112,12 @@ export const filterMembersByLiveSearch = (memberlist, searchtext) => {
         .toLowerCase()
         .split(' ');
 
-      // TODO (livioso 07.13.2016) Continue here!!! :)
-      // return searchWords.every(word => /\bjava\b/i.test(memberAsText));;
       return searchWords.every(word => memberAsText.includes(word));
+      // // TODO (livioso 07.13.2016) Continue here!!! :)
+      // return searchWords.every(word => {
+      //   const regex = new RegExp('/\b' + word + '\b/i', 'i');
+      //   return regex.test(memberAsText);
+      // });
     });
 };
 

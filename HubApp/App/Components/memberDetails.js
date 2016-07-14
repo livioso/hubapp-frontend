@@ -35,12 +35,12 @@ export const MemberDetails = ({ member, ...props, searchForTag }) => {
               </HeaderText>
               <Text style={styles.cardText}>{member.position}</Text>
               <View style={{ marginTop: 10 }}>
-                <TouchableOpacity style={{ flexDirection: 'row' }}
+                <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
                   onPress={() => Linking.openURL(`tel:${member.phone}`)}>
                   <Icon name="phone" size={16} style={styles.cardText} />
                   <Text style={{ color: color.light, paddingLeft: 5 }}>{member.phone}</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ flexDirection: 'row' }}
+                <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
                   onPress={() => Linking.openURL(`tel:${member.email}`)}>
                   <Icon name="mail" size={16} style={styles.cardText} />
                   <Text style={{ color: color.light, paddingLeft: 5 }}>{member.email}</Text>
@@ -97,6 +97,7 @@ const renderSimilar = ({ similar, firstname, ...props }) => {
 
 MemberDetails.propTypes = { // eslint-disable-line immutable/no-mutation
   member: PropTypes.object.isRequired,
+  searchForTag: PropTypes.func.isRequired
 };
 
 renderSimilar.propTypes = { // eslint-disable-line immutable/no-mutation
