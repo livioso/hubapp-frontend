@@ -15,6 +15,7 @@ const initialState = {
   position: '',
   shortDescription: '',
   disturbEnabled: false,
+  completionPercentage: 90,
 };
 
 export const profile = (state = initialState, action) => { // eslint-disable-line complexity

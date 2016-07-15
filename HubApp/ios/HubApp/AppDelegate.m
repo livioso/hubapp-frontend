@@ -33,7 +33,7 @@
    * on the same Wi-Fi network.
    */
 
-   // jsCodeLocation = [NSURL URLWithString:@"http://Tateyama.local:8081/index.ios.bundle?platform=ios&dev=true"];
+   jsCodeLocation = [NSURL URLWithString:@"http://Raffi.local:8081/index.ios.bundle?platform=ios&dev=true"];
 
   /**
    * OPTION 2
@@ -43,7 +43,7 @@
    * simulator in the "Release" build configuration.
    */
 
-  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+  /* jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"]; */
   //
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"HubApp"
@@ -56,9 +56,9 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
 
-	[Lookback setupWithAppToken:@"gimfcukP6LEmJ66hT"];
-  [Lookback sharedLookback].shakeToRecord = YES;
-  [Lookback sharedLookback].feedbackBubbleVisible = YES;
+//	[Lookback setupWithAppToken:@"gimfcukP6LEmJ66hT"];
+//  [Lookback sharedLookback].shakeToRecord = YES;
+//  [Lookback sharedLookback].feedbackBubbleVisible = YES;
 
   return YES;
 }

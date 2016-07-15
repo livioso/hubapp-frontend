@@ -36,6 +36,7 @@
 		2F0AB7E21D2BACFE003FAF3F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0AB7D61D2BACFE003FAF3F /* QuartzCore.framework */; };
 		2F0AB7E31D2BACFE003FAF3F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0AB7D71D2BACFE003FAF3F /* SystemConfiguration.framework */; };
 		2F0AB7E41D2BACFE003FAF3F /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0AB7D81D2BACFE003FAF3F /* VideoToolbox.framework */; };
+		2F5A3A331D38D1A000E2D20C /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA06A2401D37D38A003DBA76 /* libART.a */; };
 		41579823596B406D97B89CE1 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0FE5D0725CAF48D8AE05A701 /* EvilIcons.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		89E985DBCEFC4CA69D326145 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7C469E716EC49B4B9AE1735 /* Octicons.ttf */; };
@@ -218,6 +219,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F5A3A331D38D1A000E2D20C /* libART.a in Frameworks */,
 				2F0AB7D91D2BACFE003FAF3F /* AudioToolbox.framework in Frameworks */,
 				2F0AB7DA1D2BACFE003FAF3F /* AVFoundation.framework in Frameworks */,
 				2F0AB7DB1D2BACFE003FAF3F /* CoreImage.framework in Frameworks */,

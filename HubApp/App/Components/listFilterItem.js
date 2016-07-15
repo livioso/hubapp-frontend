@@ -11,17 +11,17 @@ export const ListFilterItem = ({ filter, color, isChecked, onToggle }) => {
   const style = isChecked
     ? { backgroundColor: color }
     : { borderColor: color, borderWidth: 2 };
-  return (
-    <TouchableOpacity
-      activeOpacity={0.8}
-      style={styles.container}
-      onPress={onToggle}>
-      <View style={[styles.checkbox, style]} />
-      <Text style={styles.title}>
-        {filter}
-      </Text>
-    </TouchableOpacity>
-  );
+    return (
+      <TouchableOpacity
+        activeOpacity={0.8}
+        style={styles.container}
+        onPress={onToggle}>
+        <View style={[styles.checkbox, style]} />
+        <Text style={styles.title}>
+          {filter}
+        </Text>
+      </TouchableOpacity>
+    );
 };
 
 ListFilterItem.propTypes = { // eslint-disable-line immutable/no-mutation

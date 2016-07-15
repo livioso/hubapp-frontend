@@ -12,6 +12,7 @@ import { Text, HeaderText } from '../Styles/text';
 import { color } from '../Styles/color';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Skills } from './skills';
+import { ProfileChart } from './chart';
 
 export const Profile = ({ me, toggleDisturb }) => {
   if (me === undefined) {
@@ -56,6 +57,10 @@ export const Profile = ({ me, toggleDisturb }) => {
             <Text style={{ color: color.light, paddingLeft: 5 }}>Show my Location</Text>
             <Switch onValueChange={() => alert('This feature will be implemented soon!')} value={true} />
           </View>
+          <View style={styles.seperator} />
+          <View style={{marginTop: 20, alignItems: 'center'}}>
+            <ProfileChart percentage={me.completionPercentage} />
+          </View>
       </View>
     </View>
   </ScrollView>
@@ -91,7 +96,7 @@ const styles = StyleSheet.create({
     width: imageSize,
   },
   seperator: {
-    paddingTop: 10,
+    marginTop: 10,
     borderTopColor: 'rgba(255,255,255,0.5)',
     borderTopWidth: 1
   },
