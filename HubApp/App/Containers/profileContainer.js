@@ -8,7 +8,9 @@ export default connect(
   // our component want to receive as props?
   (state) => {
     return {
-      me: state.profile
+      me: {
+        ...state.profile,
+      }
     };
   },
 

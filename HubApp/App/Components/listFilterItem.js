@@ -11,7 +11,7 @@ export const ListFilterItem = ({ filter, color, isChecked, onToggle }) => {
   const style = isChecked
     ? { backgroundColor: color }
     : { borderColor: color, borderWidth: 2 };
-    return (
+  return (
       <TouchableOpacity
         activeOpacity={0.8}
         style={styles.container}

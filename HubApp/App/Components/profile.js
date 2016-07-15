@@ -51,15 +51,15 @@ export const Profile = ({ me, toggleDisturb }) => {
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
             <Text style={{ color: color.light, paddingLeft: 5 }}>Show my Phonenumber</Text>
-            <Switch onValueChange={() => alert('This feature will be implemented soon!')} value={true} />
+            <Switch onValueChange={() => alert('This feature will be implemented soon!')} value />
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
             <Text style={{ color: color.light, paddingLeft: 5 }}>Show my Location</Text>
-            <Switch onValueChange={() => alert('This feature will be implemented soon!')} value={true} />
+            <Switch onValueChange={() => alert('This feature will be implemented soon!')} value />
           </View>
           <View style={styles.seperator} />
-          <View style={{marginTop: 20, alignItems: 'center'}}>
-            <ProfileChart percentage={me.completionPercentage} />
+          <View style={{ marginTop: 20, alignItems: 'center' }}>
+            <ProfileChart percentage={me.percentage} />
           </View>
       </View>
     </View>

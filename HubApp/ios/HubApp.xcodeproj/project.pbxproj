@@ -219,7 +219,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F5A3A331D38D1A000E2D20C /* libART.a in Frameworks */,
 				2F0AB7D91D2BACFE003FAF3F /* AudioToolbox.framework in Frameworks */,
 				2F0AB7DA1D2BACFE003FAF3F /* AVFoundation.framework in Frameworks */,
 				2F0AB7DB1D2BACFE003FAF3F /* CoreImage.framework in Frameworks */,
@@ -244,6 +243,7 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				2126D88A2C0A4BC88AD5E7A8 /* libBVLinearGradient.a in Frameworks */,
 				8B88338D546C473E8AE64E63 /* libRNVectorIcons.a in Frameworks */,
+				2F5A3A331D38D1A000E2D20C /* libART.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
