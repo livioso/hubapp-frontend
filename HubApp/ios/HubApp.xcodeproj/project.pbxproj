@@ -526,6 +526,9 @@
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = WSJ5T79UYZ;
+					};
 				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "HubApp" */;
@@ -838,6 +841,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEAD_CODE_STRIPPING = NO;
 				FRAMEWORK_SEARCH_PATHS = lookback/HD;
 				HEADER_SEARCH_PATHS = (
@@ -857,6 +862,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ch.impacthub.HubApp;
 				PRODUCT_NAME = HubApp;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -864,6 +870,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = lookback/HD;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -882,6 +890,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ch.impacthub.HubApp;
 				PRODUCT_NAME = HubApp;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
