@@ -2,6 +2,7 @@ import { takeLatest } from 'redux-saga';
 import { put, call } from 'redux-saga/effects';
 import { receiveMemberList } from '../Actions/memberListActions';
 import { request, membersURL } from '../Services/api';
+import Immutable from 'immutable';
 
 export function* fetchMemberList() {
   const response = yield call(request, membersURL);
@@ -26,13 +27,19 @@ export function* watchRequestMemberList() {
  */
 const mapResponseToMembers = (response) => {
   return response.data.map((member) => {
+
+    // always sort the skills alphabetically
+    const skillsSortedByName = Immutable.Set(member.skills)
+      .sortBy(skill => skill.name)
+      .toJS();
+
     return {
       id: member.id,
       firstname: member.firstname,
       lastname: member.lastname,
-      skills: member.skills,
+      skills: skillsSortedByName,
       picture: member.picture,
-      position: member.function,
+      position: member.position,
       shortDescription: member.shortDescription,
       entryDate: member.entryDate,
       email: member.email,

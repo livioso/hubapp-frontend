@@ -1,13 +1,35 @@
 import { takeLatest } from 'redux-saga';
 import { call, fork, select } from 'redux-saga/effects';
-import { request, currentMeURL } from '../Services/api';
+import { request, profileURL, profileSkillsURL } from '../Services/api';
 import { ADD_TAG, REMOVE_TAG, TOGGLE_COLLABORATION } from '../Actions/profileActions';
+import { fetchMemberList } from './fetchMemberList';
+import { fetchTagList } from './fetchTagList';
+
+function* updateProfileSkills() {
+  try {
+  const { profile } = yield select();
+  yield call(request, profileSkillsURL, {
+    method: 'PUT',
+    body: JSON.stringify(profile.skills.map(tag => tag.name)),
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  });
+
+  // re-fetch all the things
+  yield call(fetchMemberList);
+  yield call(fetchTagList);
+
+  } catch (e) {
+    alert(e);
+  }
+}
 
 function* updateProfile() {
-  const state = yield select();
-  yield call(request, currentMeURL, {
+  const { profile } = yield select();
+  yield call(request, profileURL, {
     method: 'PUT',
-    body: JSON.stringify(state.profile.skills.map(tag => tag.name)),
+    body: JSON.stringify(profile),
     headers: {
       'Content-Type': 'application/json'
     },
@@ -18,14 +40,22 @@ function* updateProfile() {
   yield call(fetchTagList);
 }
 
-export function* watchRemoveTag() {
-  yield* takeLatest(REMOVE_TAG, updateProfile);
+function* watchRemoveTag() {
+  yield* takeLatest(REMOVE_TAG, updateProfileSkills);
 }
 
-export function* watchAddTag() {
-  yield* takeLatest(ADD_TAG, updateProfile);
+function* watchAddTag() {
+  yield* takeLatest(ADD_TAG, updateProfileSkills);
 }
 
-export function* watchCollaborationFlag() {
+function* watchToggleCollaboration() {
   yield* takeLatest(TOGGLE_COLLABORATION, updateProfile);
+}
+
+export function* watchUpdateProfile() {
+  yield [
+    fork(watchToggleCollaboration),
+    fork(watchRemoveTag),
+    fork(watchAddTag),
+  ];
 }
