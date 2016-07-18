@@ -12,6 +12,7 @@ import { color } from '../Styles/color';
 import { Searchbar } from './searchbar';
 import Searchsuggestions from '../Containers/searchSuggestionsContainer';
 import Immutable from 'immutable';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export const MemberList = ({ members, searchText, onNavigate, onSearch }) => (
   <View style={{ flex: 1 }}>
@@ -66,7 +67,7 @@ const renderSectionHeader = (sectionData, sectionName) => (
 
 const renderMemberRow = (member, onPressDetail) => {
   return (
-    <TouchableOpacity style={{ flexDirection: 'row' }}onPress={() => onPressDetail()}>
+    <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => onPressDetail()}>
       <View style={styles.memberRowContainer}>
         <Image source={{ uri: member.picture }}
           defaultSource={require('../Styles/Assets/ic_account_circle.png')}
@@ -75,11 +76,25 @@ const renderMemberRow = (member, onPressDetail) => {
           <Text>{`${member.firstname} ${member.lastname}`}</Text>
           <Text style={{ color: color.gray }}>{member.position}</Text>
         </View>
+        {
+          renderCollobrationFlag(member.collaboration)
+        }
       </View>
     </TouchableOpacity>
   );
 };
 
+const renderCollobrationFlag = (isCollobarationEnabled) => {
+  if(isCollobarationEnabled){
+    return (
+      <View style={{ justifyContent: 'space-between' }}>
+        <Icon name='people' size={20} style={{ color: color.gray, marginRight: 5 }} />
+      </View>
+    );
+  } else {
+    return null;
+  }
+}
 MemberList.propTypes = { // eslint-disable-line immutable/no-mutation
   members: React.PropTypes.array.isRequired,
   searchText: React.PropTypes.string.isRequired,

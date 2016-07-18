@@ -26,6 +26,7 @@ export const MemberDetails = ({ member, ...props, searchForTag }) => {
     <ScrollView>
       <View style={ [styles.container, { alignItems: 'stretch' }] }>
         <View style={styles.card}>
+          { renderCollobrationFlag(member.collaboration) }
           <Image style={styles.image}
             source={{ uri: member.picture }}
             defaultSource={require('../Styles/Assets/ic_account_circle.png')} />
@@ -55,6 +56,16 @@ export const MemberDetails = ({ member, ...props, searchForTag }) => {
       </View>
     </ScrollView>
   );
+};
+
+const renderCollobrationFlag = (isCollobarationEnabled) => {
+  if (isCollobarationEnabled) {
+    return (
+      <Icon name="people" size={30} style={{ color: color.light, position: 'absolute', top: 5, right: 10 }} />
+    );
+  } else {
+    return null;
+  }
 };
 
 const onNavigateToSimilarMember = (member, props) => {
