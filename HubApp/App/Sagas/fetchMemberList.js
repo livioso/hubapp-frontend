@@ -39,6 +39,7 @@ const mapResponseToMembers = (response) => {
       phone: member.phone,
       location: member.location,
       firm: member.firm,
+      collaboration: member.collaboration,
     };
   });
 };

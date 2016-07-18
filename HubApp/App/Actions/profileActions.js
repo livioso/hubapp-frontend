@@ -1,6 +1,6 @@
 export const ADD_TAG = 'ADD_TAG';
 export const REMOVE_TAG = 'REMOVE_TAG';
-export const TOGGLE_DISTURB = 'TOGGLE_DISTURB';
+export const TOGGLE_COLLABORATION = 'TOGGLE_COLLABORATION';
 
 export const removeTag = (tag) => {
   return {
@@ -16,8 +16,8 @@ export const addTag = (tag) => {
   };
 };
 
-export const toggleDisturb = () => {
+export const toggleCollaboration = () => {
   return {
-    type: TOGGLE_DISTURB
+    type: TOGGLE_COLLABORATION
   };
 };

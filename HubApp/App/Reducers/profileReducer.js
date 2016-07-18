@@ -5,7 +5,7 @@ import {
 import {
   ADD_TAG,
   REMOVE_TAG,
-  TOGGLE_DISTURB,
+  TOGGLE_COLLABORATION,
 } from '../Actions/profileActions';
 
 const changeMeInProduction = 12;
@@ -56,10 +56,10 @@ export const profile = (state = initialState, action) => { // eslint-disable-lin
       };
     }
 
-    case TOGGLE_DISTURB:
+    case TOGGLE_COLLABORATION :
       return {
         ...state,
-        disturbEnabled: !state.disturbEnabled
+        collaboration: !state.collaboration
       };
 
     default:

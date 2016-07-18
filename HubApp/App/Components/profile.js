@@ -14,7 +14,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Skills } from './skills';
 import { ProfileChart } from './chart';
 
-export const Profile = ({ me, toggleDisturb }) => {
+export const Profile = ({ me, toggleCollaboration }) => {
   if (me === undefined) {
     return null;
   }
@@ -22,7 +22,7 @@ export const Profile = ({ me, toggleDisturb }) => {
   <ScrollView>
     <View style={[styles.container, { alignItems: 'stretch' }]}>
       <View style={styles.card}>
-        { renderCollobrationFlag(me.disturbEnabled) }
+        { renderCollobrationFlag(me.collaboration) }
         <Image style={styles.image} source={{ uri: me.picture }}
           defaultSource={require('../Styles/Assets/ic_account_circle.png')} />
           <View style={styles.businesscard}>
@@ -52,7 +52,7 @@ export const Profile = ({ me, toggleDisturb }) => {
           <HeaderText style={styles.cardText}>Settings</HeaderText>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
             <Text style={{ color: color.light, paddingLeft: 5 }}>Open for Collaboration</Text>
-            <Switch onValueChange={() => toggleDisturb()} value={me.disturbEnabled} />
+            <Switch onValueChange={() => toggleCollaboration()} value={me.collaboration} />
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
             <Text style={{ color: color.light, paddingLeft: 5 }}>Show my Phonenumber</Text>

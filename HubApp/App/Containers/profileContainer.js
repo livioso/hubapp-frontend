@@ -20,12 +20,12 @@ export default connect(
     const {
       addTag,
       removeTag,
-      toggleDisturb
+      toggleCollaboration
     } = bindActionCreators(profileActions, dispatch);
     return {
       onAddTag: addTag,
       onRemoveTag: removeTag,
-      toggleDisturb
+      toggleCollaboration
     };
   }
 )(Profile);
