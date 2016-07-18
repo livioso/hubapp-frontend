@@ -101,11 +101,11 @@ export const filterMembersByLiveSearch = (memberlist, searchtext) => {
     .filter((member) => {
       const {
         shortDescription: description,
-        firstname, lastname, skills
+        firstname, lastname, skills, firm
       } = member;
       // merge all the fields into one big string for searching
       const memberSkills = skills.map(skill => skill.name).join(' ');
-      const memberAsText = `${firstname} ${lastname} ${memberSkills} ${description}`.toLowerCase();
+      const memberAsText = `${firstname} ${lastname} ${memberSkills} ${description} ${firm}`.toLowerCase();
       // search for each word in search text
       // example: "Raphael Swift" => Raphael and Swift
       const searchWords = searchtext

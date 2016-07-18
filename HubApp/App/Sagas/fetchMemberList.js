@@ -38,6 +38,7 @@ const mapResponseToMembers = (response) => {
       email: member.email,
       phone: member.phone,
       location: member.location,
+      firm: member.firm,
     };
   });
 };
