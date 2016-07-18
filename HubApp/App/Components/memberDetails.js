@@ -33,8 +33,7 @@ export const MemberDetails = ({ member, ...props, searchForTag }) => {
               <HeaderText style={styles.cardText}>
                 {`${member.firstname} ${member.lastname}`}
               </HeaderText>
-              <Text style={styles.cardText}>{member.position}</Text>
-              <Text style={styles.cardText}>{member.firm}</Text>
+              <Text style={styles.cardText}>{member.position} ({member.firm})</Text>
               <View style={{ marginTop: 10 }}>
                 <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
                   onPress={() => Linking.openURL(`tel:${member.phone}`)}>

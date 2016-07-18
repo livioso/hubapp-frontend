@@ -29,8 +29,7 @@ export const Profile = ({ me, toggleDisturb }) => {
             <HeaderText style={ styles.cardText}>
               {`${me.firstname} ${me.lastname}`}
             </HeaderText>
-            <Text style={styles.cardText }>{me.position}</Text>
-            <Text style={styles.cardText}>{me.firm}</Text>
+            <Text style={styles.cardText }>{me.position} ({me.firm})</Text>
             <View style={{ marginTop: 10 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Icon name="phone" size={16} style={styles.cardText} />
