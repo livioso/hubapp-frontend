@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native';
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
-import { persistStore, autoRehydrate } from 'redux-persist';
+import { persistStore, /* autoRehydrate */ } from 'redux-persist';
 import immutableTransform from 'redux-persist-transform-immutable';
 import createSagaMiddleware from 'redux-saga';
 import thunk from 'redux-thunk';

@@ -34,15 +34,19 @@ class AddTagBar extends Component {
 
   render() {
     return (
-      <View style={{ marginLeft: 5, marginRight: 5, borderBottomWidth: 2, marginBottom: 10, borderBottomColor: color.blue, justifyContent: 'space-between', flexDirection: 'row' }}>
-        <TextInput ref="tagInput" style={[font.text, { height: 30, borderWidth: 0, flex: 1 }]} placeholder="Add new tag to your profile" returnKeyType="done" clearButtonMode="while-editing" onSubmitEditing={this.onSubmitEditing} />
+      <View style={styles.tagInputWrapper}>
+        <TextInput ref="tagInput" style={[font.text, styles.tagInputText]}
+          placeholder="Add new tag to your profile"
+          onSubmitEditing={this.onSubmitEditing}
+          clearButtonMode="while-editing"
+          returnKeyType="done" />
       </View>
     );
   }
 }
 
 const activeTags = (tags, removeTag) => (
-  <View style={{ backgroundColor: color.light, flexDirection: 'row', flexWrap: 'wrap', padding: 4 }}>
+  <View style={styles.activeTags}>
   {
     tags.map(tag => {
       return (
@@ -66,6 +70,12 @@ const styles = StyleSheet.create({
     marginTop: 20,
     flex: 1
   },
+  activeTags: {
+    backgroundColor: color.light,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    padding: 4
+  },
   tagCircle: {
     borderColor: color.light,
     borderWidth: 2,
@@ -77,5 +87,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'flex-end'
+  },
+  tagInputWrapper: {
+    marginLeft: 5,
+    marginRight: 5,
+    borderBottomWidth: 2,
+    marginBottom: 10,
+    borderBottomColor: color.blue,
+    justifyContent: 'space-between',
+    flexDirection: 'row'
+  },
+  tagInputText: {
+    height: 30,
+    borderWidth: 0,
+    flex: 1
   }
 });

@@ -67,8 +67,9 @@ export const profile = (state = initialState, action) => { // eslint-disable-lin
   }
 };
 
-const calculateProfileCompletionPercentage = (me) => {
+const calculateProfileCompletionPercentage = (me) => { // eslint-disable-line complexity
   const isNotEmptyString = field => field !== undefined && field !== '';
+
   const fields = [];
   fields.push(isNotEmptyString(me.firstname) ? 1 : 0);
   fields.push(isNotEmptyString(me.lastname) ? 1 : 0);
@@ -78,6 +79,7 @@ const calculateProfileCompletionPercentage = (me) => {
   fields.push(isNotEmptyString(me.phone) ? 1 : 0);
   fields.push(isNotEmptyString(me.picture) ? 1 : 0);
   fields.push(me.skills.length > 0 ? 1 : 0);
+
   const totalFields = fields.length;
   const usedFields = fields.reduce((lhs, rhs) => lhs + rhs);
   return 100 / totalFields * usedFields;

@@ -30,13 +30,15 @@ export const ProfileTag = ({ onPress, onDelete, style, ...props }) => {
 
 Tag.propTypes = { // eslint-disable-line immutable/no-mutation
   style: React.PropTypes.object,
-  onPress: React.PropTypes.func
+  onPress: React.PropTypes.func,
+  children: React.PropTypes.object,
 };
 
 ProfileTag.propTypes = { // eslint-disable-line immutable/no-mutation
   style: React.PropTypes.object,
   onPress: React.PropTypes.func,
-  onDelete: React.PropTypes.func.isRequired
+  onDelete: React.PropTypes.func.isRequired,
+  children: React.PropTypes.object,
 };
 
 const styles = StyleSheet.create({

@@ -7,19 +7,18 @@ import { fetchTagList } from './fetchTagList';
 
 function* updateProfileSkills() {
   try {
-  const { profile } = yield select();
-  yield call(request, profileSkillsURL, {
-    method: 'PUT',
-    body: JSON.stringify(profile.skills.map(tag => tag.name)),
-    headers: {
-      'Content-Type': 'application/json'
-    },
-  });
+    const { profile } = yield select();
+    yield call(request, profileSkillsURL, {
+      method: 'PUT',
+      body: JSON.stringify(profile.skills.map(tag => tag.name)),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    });
 
   // re-fetch all the things
-  yield call(fetchMemberList);
-  yield call(fetchTagList);
-
+    yield call(fetchMemberList);
+    yield call(fetchTagList);
   } catch (e) {
     alert(e);
   }

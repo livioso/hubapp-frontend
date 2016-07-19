@@ -27,7 +27,6 @@ export function* watchRequestMemberList() {
  */
 const mapResponseToMembers = (response) => {
   return response.data.map((member) => {
-
     // always sort the skills alphabetically
     const skillsSortedByName = Immutable.Set(member.skills)
       .sortBy(skill => skill.name)

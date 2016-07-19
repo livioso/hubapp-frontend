@@ -14,9 +14,6 @@ import { color } from './Styles/color';
 
 export const Playground = () => {
   return (
-    <View style={styles.pacman} />
-  );
-  return (
     <ScrollView>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', flex: 1 }}>
         <View style={[styles.tile, { backgroundColor: color.blue }]}>
@@ -61,21 +58,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: width / 4,
     width,
-  },
-  pacman: {
-    width: 0,
-    height: 0,
-    borderTopWidth: 60,
-    borderTopColor: 'red',
-    borderLeftColor: 'red',
-    borderLeftWidth: 60,
-    borderRightColor: 'blue',
-    borderRightWidth: 60,
-    borderBottomColor: 'red',
-    borderBottomWidth: 60,
-    borderTopLeftRadius: 60,
-    borderTopRightRadius: 60,
-    borderBottomRightRadius: 60,
-    borderBottomLeftRadius: 60
   },
 });

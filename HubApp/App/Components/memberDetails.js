@@ -61,7 +61,7 @@ export const MemberDetails = ({ member, ...props, searchForTag }) => {
 const renderCollobrationFlag = (isCollobarationEnabled) => {
   if (isCollobarationEnabled) {
     return (
-      <Icon name="people" size={30} style={{ color: color.light, position: 'absolute', top: 5, right: 10 }} />
+      <Icon name="people" size={30} style={styles.collaborationIcon} />
     );
   } else {
     return null;
@@ -168,5 +168,11 @@ const styles = StyleSheet.create({
     marginRight: 3,
     marginLeft: 3,
     marginTop: 5
+  },
+  collaborationIcon: {
+    color: color.light,
+    position: 'absolute',
+    right: 10,
+    top: 5,
   }
 });

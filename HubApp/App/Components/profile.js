@@ -71,7 +71,7 @@ export const Profile = ({ me, toggleCollaboration }) => {
 const renderCollobrationFlag = (isCollobarationEnabled) => {
   if (isCollobarationEnabled) {
     return (
-      <Icon name="people" size={30} style={{ color: color.light, position: 'absolute', top: 5, right: 10 }} />
+      <Icon name="people" size={30} color={color.light} style={styles.collaborationIcon} />
     );
   } else {
     return null;
@@ -80,7 +80,7 @@ const renderCollobrationFlag = (isCollobarationEnabled) => {
 
 Profile.propTypes = { // eslint-disable-line immutable/no-mutation
   me: React.PropTypes.object.isRequired,
-  toggleDisturb: React.PropTypes.func.isRequired
+  toggleCollaboration: React.PropTypes.func.isRequired
 };
 
 const imageSize = Dimensions.get('window').width / 3;
@@ -126,5 +126,10 @@ const styles = StyleSheet.create({
     color: color.light,
     paddingTop: 20,
     paddingBottom: 10
+  },
+  collaborationIcon: {
+    position: 'absolute',
+    right: 10,
+    top: 5
   }
 });

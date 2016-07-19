@@ -8,11 +8,9 @@ import {
 
 import { color } from '../Styles/color';
 import { Text } from '../Styles/text';
-import { CoolButton } from '../Styles/button';
-import { ListFilterItem } from './listFilterItem';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export const MemberListFilter = ({ allFilters, activeFilters, onToggleFilter, ...props }) => {
+export const MemberListFilter = ({}) => {
   return (
     <ScrollView>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', flex: 1 }}>
@@ -38,10 +36,6 @@ export const MemberListFilter = ({ allFilters, activeFilters, onToggleFilter, ..
 };
 
 MemberListFilter.propTypes = { // eslint-disable-line immutable/no-mutation
-  onNavigate: React.PropTypes.func.isRequired,
-  onToggleFilter: React.PropTypes.func.isRequired,
-  activeFilters: React.PropTypes.array.isRequired,
-  allFilters: React.PropTypes.array.isRequired,
 };
 
 const width = Dimensions.get('window').width;
