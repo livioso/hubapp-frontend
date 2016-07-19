@@ -92,55 +92,31 @@ export const members = combineReducers({
 // ******************************************************************
 // Filters for Members
 // ******************************************************************
+
+// Returns all members in member list when a search word matches fully.
+// This means: partial matches will not be returned. For example if we
+// search Java this function is expected to return all members matching
+// Java but not JavaScript
 export const filterMembersByLiveSearch = (memberlist, searchtext) => {
-  if (search === '') {
-    return memberlist; // nothing to search
-  }
+  const wordIsFullMatch = (word, memberAsText) => {
+    const regex = new RegExp(`\\b${word}\\b`, 'i');
+    return regex.test(memberAsText);
+  };
 
-  return memberlist
-    .filter((member) => {
-      const {
-        shortDescription: description,
-        firstname, lastname, skills, firm
-      } = member;
-      // merge all the fields into one big string for searching
-      const memberSkills = skills.map(skill => skill.name).join(' ');
-      const memberAsText = `${firstname} ${lastname} ${memberSkills} ${description} ${firm}`.toLowerCase();
-      // search for each word in search text
-      // example: "Raphael Swift" => Raphael and Swift
-      const searchWords = searchtext
-        .toLowerCase()
-        .split(' ');
-
-      return searchWords.every(word => {
-        const regex = new RegExp('\\b' + word + '\\b', 'i');
-        return regex.test(memberAsText);
-      });
-    });
+  return filterMemberlistBySearchWordMatch(
+    memberlist, searchtext, wordIsFullMatch
+  );
 };
 
+// Returns all members in member list when a search word matches partially.
+// This means: partial matches will be returned. For example if we
+// search Java this function is expected to return all members matching
+// Java and JavaScript.
 export const filterMembersByLiveSearchSoft = (memberlist, searchtext) => {
-  if (search === '') {
-    return memberlist; // nothing to search
-  }
-
-  return memberlist
-  .filter((member) => {
-    const {
-      shortDescription: description,
-      firstname, lastname, skills, firm
-    } = member;
-    // merge all the fields into one big string for searching
-    const memberSkills = skills.map(skill => skill.name).join(' ');
-    const memberAsText = `${firstname} ${lastname} ${memberSkills} ${description} ${firm}`.toLowerCase();
-    // search for each word in search text
-    // example: "Raphael Swift" => Raphael and Swift
-    const searchWords = searchtext
-    .toLowerCase()
-    .split(' ');
-
-    return searchWords.every(word => memberAsText.includes(word));
-  });
+  const wordIsPartialMatch = (word, memberAsText) => memberAsText.includes(word);
+  return filterMemberlistBySearchWordMatch(
+    memberlist, searchtext, wordIsPartialMatch
+  );
 };
 
 export const filterMembersBySmartSearch = (memberlist, searchtext, suggestions) => {
@@ -162,16 +138,7 @@ export const filterMembersBySmartSearch = (memberlist, searchtext, suggestions) 
     });
 };
 
-export const filterMembers = (memberlist, filters) => {
-  return memberlist
-    .filter((member) => {
-      const { skills } = member;
-      const memberSkills = skills.map(skill => skill.name);
-      return filters.every(skill => memberSkills.includes(skill));
-    });
-};
-
-export const filterMembersByJaccard = (memberlist, filters, threshold = 1 / 3) => {
+const filterMembersByJaccard = (memberlist, filters, threshold = 1 / 3) => {
   if (filters.length === 0) {
     return memberlist;
   }
@@ -193,7 +160,7 @@ export const filterMembersByJaccard = (memberlist, filters, threshold = 1 / 3) =
     .filter(member => member.similarity >= threshold);
 };
 
-export const calculateSimilarMembers = (memberlist) => {
+const calculateSimilarMembers = (memberlist) => {
   return memberlist.map(member => {
     // no skills => no similar members
     if (member.skills.length === 0) {
@@ -208,7 +175,7 @@ export const calculateSimilarMembers = (memberlist) => {
   });
 };
 
-export const calculateJaccardSimilarity = (lhs, rhs) => {
+const calculateJaccardSimilarity = (lhs, rhs) => {
   // reduce the skills into a single number that tells us
   // how many matching skills the user has with filters
   const initialScore = 0;
@@ -220,4 +187,34 @@ export const calculateJaccardSimilarity = (lhs, rhs) => {
 
   // calculate the Jaccard similarity
   return score / rhs.length;
+};
+
+const filterMemberlistBySearchWordMatch = (memberlist, searchtext, wordIsMatch) => {
+  if (search === '') {
+    return memberlist; // nothing to search
+  }
+
+  return memberlist
+    .filter((member) => {
+      const {
+        shortDescription: description,
+        firstname, lastname, skills, firm
+      } = member;
+
+      // merge all the fields into one big string for searching
+      const memberSkills = skills.map(skill => skill.name).join(' ');
+      const memberAsText = `
+        ${firstname} ${lastname} ${memberSkills}
+        ${description} ${firm}
+      `.toLowerCase();
+
+      // search for each word in search text
+      // example: "Raphael Swift" => Raphael and Swift
+      const searchWords = searchtext
+        .toLowerCase()
+        .split(' ');
+
+      // apply check function on every word in the search words
+      return searchWords.every(word => wordIsMatch(word, memberAsText));
+    });
 };
