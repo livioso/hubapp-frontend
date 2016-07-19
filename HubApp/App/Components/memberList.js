@@ -85,7 +85,7 @@ const renderMemberRow = (member, onPressDetail) => {
 };
 
 const renderCollobrationFlag = (isCollobarationEnabled) => {
-  if(isCollobarationEnabled){
+  if (isCollobarationEnabled) {
     return (
       <View style={{ justifyContent: 'space-between' }}>
         <Icon name='people' size={20} style={{ color: color.gray, marginRight: 5 }} />
@@ -94,7 +94,8 @@ const renderCollobrationFlag = (isCollobarationEnabled) => {
   } else {
     return null;
   }
-}
+};
+
 MemberList.propTypes = { // eslint-disable-line immutable/no-mutation
   members: React.PropTypes.array.isRequired,
   searchText: React.PropTypes.string.isRequired,
