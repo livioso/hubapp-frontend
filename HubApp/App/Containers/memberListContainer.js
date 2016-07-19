@@ -5,7 +5,6 @@ import * as memberListActions from '../Actions/memberListActions';
 import Immutable from 'immutable';
 
 import {
-  filterMembersByJaccard,
   filterMembersByLiveSearch,
   filterMembersByLiveSearchSoft,
   filterMembersBySmartSearch
@@ -21,7 +20,6 @@ export default connect(
     // complicated state :)
     const {
       data: { list },
-      filter: { active: activeFilter },
       search: { text: searchText, suggestions }
     } = members;
 
@@ -69,9 +67,8 @@ export default connect(
 
     return {
       members: searchText === ''
-        ? filterMembersByJaccard(allMember, activeFilter, 1)
-        : filterMembersByJaccard(mergedSearch.toJS(), activeFilter, 1),
-      filters: activeFilter,
+        ? allMember
+        : mergedSearch.toJS(),
       searchText,
       navigation
     };
@@ -81,11 +78,9 @@ export default connect(
   // it want to receive by props?
   (dispatch) => {
     const {
-      clearFilters,
       search
     } = bindActionCreators(memberListActions, dispatch);
     return {
-      onClearFilters: clearFilters,
       onSearch: search,
       dispatch
     };
