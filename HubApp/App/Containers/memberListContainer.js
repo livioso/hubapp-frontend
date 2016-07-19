@@ -61,14 +61,22 @@ export default connect(
         return { ...member, category: 'Best Matches' };
       });
 
-      // merge it all together :)
+    // merge it all together :)
     const mergedGoodMatches = fulltextSearchSoftAnnotated.concat(smartSearchAnnotated);
     const mergedSearch = fulltextSearchAnnotated.concat(mergedGoodMatches);
 
+    const membersWithoutSections = searchText !== ''
+      ? mergedSearch.toJS()
+      : allMember;
+
+    const membersWithSections = Immutable.Set(membersWithoutSections)
+      .sortBy(member => member.lastname)
+      .sortBy(member => member.category)
+      .groupBy(member => member.category)
+      .toJS();
+
     return {
-      members: searchText === ''
-        ? allMember
-        : mergedSearch.toJS(),
+      members: membersWithSections,
       searchText,
       navigation
     };

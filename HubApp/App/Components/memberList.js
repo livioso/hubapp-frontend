@@ -11,7 +11,6 @@ import { Text } from '../Styles/text';
 import { color } from '../Styles/color';
 import { Searchbar } from './searchbar';
 import Searchsuggestions from '../Containers/searchSuggestionsContainer';
-import Immutable from 'immutable';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export const MemberList = ({ members, searchText, onNavigate, onSearch }) => (
@@ -28,13 +27,7 @@ const renderMemberList = (members, onNavigate) => {
     sectionHeaderHasChanged: (s1, s2) => s1 !== s2
   });
 
-  const membersWithSections = Immutable.Set(members)
-    .sortBy(member => member.lastname)
-    .sortBy(member => member.category)
-    .groupBy(member => member.category)
-    .toJS();
-
-  const dataSource = ds.cloneWithRowsAndSections(membersWithSections);
+  const dataSource = ds.cloneWithRowsAndSections(members);
 
   const onNavigateToMember = member => {
     onNavigate({
@@ -65,30 +58,28 @@ const renderSectionHeader = (sectionData, sectionName) => (
   </View>
 );
 
-const renderMemberRow = (member, onPressDetail) => {
-  return (
-    <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => onPressDetail()}>
-      <View style={styles.memberRowContainer}>
-        <Image source={{ uri: member.picture }}
-          defaultSource={require('../Styles/Assets/ic_account_circle.png')}
-          style={styles.profilePicture} />
-        <View style={styles.memberDescription}>
-          <Text>{`${member.firstname} ${member.lastname}`}</Text>
-          <Text style={{ color: color.gray }}>{member.position}</Text>
-        </View>
-        {
-          renderCollobrationFlag(member.collaboration)
-        }
+const renderMemberRow = (member, onPressDetail) => (
+  <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => onPressDetail()}>
+    <View style={styles.memberRowContainer}>
+      <Image source={{ uri: member.picture }}
+        defaultSource={require('../Styles/Assets/ic_account_circle.png')}
+        style={styles.profilePicture} />
+      <View style={styles.memberDescription}>
+        <Text>{`${member.firstname} ${member.lastname}`}</Text>
+        <Text style={{ color: color.gray }}>{member.position}</Text>
       </View>
-    </TouchableOpacity>
-  );
-};
+      {
+        renderCollobrationFlag(member.collaboration)
+      }
+    </View>
+  </TouchableOpacity>
+);
 
 const renderCollobrationFlag = (isCollobarationEnabled) => {
   if (isCollobarationEnabled) {
     return (
       <View style={{ justifyContent: 'space-between' }}>
-        <Icon name='people' size={20} style={{ color: color.gray, marginRight: 5 }} />
+        <Icon name="people" size={20} style={styles.collaborationIcon} />
       </View>
     );
   } else {
@@ -124,4 +115,8 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60
   },
+  collaborationIcon: {
+    color: color.gray,
+    marginRight: 5
+  }
 });
