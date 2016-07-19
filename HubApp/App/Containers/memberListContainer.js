@@ -7,6 +7,7 @@ import Immutable from 'immutable';
 import {
   filterMembersByJaccard,
   filterMembersByLiveSearch,
+  filterMembersByLiveSearchSoft,
   filterMembersBySmartSearch
 } from '../Reducers/memberListReducer';
 
@@ -35,6 +36,9 @@ export default connect(
     const fulltextSearch =
       Immutable.Set(filterMembersByLiveSearch(allMember, searchText));
 
+    const fullTextSearchSoft =
+      Immutable.Set(filterMembersByLiveSearchSoft(allMember, searchText));
+
     const smartSearch =
       Immutable.Set(filterMembersBySmartSearch(allMember, searchText, suggestions));
 
@@ -42,6 +46,13 @@ export default connect(
     // categories. Make sure to not do this
     // before comparing (e.g. has()).
     const smartSearchAnnotated = smartSearch
+      .filter(member => !fulltextSearch.has(member))
+      .filter(member => !fullTextSearchSoft.has(member))
+      .map(member => {
+        return { ...member, category: 'Good Matches' };
+      });
+
+    const fulltextSearchSoftAnnotated = fullTextSearchSoft
       .filter(member => !fulltextSearch.has(member))
       .map(member => {
         return { ...member, category: 'Good Matches' };
@@ -52,8 +63,9 @@ export default connect(
         return { ...member, category: 'Best Matches' };
       });
 
-    // merge it all together :)
-    const mergedSearch = fulltextSearchAnnotated.concat(smartSearchAnnotated);
+      // merge it all together :)
+    const mergedGoodMatches = fulltextSearchSoftAnnotated.concat(smartSearchAnnotated);
+    const mergedSearch = fulltextSearchAnnotated.concat(mergedGoodMatches);
 
     return {
       members: searchText === ''

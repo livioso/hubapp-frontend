@@ -112,13 +112,37 @@ export const filterMembersByLiveSearch = (memberlist, searchtext) => {
         .toLowerCase()
         .split(' ');
 
-      return searchWords.every(word => memberAsText.includes(word));
-      // // TODO (livioso 07.13.2016) Continue here!!! :)
-      // return searchWords.every(word => {
-      //   const regex = new RegExp('/\b' + word + '\b/i', 'i');
-      //   return regex.test(memberAsText);
-      // });
+      // return searchWords.every(word => memberAsText.includes(word));
+      // TODO (livioso 07.13.2016) Continue here!!! :)
+      return searchWords.every(word => {
+        const regex = new RegExp('/\b' + word + '\b/i', 'i');
+        return regex.test(memberAsText);
+      });
     });
+};
+
+export const filterMembersByLiveSearchSoft = (memberlist, searchtext) => {
+  if (search === '') {
+    return memberlist; // nothing to search
+  }
+
+  return memberlist
+  .filter((member) => {
+    const {
+      shortDescription: description,
+      firstname, lastname, skills, firm
+    } = member;
+    // merge all the fields into one big string for searching
+    const memberSkills = skills.map(skill => skill.name).join(' ');
+    const memberAsText = `${firstname} ${lastname} ${memberSkills} ${description} ${firm}`.toLowerCase();
+    // search for each word in search text
+    // example: "Raphael Swift" => Raphael and Swift
+    const searchWords = searchtext
+    .toLowerCase()
+    .split(' ');
+
+    return searchWords.every(word => memberAsText.includes(word));
+  });
 };
 
 export const filterMembersBySmartSearch = (memberlist, searchtext, suggestions) => {
