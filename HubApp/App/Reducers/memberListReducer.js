@@ -112,10 +112,8 @@ export const filterMembersByLiveSearch = (memberlist, searchtext) => {
         .toLowerCase()
         .split(' ');
 
-      // return searchWords.every(word => memberAsText.includes(word));
-      // TODO (livioso 07.13.2016) Continue here!!! :)
       return searchWords.every(word => {
-        const regex = new RegExp('/\b' + word + '\b/i', 'i');
+        const regex = new RegExp('\\b' + word + '\\b', 'i');
         return regex.test(memberAsText);
       });
     });
