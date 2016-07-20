@@ -71,6 +71,11 @@ export default connect(
 
     const membersWithSectionsGrouped = Immutable.Set(membersWithSections)
       .sortBy(member => member.lastname)
+      .sortBy(member => {
+        return -(Immutable.Set(member.skills.map(skill => skill.name))
+          .intersect(suggestions)
+          .count());
+      })
       .sortBy(member => member.category)
       .groupBy(member => member.category)
       .toJS();
