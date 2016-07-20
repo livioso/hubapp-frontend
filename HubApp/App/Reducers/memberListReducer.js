@@ -97,7 +97,7 @@ export const members = combineReducers({
 // This means: partial matches will not be returned. For example if we
 // search Java this function is expected to return all members matching
 // Java but not JavaScript
-export const filterMembersByLiveSearch = (memberlist, searchtext) => {
+export const filterMembersByFullWordMatch = (memberlist, searchtext) => {
   const wordIsFullMatch = (word, memberAsText) => {
     const regex = new RegExp(`\\b${word}\\b`, 'i');
     return regex.test(memberAsText);
@@ -112,7 +112,7 @@ export const filterMembersByLiveSearch = (memberlist, searchtext) => {
 // This means: partial matches will be returned. For example if we
 // search Java this function is expected to return all members matching
 // Java and JavaScript.
-export const filterMembersByLiveSearchSoft = (memberlist, searchtext) => {
+export const filterMembersByPartialWordMatch = (memberlist, searchtext) => {
   const wordIsPartialMatch = (word, memberAsText) => memberAsText.includes(word);
   return filterMemberlistBySearchWordMatch(
     memberlist, searchtext, wordIsPartialMatch

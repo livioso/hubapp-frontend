@@ -5,8 +5,8 @@ import * as memberListActions from '../Actions/memberListActions';
 import Immutable from 'immutable';
 
 import {
-  filterMembersByLiveSearch,
-  filterMembersByLiveSearchSoft,
+  filterMembersByFullWordMatch,
+  filterMembersByPartialWordMatch,
   filterMembersBySmartSearch
 } from '../Reducers/memberListReducer';
 
@@ -32,10 +32,10 @@ export default connect(
 
     // get results for searches
     const fulltextSearch =
-      Immutable.Set(filterMembersByLiveSearch(allMember, searchText));
+      Immutable.Set(filterMembersByFullWordMatch(allMember, searchText));
 
     const fullTextSearchSoft =
-      Immutable.Set(filterMembersByLiveSearchSoft(allMember, searchText));
+      Immutable.Set(filterMembersByPartialWordMatch(allMember, searchText));
 
     const smartSearch =
       Immutable.Set(filterMembersBySmartSearch(allMember, searchText, suggestions));
@@ -65,18 +65,18 @@ export default connect(
     const mergedGoodMatches = fulltextSearchSoftAnnotated.concat(smartSearchAnnotated);
     const mergedSearch = fulltextSearchAnnotated.concat(mergedGoodMatches);
 
-    const membersWithoutSections = searchText !== ''
+    const membersWithSections = searchText !== ''
       ? mergedSearch.toJS()
       : allMember;
 
-    const membersWithSections = Immutable.Set(membersWithoutSections)
+    const membersWithSectionsGrouped = Immutable.Set(membersWithSections)
       .sortBy(member => member.lastname)
       .sortBy(member => member.category)
       .groupBy(member => member.category)
       .toJS();
 
     return {
-      members: membersWithSections,
+      members: membersWithSectionsGrouped,
       searchText,
       navigation
     };

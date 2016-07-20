@@ -10,7 +10,7 @@ import { color } from '../Styles/color';
 import { Text } from '../Styles/text';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export const MemberListFilter = ({}) => {
+export const MemberListFilter = () => {
   return (
     <ScrollView>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', flex: 1 }}>
