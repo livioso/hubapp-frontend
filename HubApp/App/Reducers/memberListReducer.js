@@ -99,7 +99,13 @@ export const members = combineReducers({
 // Java but not JavaScript
 export const filterMembersByFullWordMatch = (memberlist, searchtext) => {
   const wordIsFullMatch = (word, memberAsText) => {
-    const regex = new RegExp(`\\b${word}\\b`, 'i');
+    // escape the user input
+    const escapeRegExp = (string) => {
+      // $& means the whole matched string
+      return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    };
+
+    const regex = new RegExp(`(^|\\s)${escapeRegExp(word)}(?=\\s|$)`, 'i');
     return regex.test(memberAsText);
   };
 
