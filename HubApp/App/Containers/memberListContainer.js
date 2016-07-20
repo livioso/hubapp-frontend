@@ -34,7 +34,7 @@ export default connect(
     const fulltextSearch =
       Immutable.Set(filterMembersByFullWordMatch(allMember, searchText));
 
-    const fullTextSearchSoft =
+    const fullTextSearchPartial =
       Immutable.Set(filterMembersByPartialWordMatch(allMember, searchText));
 
     const smartSearch =
@@ -45,12 +45,12 @@ export default connect(
     // before comparing (e.g. has()).
     const smartSearchAnnotated = smartSearch
       .filter(member => !fulltextSearch.has(member))
-      .filter(member => !fullTextSearchSoft.has(member))
+      .filter(member => !fullTextSearchPartial.has(member))
       .map(member => {
         return { ...member, category: 'Good Matches' };
       });
 
-    const fulltextSearchSoftAnnotated = fullTextSearchSoft
+    const fulltextSearchPartialMatch = fullTextSearchPartial
       .filter(member => !fulltextSearch.has(member))
       .map(member => {
         return { ...member, category: 'Good Matches' };
@@ -62,7 +62,7 @@ export default connect(
       });
 
     // merge it all together :)
-    const mergedGoodMatches = fulltextSearchSoftAnnotated.concat(smartSearchAnnotated);
+    const mergedGoodMatches = fulltextSearchPartialMatch.concat(smartSearchAnnotated);
     const mergedSearch = fulltextSearchAnnotated.concat(mergedGoodMatches);
 
     const membersWithSections = searchText !== ''
