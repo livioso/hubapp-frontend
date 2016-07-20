@@ -3,33 +3,93 @@ import {
   Dimensions,
   ScrollView,
   StyleSheet,
-  View
+  View,
+  Image,
+  TouchableHighlight,
+  TouchableOpacity
 } from 'react-native';
 
 import { color } from '../Styles/color';
-import { Text } from '../Styles/text';
+import { Text, HeaderText } from '../Styles/text';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export const MemberListFilter = () => {
+export const MemberListFilter = ({ onToggleFilter, activeFilters, membersCount, resetAll }) => {
   return (
     <ScrollView>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', flex: 1 }}>
-        <View style={[styles.tile, { backgroundColor: color.red }]}>
-          <Icon name="map" size={30} color="white" />
-          <Text style={{ color: 'white', paddingTop: 3 }}>Currently Here</Text>
-        </View>
-        <View style={[styles.tile, { backgroundColor: color.green }]}>
-          <Icon name="today" size={30} color="white" />
-          <Text style={{ color: 'white', paddingTop: 3 }}>New Members</Text>
-        </View>
-        <View style={[styles.tile, { backgroundColor: color.orange }]}>
-          <Icon name="home" size={30} color="white" />
-          <Text style={{ color: 'white', paddingTop: 3 }}>Staff</Text>
-        </View>
-        <View style={[styles.tile, { backgroundColor: color.blue }]}>
-          <Icon name="public" size={30} color="white" />
-          <Text style={{ color: 'white', paddingTop: 3 }}>All Members</Text>
-        </View>
+        <TouchableOpacity style={ [styles.tile, {width: width}] } activeOpacity={0.7} onPress={() => onToggleFilter('colab')}>
+          <Image resizeMode='cover' style={ [styles.tile, {width: width}] } source={require('../Styles/Assets/IHZ_150916_master_locations_3.jpg')} />
+          <View style={ [styles.wrap, { width: width }] }>
+            <View style={ [styles.overlay, { backgroundColor: activeFilters.includes('colab')? 'rgba(25,140,170,0.7)' : 'rgba(0,0,0,0.3)'}]}>
+              <Icon name='location-on' size={40} color='white' />
+              <HeaderText style={{ color: color.light }}>Colab</HeaderText>
+              <View style={{ flexDirection: 'row', paddingTop: 5 }}>
+                <Text style={{ paddingRight: 5, color: color.light }}>{membersCount.colab}</Text>
+                <Icon name='person' color='white' size={20}/>
+              </View>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.tile} activeOpacity={0.7} onPress={() => onToggleFilter('viadukt')}>
+          <Image resizeMode='cover' style={styles.tile} source={require('../Styles/Assets/IHZ_150916_master_locations_1.jpg')} />
+          <View style={styles.wrap}>
+            <View style={ [styles.overlay, { backgroundColor: activeFilters.includes('viadukt')? 'rgba(25,140,170,0.7)' : 'rgba(0,0,0,0.3)'}]}>
+              <Icon name='location-on' size={40} color='white' />
+              <HeaderText style={{ color: color.light }}>Viadukt</HeaderText>
+              <View style={{ flexDirection: 'row', paddingTop: 5 }}>
+                <Text style={{ paddingRight: 5, color: color.light }}>{membersCount.viadukt}</Text>
+                <Icon name='person' color='white' size={20}/>
+              </View>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.tile} activeOpacity={0.7} onPress={() => onToggleFilter('garage')}>
+          <Image resizeMode='cover' style={styles.tile} source={require('../Styles/Assets/IHZ_150916_master_locations_L2.jpg')} />
+          <View style={styles.wrap}>
+            <View style={ [styles.overlay, { backgroundColor: activeFilters.includes('garage')? 'rgba(25,140,170,0.7)' : 'rgba(0,0,0,0.3)'}]}>
+              <Icon name='location-on' size={40} color={ color.light } />
+              <HeaderText style={{ color: color.light }}>Garage</HeaderText>
+              <View style={{ flexDirection: 'row', paddingTop: 5 }}>
+                <Text style={{ paddingRight: 5, color: color.light }}>{membersCount.garage}</Text>
+                <Icon name='person' color='white' size={20}/>
+              </View>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.tile} activeOpacity={0.7} onPress={() => onToggleFilter('new')}>
+          <Image resizeMode='cover' style={styles.tile} source={require('../Styles/Assets/new.jpg')} />
+          <View style={styles.wrap}>
+            <View style={ [styles.overlay, { backgroundColor: activeFilters.includes('new')? 'rgba(25,140,170,0.7)' : 'rgba(0,0,0,0.3)'}]}>
+              <Icon name='today' size={40} color={ color.light } />
+              <HeaderText style={{ color: color.light }}>New Members</HeaderText>
+              <View style={{ flexDirection: 'row', paddingTop: 5 }}>
+                <Text style={{ paddingRight: 5, color: color.light }}>{membersCount.newOnes}</Text>
+                <Icon name='person' color='white' size={20}/>
+              </View>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.tile} activeOpacity={0.7} onPress={() => onToggleFilter('collaboration')}>
+          <Image resizeMode='cover' style={styles.tile} source={require('../Styles/Assets/collab.jpg')} />
+          <View style={styles.wrap}>
+            <View style={ [styles.overlay, { backgroundColor: activeFilters.includes('collaboration')? 'rgba(25,140,170,0.7)' : 'rgba(0,0,0,0.3)'}]}>
+              <Icon name='people' size={40} color={ color.light } />
+              <HeaderText style={{ color: color.light }}>Open For Collaboration</HeaderText>
+              <View style={{ flexDirection: 'row', paddingTop: 5 }}>
+                <Text style={{ paddingRight: 5, color: color.light }}>{membersCount.collaboration}</Text>
+                <Icon name='person' color='white' size={20}/>
+              </View>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.tile, { backgroundColor: color.red, width: width }]} onPress={() => resetAll()}>
+          <Icon name="public" size={40} color="white" />
+          <HeaderText style={{ color: 'white', paddingTop: 3 }}>All Members</HeaderText>
+          <View style={{ flexDirection: 'row', paddingTop: 5 }}>
+            <Text style={{ paddingRight: 5, color: color.light }}>{membersCount.all}</Text>
+            <Icon name='person' color='white' size={20}/>
+          </View>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -52,4 +112,21 @@ const styles = StyleSheet.create({
     height: width / 4,
     width,
   },
+  wrap: {
+    height: width / 2,
+    width: width / 2,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    backgroundColor: 'transparent'
+  },
+  overlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.3)'
+  },
+  onPress: {
+    backgroundColor: 'rgba(25,140,170,0.7)'
+  }
 });

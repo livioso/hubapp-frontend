@@ -9,16 +9,25 @@ export default connect(
   (state) => {
     return {
       activeFilters: state.members.filter.active,
-      allFilters: state.tagList.tags
+      allFilters: state.tagList.tags,
+      membersCount: {
+        colab: 699,
+        viadukt: 1,
+        garage: 0,
+        newOnes: 5,
+        collaboration: 70,
+        all: 700
+      }
     };
   },
 
   // which action creators does
   // it want to receive by props?
   (dispatch) => {
-    const { toggleFilter } = bindActionCreators(memberListActions, dispatch);
+    const { toggleFilter, clearFilters } = bindActionCreators(memberListActions, dispatch);
     return {
-      onToggleFilter: toggleFilter
+      onToggleFilter: toggleFilter,
+      resetAll: clearFilters
     };
   }
 )(MemberListFilter);
