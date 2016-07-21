@@ -6,7 +6,8 @@ import {
   View,
   Image,
   TouchableHighlight,
-  TouchableOpacity
+  TouchableOpacity,
+  NavigationExperimental,
 } from 'react-native';
 
 import { color } from '../Styles/color';
@@ -99,9 +100,10 @@ MemberListFilter.propTypes = { // eslint-disable-line immutable/no-mutation
 };
 
 const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height - NavigationExperimental.Header.HEIGHT;
 const styles = StyleSheet.create({
   tile: {
-    height: width / 2,
+    height: height/4,
     width: width / 2,
     alignItems: 'center',
     justifyContent: 'center'
@@ -113,7 +115,7 @@ const styles = StyleSheet.create({
     width,
   },
   wrap: {
-    height: width / 2,
+    height: height / 4,
     width: width / 2,
     position: 'absolute',
     top: 0,
