@@ -32,7 +32,7 @@ const data = (state = initialStateList, action) => { // eslint-disable-line comp
   }
 };
 
-export const filters = {
+export const availableFilters = {
   colab: {
     identifier: 'colab',
     filter: (member) => { return member.location === 'Silquais'; } // 😂   Liviooooo!!! 😡
@@ -67,7 +67,7 @@ const filter = (state = initialStateFilter, action) => {
   switch (action.type) {
     case RECEIVE_MEMBERLIST: {
       const { members } = action;
-      const { colab, viadukt, garage, collaboration } = filters;
+      const { colab, viadukt, garage, collaboration } = availableFilters;
       return {
         ...state,
         memberCount: {

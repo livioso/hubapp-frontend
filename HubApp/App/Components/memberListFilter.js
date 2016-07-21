@@ -12,15 +12,17 @@ import {
 import { color } from '../Styles/color';
 import { Text, HeaderText } from '../Styles/text';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { availableFilters } from '../Reducers/memberListReducer';
 
+const { colab, viadukt, garage, collaboration } = availableFilters;
 export const MemberListFilter = ({ onToggleFilter, activeFilters, memberCount, resetAll }) => { // eslint-disable-line complexity
   return (
     <ScrollView>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', flex: 1 }}>
-        <TouchableOpacity style={ [styles.tile, { width }] } activeOpacity={0.7} onPress={() => onToggleFilter('colab')}>
+        <TouchableOpacity style={ [styles.tile, { width }] } activeOpacity={0.7} onPress={() => onToggleFilter(colab.identifier)}>
           <Image resizeMode="cover" style={ [styles.tile, { width }] } source={require('../Styles/Assets/IHZ_150916_master_locations_3.jpg')} />
           <View style={ [styles.wrap, { width }] }>
-            <View style={ [styles.overlay, { backgroundColor: activeFilters.includes('colab') ? 'rgba(25,140,170,0.7)' : 'rgba(0,0,0,0.3)' }]}>
+            <View style={ [styles.overlay, { backgroundColor: activeFilters.includes(colab.identifier) ? 'rgba(25,140,170,0.7)' : 'rgba(0,0,0,0.3)' }]}>
               <Icon name="location-on" size={40} color="white" />
               <HeaderText style={{ color: color.light }}>Colab</HeaderText>
               <View style={{ flexDirection: 'row', paddingTop: 5 }}>
@@ -30,10 +32,10 @@ export const MemberListFilter = ({ onToggleFilter, activeFilters, memberCount, r
             </View>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.tile} activeOpacity={0.7} onPress={() => onToggleFilter('viadukt')}>
+        <TouchableOpacity style={styles.tile} activeOpacity={0.7} onPress={() => onToggleFilter(viadukt.identifier)}>
           <Image resizeMode="cover" style={styles.tile} source={require('../Styles/Assets/IHZ_150916_master_locations_1.jpg')} />
           <View style={styles.wrap}>
-            <View style={ [styles.overlay, { backgroundColor: activeFilters.includes('viadukt') ? 'rgba(25,140,170,0.7)' : 'rgba(0,0,0,0.3)' }]}>
+            <View style={ [styles.overlay, { backgroundColor: activeFilters.includes(viadukt.identifier) ? 'rgba(25,140,170,0.7)' : 'rgba(0,0,0,0.3)' }]}>
               <Icon name="location-on" size={40} color="white" />
               <HeaderText style={{ color: color.light }}>Viadukt</HeaderText>
               <View style={{ flexDirection: 'row', paddingTop: 5 }}>
@@ -43,10 +45,10 @@ export const MemberListFilter = ({ onToggleFilter, activeFilters, memberCount, r
             </View>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.tile} activeOpacity={0.7} onPress={() => onToggleFilter('garage')}>
+        <TouchableOpacity style={styles.tile} activeOpacity={0.7} onPress={() => onToggleFilter(garage.identifier)}>
           <Image resizeMode="cover" style={styles.tile} source={require('../Styles/Assets/IHZ_150916_master_locations_L2.jpg')} />
           <View style={styles.wrap}>
-            <View style={ [styles.overlay, { backgroundColor: activeFilters.includes('garage') ? 'rgba(25,140,170,0.7)' : 'rgba(0,0,0,0.3)' }]}>
+            <View style={ [styles.overlay, { backgroundColor: activeFilters.includes(garage.identifier) ? 'rgba(25,140,170,0.7)' : 'rgba(0,0,0,0.3)' }]}>
               <Icon name="location-on" size={40} color={ color.light } />
               <HeaderText style={{ color: color.light }}>Garage</HeaderText>
               <View style={{ flexDirection: 'row', paddingTop: 5 }}>
@@ -69,10 +71,10 @@ export const MemberListFilter = ({ onToggleFilter, activeFilters, memberCount, r
             </View>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.tile} activeOpacity={0.7} onPress={() => onToggleFilter('collaboration')}>
+        <TouchableOpacity style={styles.tile} activeOpacity={0.7} onPress={() => onToggleFilter(collaboration.identifier)}>
           <Image resizeMode="cover" style={styles.tile} source={require('../Styles/Assets/collab.jpg')} />
           <View style={styles.wrap}>
-            <View style={ [styles.overlay, { backgroundColor: activeFilters.includes('collaboration') ? 'rgba(25,140,170,0.7)' : 'rgba(0,0,0,0.3)' }]}>
+            <View style={ [styles.overlay, { backgroundColor: activeFilters.includes(collaboration.identifier) ? 'rgba(25,140,170,0.7)' : 'rgba(0,0,0,0.3)' }]}>
               <Icon name="people" size={40} color={ color.light } />
               <HeaderText style={{ color: color.light }}>Open For Collaboration</HeaderText>
               <View style={{ flexDirection: 'row', paddingTop: 5 }}>
