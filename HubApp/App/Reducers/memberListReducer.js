@@ -32,12 +32,54 @@ const data = (state = initialStateList, action) => { // eslint-disable-line comp
   }
 };
 
+export const filters = {
+  colab: {
+    identifier: 'colab',
+    filter: (member) => { return member.location === 'Silquais'; } // 😂
+  },
+  viadukt: {
+    identifier: 'viadukt',
+    filter: (member) => { return member.location === 'Viadukt'; }
+  },
+  garage: {
+    identifier: 'garage',
+    filter: (member) => { return member.location === 'Garage'; }
+  },
+  collaboration: {
+    identifier: 'collaboration',
+    filter: (member) => { return member.collaboration; }
+  },
+};
+
 const initialStateFilter = {
-  active: []
+  active: [],
+  memberCount: {
+    colab: 0,
+    viadukt: 0,
+    garage: 0,
+    newest: 0,
+    collaboration: 0,
+    all: 0
+  }
 };
 
 const filter = (state = initialStateFilter, action) => {
   switch (action.type) {
+    case RECEIVE_MEMBERLIST: {
+      const { members } = action;
+      const { colab, viadukt, garage, collaboration } = filters;
+      return {
+        ...state,
+        memberCount: {
+          collaboration: members.filter(collaboration.filter).length,
+          colab: members.filter(colab.filter).length,
+          viadukt: members.filter(viadukt.filter).length,
+          garage: members.filter(garage.filter).length,
+          all: action.members.length
+          newest: 0, // TODO (livioso 07.21.2016) this is still pending ;)
+        }
+      };
+    }
     case TOGGLE_FILTER: {
       const { active } = state;
       const { filter: toggleFilter } = action;
