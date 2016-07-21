@@ -9,15 +9,7 @@ export default connect(
   (state) => {
     return {
       activeFilters: state.members.filter.active,
-      allFilters: state.tagList.tags,
-      membersCount: {
-        colab: 699,
-        viadukt: 1,
-        garage: 0,
-        newOnes: 5,
-        collaboration: 70,
-        all: 700
-      }
+      memberCount: state.members.filter.memberCount
     };
   },
 
