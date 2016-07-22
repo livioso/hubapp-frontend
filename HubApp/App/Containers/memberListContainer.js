@@ -7,7 +7,8 @@ import Immutable from 'immutable';
 import {
   filterMembersByFullWordMatch,
   filterMembersByPartialWordMatch,
-  filterMembersBySmartSearch
+  filterMembersBySmartSearch,
+  availableFilters
 } from '../Reducers/memberListReducer';
 
 export default connect(
@@ -20,7 +21,8 @@ export default connect(
     // complicated state :)
     const {
       data: { list },
-      search: { text: searchText, suggestions }
+      search: { text: searchText, suggestions },
+      filter
     } = members;
 
     const allMember = list.map((member) => {
@@ -30,15 +32,28 @@ export default connect(
       };
     });
 
+    const { colab, viadukt, garage, collaboration } = availableFilters;
+
+    const containsLocation = filter.active.includes(colab.identifier) || filter.active.includes(viadukt.identifier) || filter.active.includes(garage.identifier);
+
+    const _colab = m => (filter.active.includes(colab.identifier) && colab.filter(m));
+    const _viadukt = m => (filter.active.includes(viadukt.identifier) && viadukt.filter(m));
+    const _garage = m => (filter.active.includes(garage.identifier) && garage.filter(m));
+
+    const isColab = m => (!filter.active.includes(collaboration.identifier) || filter.active.includes(collaboration.identifier) && collaboration.filter(m));
+    const isAny = m => containsLocation ? (_colab(m) || _viadukt(m) || _garage(m)) : true;
+
+    const filteredMembers = allMember.filter(m => isAny(m)).filter(m => isColab(m));
+// debugger;
     // get results for searches
     const fulltextSearch =
-      Immutable.Set(filterMembersByFullWordMatch(allMember, searchText));
+      Immutable.Set(filterMembersByFullWordMatch(filteredMembers, searchText));
 
     const fullTextSearchPartial =
-      Immutable.Set(filterMembersByPartialWordMatch(allMember, searchText));
+      Immutable.Set(filterMembersByPartialWordMatch(filteredMembers, searchText));
 
     const smartSearch =
-      Immutable.Set(filterMembersBySmartSearch(allMember, searchText, suggestions));
+      Immutable.Set(filterMembersBySmartSearch(filteredMembers, searchText, suggestions));
 
     // annotated the search results with
     // categories. Make sure to not do this
@@ -67,7 +82,7 @@ export default connect(
 
     const membersWithSections = searchText !== ''
       ? mergedSearch.toJS()
-      : allMember;
+      : filteredMembers;
 
     const membersWithSectionsGrouped = Immutable.Set(membersWithSections)
       .sortBy(member => member.lastname)
