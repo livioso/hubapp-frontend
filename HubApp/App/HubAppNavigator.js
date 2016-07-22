@@ -23,14 +23,14 @@ const {
   Header: NavigationHeader,
 } = NavigationExperimental;
 
-const HubAppNavigator = ({ navigation, onNavigate, tabs }) => {
+const HubAppNavigator = ({ navigation, onNavigate, tabs, filterCount }) => {
   StatusBar.setBarStyle('light-content', true);
   return (
     <NavigationCardStack
       navigationState={navigation}
       onNavigate={onNavigate}
       renderScene={renderScene}
-      renderOverlay={(props) => renderHeader({ ...props, tabs })} />
+      renderOverlay={(props) => renderHeader({ ...props, tabs, filterCount })} />
   );
 };
 
@@ -104,23 +104,35 @@ const renderTitleComponent = (props) => (
   </NavigationHeader.Title>
 );
 
-const renderFilterButton = (props) => (
-  <TouchableOpacity
-    style={styles.titleButtonContainer}
-    onPress={() => {
-      props.onNavigate({
-        type: 'push',
-        route: {
-          key: 'filter',
-          title: 'Filters',
-        }
-      });
-    }} >
-    <View style={{ color: color.light, marginRight: 5, marginLeft: 15, paddingRight: 10 }}>
-      <Icon name="filter-list" size={24} style={{ color: color.light }} />
+const renderFilterButton = (props) => {
+  const hasFilter = (
+    <View style={styles.filterButton}>
+      <Text style={{ color: color.light }}>Filter ({props.filterCount})</Text>
     </View>
-  </TouchableOpacity>
-);
+  );
+
+  const noFilter = (
+    <View style={styles.filterButton}>
+      <Text style={{ color: color.light }}>Filter</Text>
+    </View>
+  );
+
+  return (
+    <TouchableOpacity
+      style={styles.titleButtonContainer}
+      onPress={() => {
+        props.onNavigate({
+          type: 'push',
+          route: {
+            key: 'filter',
+            title: 'Filters',
+          }
+        });
+      }} >
+      {props.filterCount === 0 ? noFilter : hasFilter}
+    </TouchableOpacity>
+  );
+};
 
 const renderMoreButton = (props) => (
   <TouchableOpacity
@@ -160,7 +172,8 @@ const renderRightComponent = (props) => {
 HubAppNavigator.propTypes = { // eslint-disable-line immutable/no-mutation
   navigation: PropTypes.object.isRequired,
   onNavigate: PropTypes.func.isRequired,
-  tabs: PropTypes.object.isRequired
+  tabs: PropTypes.object.isRequired,
+  filterCount: PropTypes.number.isRequired
 };
 
 renderScene.propTypes = { // eslint-disable-line immutable/no-mutation
@@ -178,6 +191,7 @@ renderTitleComponent.propTypes = { // eslint-disable-line immutable/no-mutation
 
 renderFilterButton.propTypes = { // eslint-disable-line immutable/no-mutation
   onNavigate: PropTypes.func.isRequired,
+  filterCount: PropTypes.number.isRequired
 };
 
 renderMoreButton.propTypes = { // eslint-disable-line immutable/no-mutation
@@ -204,6 +218,15 @@ const styles = StyleSheet.create({
     width: 24,
     margin: Platform.OS === 'ios' ? 10 : 16,
     resizeMode: 'contain'
+  },
+  filterButton: {
+    flex: 1,
+    color: color.light,
+    marginRight: 5,
+    marginLeft: 15,
+    paddingRight: 2,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 
@@ -212,6 +235,7 @@ export default connect(
   // our component want to receive as props?
   (state) => {
     return {
+      filterCount: state.members.filter.active.length,
       navigation: state.globalNav,
       tabs: state.tabs
     };
