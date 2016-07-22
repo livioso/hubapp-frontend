@@ -68,9 +68,7 @@ const renderMemberRow = (member, onPressDetail) => (
         <Text>{`${member.firstname} ${member.lastname}`}</Text>
         <Text style={{ color: color.gray }}>{member.position}</Text>
       </View>
-      {
-        renderCollobrationFlag(member.collaboration)
-      }
+      { renderCollobrationFlag(member.collaboration) }
     </View>
   </TouchableOpacity>
 );
