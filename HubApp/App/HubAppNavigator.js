@@ -12,6 +12,7 @@ import {
   View,
   NavigationExperimental,
   TouchableOpacity,
+  StatusBar,
   Platform,
   StyleSheet,
   Image,
@@ -22,13 +23,16 @@ const {
   Header: NavigationHeader,
 } = NavigationExperimental;
 
-const HubAppNavigator = ({ navigation, onNavigate, tabs, filterCount }) => (
-  <NavigationCardStack
-    navigationState={navigation}
-    onNavigate={onNavigate}
-    renderScene={renderScene}
-    renderOverlay={(props) => renderHeader({ ...props, tabs, filterCount })} />
-);
+const HubAppNavigator = ({ navigation, onNavigate, tabs, filterCount }) => {
+  StatusBar.setBarStyle('light-content', true);
+  return (
+    <NavigationCardStack
+      navigationState={navigation}
+      onNavigate={onNavigate}
+      renderScene={renderScene}
+      renderOverlay={(props) => renderHeader({ ...props, tabs, filterCount })} />
+  );
+};
 
 const renderScene = (props) => {
   const { key } = props.scene.navigationState;
