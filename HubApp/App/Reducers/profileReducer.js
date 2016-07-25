@@ -6,6 +6,8 @@ import {
   ADD_TAG,
   REMOVE_TAG,
   TOGGLE_COLLABORATION,
+  CHANGE_TAG_INPUT_TEXT,
+  TAG_SUGGESTIONS,
 } from '../Actions/profileActions';
 
 const changeMeInProduction = 12;
@@ -18,6 +20,8 @@ const initialState = {
   shortDescription: '',
   disturbEnabled: false,
   percentage: 0,
+  suggestions: [],
+  tagInputText: '',
 };
 
 export const profile = (state = initialState, action) => { // eslint-disable-line complexity
@@ -60,6 +64,18 @@ export const profile = (state = initialState, action) => { // eslint-disable-lin
       return {
         ...state,
         collaboration: !state.collaboration
+      };
+
+    case CHANGE_TAG_INPUT_TEXT:
+      return {
+        ...state,
+        tagInputText: action.tagInputText
+      };
+
+    case TAG_SUGGESTIONS:
+      return {
+        ...state,
+        suggestions: action.suggestions
       };
 
     default:

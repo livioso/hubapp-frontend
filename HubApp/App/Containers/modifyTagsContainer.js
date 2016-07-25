@@ -7,18 +7,26 @@ export default connect(
   // which part of the Redux global state does
   // our component want to receive as props?
   (state) => {
+    const { skills, suggestions, tagInputText } = state.profile;
     return {
-      tags: state.profile.skills
+      tags: skills,
+      tagInputText,
+      suggestions,
     };
   },
 
   // which action creators does
   // it want to receive by props?
   (dispatch) => {
-    const { addTag, removeTag } = bindActionCreators(profileActions, dispatch);
-    return {
+    const {
+      changeTagInputText,
+      removeTag,
       addTag,
-      removeTag
+    } = bindActionCreators(profileActions, dispatch);
+    return {
+      changeTagInputText,
+      removeTag,
+      addTag,
     };
   }
 )(ModifyTags);

@@ -1,6 +1,6 @@
 import {
   REQUEST_TAGLIST,
-  RECEIVE_TAGLIST
+  RECEIVE_TAGLIST,
 } from '../Actions/tagListActions';
 
 const initialState = {
