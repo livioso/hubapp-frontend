@@ -1,13 +1,11 @@
 import {
   REQUEST_TAGLIST,
-  RECEIVE_TAGLIST
+  RECEIVE_TAGLIST,
 } from '../Actions/tagListActions';
 
 const initialState = {
   tags: [],
   loading: true,
-  suggestions: ['Jassen', 'Jassen2'],
-  tagInputText: '',
 };
 
 export const tagList = (state = initialState, action) => {

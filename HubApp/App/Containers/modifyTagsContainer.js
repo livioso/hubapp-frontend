@@ -7,12 +7,11 @@ export default connect(
   // which part of the Redux global state does
   // our component want to receive as props?
   (state) => {
-    const { profile, tagList } = state;
-    const { suggestions, tagInputText } = tagList;
+    const { skills, suggestions, tagInputText } = state.profile;
     return {
-      tags: profile.skills,
+      tags: skills,
+      tagInputText,
       suggestions,
-      tagInputText
     };
   },
 
@@ -20,12 +19,12 @@ export default connect(
   // it want to receive by props?
   (dispatch) => {
     const {
-      changeInputText,
+      changeTagInputText,
       removeTag,
       addTag,
     } = bindActionCreators(profileActions, dispatch);
     return {
-      changeInputText,
+      changeTagInputText,
       removeTag,
       addTag,
     };

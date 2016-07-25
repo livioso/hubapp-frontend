@@ -12,10 +12,10 @@ import { color } from '../Styles/color';
 import { font } from '../Styles/font';
 
 export const ModifyTags = ({ tags, tagInputText, suggestions, ...props }) => {
-  const { addTag, removeTag, changeInputText } = props;
+  const { addTag, removeTag, changeTagInputText } = props;
   return (
     <ScrollView style={ styles.container }>
-      <AddTagBar addTag={addTag} onChangeText={changeInputText} value={tagInputText} />
+      <AddTagBar addTag={addTag} onChangeText={changeTagInputText} value={tagInputText} />
       { renderSuggestions(suggestions) }
       { renderActiveTags(tags, removeTag) }
     </ScrollView>
@@ -28,7 +28,9 @@ export const ModifyTags = ({ tags, tagInputText, suggestions, ...props }) => {
 // has a side effect on the input (using refs).
 class AddTagBar extends Component {
   static propTypes = {
-    addTag: PropTypes.func.isRequired
+    addTag: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired,
+    onChangeText: PropTypes.func.isRequired
   };
 
   onSubmitEditing = (event) => {
@@ -41,7 +43,7 @@ class AddTagBar extends Component {
     return (
       <View style={styles.tagInputWrapper}>
         <TextInput ref="tagInput" style={[font.text, styles.tagInputText]}
-          value={this.props.tagInputText}
+          value={this.props.value}
           placeholder="Add new tag to your profile"
           onChangeText={this.props.onChangeText}
           onSubmitEditing={this.onSubmitEditing}
