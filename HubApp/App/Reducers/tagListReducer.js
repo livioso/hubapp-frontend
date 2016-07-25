@@ -6,6 +6,8 @@ import {
 const initialState = {
   tags: [],
   loading: true,
+  suggestions: ['Jassen', 'Jassen2'],
+  tagInputText: '',
 };
 
 export const tagList = (state = initialState, action) => {

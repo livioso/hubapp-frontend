@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import {
   View,
+  Text,
   StyleSheet,
   ScrollView,
   TextInput,
@@ -10,12 +11,16 @@ import { ProfileTag } from '../Styles/tag';
 import { color } from '../Styles/color';
 import { font } from '../Styles/font';
 
-export const ModifyTags = ({ tags, removeTag, addTag }) => (
-  <ScrollView style={ styles.container }>
-    <AddTagBar addTag={addTag} />
-    { activeTags(tags, removeTag) }
-  </ScrollView>
-);
+export const ModifyTags = ({ tags, tagInputText, suggestions, ...props }) => {
+  const { addTag, removeTag, changeInputText } = props;
+  return (
+    <ScrollView style={ styles.container }>
+      <AddTagBar addTag={addTag} onChangeText={changeInputText} value={tagInputText} />
+      { renderSuggestions(suggestions) }
+      { renderActiveTags(tags, removeTag) }
+    </ScrollView>
+  );
+};
 
 // due to the fact that we need to clear the
 // input after submitting we can't implement
@@ -36,7 +41,9 @@ class AddTagBar extends Component {
     return (
       <View style={styles.tagInputWrapper}>
         <TextInput ref="tagInput" style={[font.text, styles.tagInputText]}
+          value={this.props.tagInputText}
           placeholder="Add new tag to your profile"
+          onChangeText={this.props.onChangeText}
           onSubmitEditing={this.onSubmitEditing}
           clearButtonMode="while-editing"
           returnKeyType="done" />
@@ -45,7 +52,7 @@ class AddTagBar extends Component {
   }
 }
 
-const activeTags = (tags, removeTag) => (
+const renderActiveTags = (tags, removeTag) => (
   <View style={styles.activeTags}>
   {
     tags.map(tag => {
@@ -59,6 +66,11 @@ const activeTags = (tags, removeTag) => (
   </View>
 );
 
+const renderSuggestions = (suggestions) => (
+  <View>
+    { suggestions.map(suggestion => (<Text>{suggestion}</Text>)) }
+  </View>
+);
 ModifyTags.propTypes = { // eslint-disable-line immutable/no-mutation
   tags: PropTypes.array.isRequired,
   removeTag: PropTypes.func.isRequired,
@@ -67,8 +79,7 @@ ModifyTags.propTypes = { // eslint-disable-line immutable/no-mutation
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 20,
-    flex: 1
+    flex: 1,
   },
   activeTags: {
     backgroundColor: color.light,
