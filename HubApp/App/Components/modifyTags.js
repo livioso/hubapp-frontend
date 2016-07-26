@@ -4,25 +4,34 @@ import {
   StyleSheet,
   ScrollView,
   TextInput,
+  Dimensions,
 } from 'react-native';
 
-import { Text, HeaderText } from '../Styles/text';
-import { ProfileTag } from '../Styles/tag';
+import { HeaderText } from '../Styles/text';
+import { ProfileTag, Tag } from '../Styles/tag';
 import { color } from '../Styles/color';
 import { font } from '../Styles/font';
 import TagCloud from '../Containers/tagcloudContainer';
 
 export const ModifyTags = ({ tags, tagInputText, suggestions, ...props }) => {
   const { addTag, removeTag, changeTagInputText } = props;
+  const cloud = (suggestions.length === 0) ?
+    (
+      <View>
+        <HeaderText style={{ paddingLeft: 10, color: color.blue }}>Popular Skills</HeaderText>
+        <TagCloud addSkill={addTag} />
+      </View>
+    ) : null;
+
   return (
     <ScrollView style={ styles.container }>
       <AddTagBar addTag={addTag} onChangeText={changeTagInputText} value={tagInputText} />
-      <HeaderText style={{ paddingLeft: 10, color: color.blue }}>Suggestions</HeaderText>
-      { renderSuggestions(suggestions) }
+      { renderSuggestions(suggestions, addTag) }
       <HeaderText style={{ paddingLeft: 10, color: color.blue }}>Your Skills</HeaderText>
       { renderActiveTags(tags, removeTag) }
-      <HeaderText style={{ paddingLeft: 10, color: color.blue }}>Popular Skills</HeaderText>
-      <TagCloud />
+      {
+        cloud
+      }
     </ScrollView>
   );
 };
@@ -73,16 +82,27 @@ const renderActiveTags = (tags, removeTag) => (
   </View>
 );
 
-const renderSuggestions = (suggestions) => (
-  <View>
-    { suggestions.map(suggestion => (<Text>{suggestion}</Text>)) }
+const renderSuggestions = (suggestions, addTag) => (
+  <View style={styles.skills}>
+    {
+      suggestions.map(skill => (
+        <Tag key={skill} style={styles.tag} onPress={() => addTag(skill)}>
+          {`${skill}`}
+        </Tag>)
+      )
+    }
   </View>
 );
 ModifyTags.propTypes = { // eslint-disable-line immutable/no-mutation
   tags: PropTypes.array.isRequired,
   removeTag: PropTypes.func.isRequired,
   addTag: PropTypes.func.isRequired,
+  tagInputText: PropTypes.string.isRequired,
+  changeTagInputText: PropTypes.func.isRequired,
+  suggestions: PropTypes.array.isRequired
 };
+
+const containerWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
@@ -119,5 +139,14 @@ const styles = StyleSheet.create({
     height: 30,
     borderWidth: 0,
     flex: 1
+  },
+  skills: {
+    margin: 5,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  tag: {
+    backgroundColor: color.blue,
+    color: color.light
   }
 });

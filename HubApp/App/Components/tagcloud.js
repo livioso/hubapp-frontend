@@ -12,7 +12,7 @@ export const TagCloud = ({ skillList, min, max, addSkill, style }) => (
   <View style={styles.skills}>
     {
       skillList.map(skill => (
-        <TouchableOpacity key={skill.skill.id} style={ [styles.tagButton, style] } onPress={() => addSkill(skill)}>
+        <TouchableOpacity key={skill.skill.id} style={ [styles.tagButton, style] } onPress={() => addSkill(skill.skill.name)}>
           {
             renderTag(skill, max, min, 12, 20)
           }

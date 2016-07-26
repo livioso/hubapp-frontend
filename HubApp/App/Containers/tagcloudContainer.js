@@ -16,9 +16,7 @@ export default connect(
     };
   },
   (dispatch) => {
-    return {
-      addSkill: (skill) => alert(skill.count)
-    };
+    return {};
   }
 )(TagCloud);
 
