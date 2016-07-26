@@ -47,7 +47,7 @@ class AddTagBar extends Component {
           placeholder="Add new tag to your profile"
           onChangeText={this.props.onChangeText}
           onSubmitEditing={this.onSubmitEditing}
-          clearButtonMode="while-editing"
+          clearButtonMode="always"
           returnKeyType="done" />
       </View>
     );

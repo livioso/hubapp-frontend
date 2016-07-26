@@ -46,14 +46,14 @@ function* updateProfile() {
 }
 
 function* fetchSuggestions(action) {
-  const tagInput = action.tagInputText;
+  const tagInput = action.tagInputText.toLowerCase();
   const { tags: availableSkills } = yield select(state => state.tagList);
   // const activeSkills = yield select(state => state.profile);
 
-  yield call(delay, 20);
+  yield call(delay, 40);
   const immediateSuggestions = availableSkills
     .map(skill => skill.name)
-    .filter(skill => skill.startsWith(tagInput));
+    .filter(skill => skill.toLowerCase().startsWith(tagInput));
 
   yield put(tagSuggestions(immediateSuggestions));
 
