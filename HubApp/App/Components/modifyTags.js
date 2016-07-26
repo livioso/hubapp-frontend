@@ -1,23 +1,28 @@
 import React, { PropTypes, Component } from 'react';
 import {
   View,
-  Text,
   StyleSheet,
   ScrollView,
   TextInput,
 } from 'react-native';
 
+import { Text, HeaderText } from '../Styles/text';
 import { ProfileTag } from '../Styles/tag';
 import { color } from '../Styles/color';
 import { font } from '../Styles/font';
+import TagCloud from '../Containers/tagcloudContainer';
 
 export const ModifyTags = ({ tags, tagInputText, suggestions, ...props }) => {
   const { addTag, removeTag, changeTagInputText } = props;
   return (
     <ScrollView style={ styles.container }>
       <AddTagBar addTag={addTag} onChangeText={changeTagInputText} value={tagInputText} />
+      <HeaderText style={{ paddingLeft: 10, color: color.blue }}>Suggestions</HeaderText>
       { renderSuggestions(suggestions) }
+      <HeaderText style={{ paddingLeft: 10, color: color.blue }}>Your Skills</HeaderText>
       { renderActiveTags(tags, removeTag) }
+      <HeaderText style={{ paddingLeft: 10, color: color.blue }}>Popular Skills</HeaderText>
+      <TagCloud />
     </ScrollView>
   );
 };
