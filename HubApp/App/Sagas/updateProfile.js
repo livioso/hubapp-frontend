@@ -47,6 +47,10 @@ function* updateProfile() {
 
 function* fetchSuggestions(action) {
   const tagInput = action.tagInputText.toLowerCase();
+  if (tagInput === '') {
+    yield put(tagSuggestions([]));
+    return;
+  }
   const { tags: availableSkills } = yield select(state => state.tagList);
   // const activeSkills = yield select(state => state.profile);
 

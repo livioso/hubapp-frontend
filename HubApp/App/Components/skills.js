@@ -8,11 +8,11 @@ import {
 import { Tag } from '../Styles/tag';
 import { color } from '../Styles/color';
 
-export const Skills = ({ skills, style, onPressTag = () => {} }) => (
+export const Skills = ({ skills, style, tagStyle, onPressTag = () => {} }) => (
   <View style={ [styles.skills, style] }>
     {
       skills.map(skill => (
-        <Tag key={skill.id} style={styles.tag} onPress={() => onPressTag(skill.name)}>
+        <Tag key={skill.id} style={ [styles.tag, tagStyle] } onPress={() => onPressTag(skill.name)}>
           {`${skill.name}`}
         </Tag>)
       )
