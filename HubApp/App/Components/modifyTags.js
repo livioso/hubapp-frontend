@@ -39,7 +39,7 @@ export class ModifyTags extends Component {
     const cloud = (suggestions.length === 0 && !this.state.textInputTextFocused) ?
       (
         <View style={ [styles.card, { backgroundColor: color.green, shadowColor: color.green }] }>
-          <HeaderText style={{ paddingLeft: 10, color: color.light }}>Popular Skills</HeaderText>
+          <HeaderText style={styles.cardText}>Popular Skills</HeaderText>
           <TagCloud addSkill={addTag} />
         </View>
       ) : null;
@@ -154,6 +154,7 @@ const styles = StyleSheet.create({
   },
   cardText: {
     color: color.light,
+    paddingLeft: 10
   },
   activeTags: {
     backgroundColor: color.blue,
@@ -177,7 +178,6 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginRight: 5,
     borderBottomWidth: 2,
-    marginBottom: 10,
     borderBottomColor: color.blue,
     justifyContent: 'space-between',
     flexDirection: 'row'
