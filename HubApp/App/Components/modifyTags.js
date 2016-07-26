@@ -51,6 +51,7 @@ class AddTagBar extends Component {
     const newTag = event.nativeEvent.text;
     this.refs.tagInput.setNativeProps({ text: '' });
     this.props.addTag(newTag);
+    this.props.onChangeText('');
   }
 
   render() {
