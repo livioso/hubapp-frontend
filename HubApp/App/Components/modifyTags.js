@@ -13,38 +13,60 @@ import { color } from '../Styles/color';
 import { font } from '../Styles/font';
 import TagCloud from '../Containers/tagcloudContainer';
 
-export const ModifyTags = ({ tags, tagInputText, suggestions, ...props }) => {
-  const { addTag, removeTag, changeTagInputText } = props;
-  const cloud = (suggestions.length === 0) ?
-    (
-      <View>
-        <HeaderText style={{ paddingLeft: 10, color: color.blue }}>Popular Skills</HeaderText>
-        <TagCloud addSkill={addTag} />
-      </View>
-    ) : null;
+export class ModifyTags extends Component {
+  constructor() {
+    super();
+    this.state = { // eslint-disable-line immutable/no-mutation
+      textInputTextFocused: false
+    };
+  }
 
-  return (
-    <ScrollView style={ styles.container }>
-      <AddTagBar addTag={addTag} onChangeText={changeTagInputText} value={tagInputText} />
-      { renderSuggestions(suggestions, addTag) }
-      <HeaderText style={{ paddingLeft: 10, color: color.blue }}>Your Skills</HeaderText>
-      { renderActiveTags(tags, removeTag) }
-      {
-        cloud
-      }
-    </ScrollView>
-  );
-};
+  onFocus() {
+    this.setState({
+      textInputTextFocused: true
+    });
+  }
 
-// due to the fact that we need to clear the
-// input after submitting we can't implement
-// this as a stateless / pure function as it
-// has a side effect on the input (using refs).
-class AddTagBar extends Component {
+  onEndEditing() {
+    this.setState({
+      textInputTextFocused: false
+    });
+  }
+
+  render() {
+    const { tags, tagInputText, suggestions, ...props } = this.props;
+    const { addTag, removeTag, changeTagInputText } = props;
+    const cloud = (suggestions.length === 0 && !this.state.textInputTextFocused) ?
+      (
+        <View>
+          <HeaderText style={{ paddingLeft: 10, color: color.blue }}>Popular Skills</HeaderText>
+          <TagCloud addSkill={addTag} />
+        </View>
+      ) : null;
+
+    return (
+      <ScrollView style={ styles.container }>
+        <AddTagBar addTag={addTag}
+          onChangeText={changeTagInputText} value={tagInputText}
+          onFocus={() => this.onFocus()} onEndEditing={() => this.onEndEditing()} />
+        { renderSuggestions(suggestions, addTag) }
+        <HeaderText style={{ paddingLeft: 10, color: color.blue }}>Your Skills</HeaderText>
+        { renderActiveTags(tags, removeTag) }
+        {
+          cloud
+        }
+      </ScrollView>
+    );
+  }
+}
+
+class AddTagBar extends Component { // eslint-disable-line react/no-multi-comp
   static propTypes = {
     addTag: PropTypes.func.isRequired,
     value: PropTypes.string.isRequired,
-    onChangeText: PropTypes.func.isRequired
+    onChangeText: PropTypes.func.isRequired,
+    onFocus: PropTypes.func.isRequired,
+    onEndEditing: PropTypes.func.isRequired
   };
 
   onSubmitEditing = (event) => {
@@ -63,6 +85,8 @@ class AddTagBar extends Component {
           onChangeText={this.props.onChangeText}
           onSubmitEditing={this.onSubmitEditing}
           clearButtonMode="always"
+          onFocus={this.props.onFocus}
+          onEndEditing={this.props.onEndEditing}
           returnKeyType="done" />
       </View>
     );
