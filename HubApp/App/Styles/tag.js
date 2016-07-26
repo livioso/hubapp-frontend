@@ -20,9 +20,9 @@ export const ProfileTag = ({ onPress, onDelete, style, ...props }) => {
   return (
     <TouchableOpacity onPress={onPress}
       style={ [styles.tagContainer, styles.tagProfileContainer, style] }>
-      <Text style={ styles.tagCaption } {...props} />
+      <Text style={{ color: color.blue, fontSize: 12 }} {...props} />
       <TouchableOpacity onPress={() => onDelete(props.children)} style={ styles.tagCircle }>
-        <Icon name="clear" style={{ color: color.light }} />
+        <Icon name="clear" style={{ color: color.blue }} />
       </TouchableOpacity>
     </TouchableOpacity>
   );
@@ -43,7 +43,7 @@ ProfileTag.propTypes = { // eslint-disable-line immutable/no-mutation
 
 const styles = StyleSheet.create({
   tagContainer: {
-    backgroundColor: color.gray,
+    backgroundColor: color.light,
     marginRight: 3,
     marginBottom: 3,
     borderRadius: 55,
@@ -59,16 +59,16 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     paddingBottom: 0,
     paddingRight: 0,
-    borderColor: color.light,
+    borderColor: color.blue,
   },
   tagCaption: {
     fontSize: 12,
     color: color.light
   },
   tagCircle: {
-    borderColor: color.light,
+    borderColor: color.blue,
     borderWidth: 2,
-    backgroundColor: color.gray,
+    backgroundColor: color.light,
     height: 37,
     width: 37,
     borderRadius: 17,

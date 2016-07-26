@@ -38,25 +38,29 @@ export class ModifyTags extends Component {
     const { addTag, removeTag, changeTagInputText } = props;
     const cloud = (suggestions.length === 0 && !this.state.textInputTextFocused) ?
       (
-        <View>
-          <HeaderText style={{ paddingLeft: 10, color: color.blue }}>Popular Skills</HeaderText>
+        <View style={ [styles.card, { backgroundColor: color.green, shadowColor: color.green }] }>
+          <HeaderText style={{ paddingLeft: 10, color: color.light }}>Popular Skills</HeaderText>
           <TagCloud addSkill={addTag} />
         </View>
       ) : null;
 
-    return (
-      <ScrollView style={ styles.container }>
-        <AddTagBar addTag={addTag}
-          onChangeText={changeTagInputText} value={tagInputText}
-          onFocus={() => this.onFocus()} onEndEditing={() => this.onEndEditing()} />
-        { renderSuggestions(suggestions, addTag) }
-        <HeaderText style={{ paddingLeft: 10, color: color.blue }}>Your Skills</HeaderText>
-        { renderActiveTags(tags, removeTag) }
-        {
-          cloud
-        }
-      </ScrollView>
-    );
+      return (
+        <ScrollView style={{ flex: 1 }}>
+            <AddTagBar addTag={addTag}
+            onChangeText={changeTagInputText} value={tagInputText}
+            onFocus={() => this.onFocus()} onEndEditing={() => this.onEndEditing()} />
+            { renderSuggestions(suggestions, addTag) }
+          <View style={ [styles.container, {alignItems: 'stretch'}]}>
+            <View style={styles.card}>
+              <HeaderText style={styles.cardText}>Your Skills</HeaderText>
+              { renderActiveTags(tags, removeTag) }
+            </View>
+              {
+                cloud
+              }
+          </View>
+        </ScrollView>
+      );
   }
 }
 
@@ -132,9 +136,27 @@ const containerWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  card: {
+    margin: 10,
+    marginBottom: 5,
+    shadowRadius: 5,
+    shadowColor: color.blue,
+    shadowOffset: {
+      width: 2,
+      height: 6
+    },
+    shadowOpacity: 0.5,
+    backgroundColor: color.blue,
+    padding: 5
+  },
+  cardText: {
+    color: color.light,
   },
   activeTags: {
-    backgroundColor: color.light,
+    backgroundColor: color.blue,
     flexDirection: 'row',
     flexWrap: 'wrap',
     padding: 4
