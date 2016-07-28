@@ -43,7 +43,7 @@ export const MemberDetails = ({ member, ...props, searchForTag }) => {
                   <Text style={{ color: color.light, paddingLeft: 5 }}>{member.phone}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
-                  onPress={() => Linking.openURL(`tel:${member.email}`)}>
+                  onPress={() => Linking.openURL(`mailto:${member.email}`)}>
                   <Icon name="mail" size={16} style={styles.cardText} />
                   <Text style={{ color: color.light, paddingLeft: 5 }}>{member.email}</Text>
                 </TouchableOpacity>

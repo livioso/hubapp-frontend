@@ -35,7 +35,7 @@ const data = (state = initialStateList, action) => { // eslint-disable-line comp
 export const availableFilters = {
   colab: {
     identifier: 'colab',
-    filter: (member) => { return member.location === 'Sihlquai'; } // 😂   Liviooooo!!! 😡
+    filter: (member) => { return member.location === 'Colab'; } // 😂   Liviooooo!!! 😡
   },
   viadukt: {
     identifier: 'viadukt',
