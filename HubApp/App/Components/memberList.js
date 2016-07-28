@@ -67,10 +67,7 @@ const renderMemberRow = (member, onPressDetail) => (
       <View style={styles.memberDescription}>
         <Text>{`${member.firstname} ${member.lastname}`}</Text>
         <Text style={{ color: color.gray }}>{member.position}</Text>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Icon name="location-on" size={14} style={{ color: color.gray }} />
-          <Text style={{ color: color.gray, paddingLeft: 5 }}>{member.location}</Text>
-        </View>
+        { renderLocation(member.location) }
       </View>
       { renderCollobrationFlag(member.collaboration) }
     </View>
@@ -82,6 +79,19 @@ const renderCollobrationFlag = (isCollobarationEnabled) => {
     return (
       <View style={{ justifyContent: 'space-between' }}>
         <Icon name="people" size={20} style={styles.collaborationIcon} />
+      </View>
+    );
+  } else {
+    return null;
+  }
+};
+
+const renderLocation = (location) => {
+  if (location) {
+    return (
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <Icon name="location-on" size={14} style={{ color: color.gray }} />
+        <Text style={{ color: color.gray, paddingLeft: 5 }}>{location}</Text>
       </View>
     );
   } else {
