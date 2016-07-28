@@ -67,8 +67,8 @@ const renderMemberRow = (member, onPressDetail) => (
       <View style={styles.memberDescription}>
         <Text>{`${member.firstname} ${member.lastname}`}</Text>
         <Text style={{ color: color.gray }}>{member.position}</Text>
-        <View style={{ flexDirection: 'row', alignItems: 'center'}}>
-          <Icon name='location-on' size={14} style={{ color: color.gray }} />
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Icon name="location-on" size={14} style={{ color: color.gray }} />
           <Text style={{ color: color.gray, paddingLeft: 5 }}>{member.location}</Text>
         </View>
       </View>

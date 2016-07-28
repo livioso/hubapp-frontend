@@ -27,6 +27,7 @@ export const MemberDetails = ({ member, ...props, searchForTag }) => {
       <View style={ [styles.container, { alignItems: 'stretch' }] }>
         <View style={styles.card}>
           { renderCollobrationFlag(member.collaboration) }
+          { renderLocation(member.location) }
           <Image style={styles.image}
             source={{ uri: member.picture }}
             defaultSource={require('../Styles/Assets/ic_account_circle.png')} />
@@ -68,6 +69,20 @@ const renderCollobrationFlag = (isCollobarationEnabled) => {
   }
 };
 
+const renderLocation = (location) => {
+  if (location) {
+    return (
+      <View style={{ position: 'absolute', top: 10, left: 10 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Icon name="location-on" size={14} style={{ color: color.light }} />
+          <Text style={{ color: color.light, paddingLeft: 5 }}>{location}</Text>
+        </View>
+      </View>
+    );
+  } else {
+    return null;
+  }
+};
 const onNavigateToSimilarMember = (member, props) => {
   props.onNavigate({
     member,
