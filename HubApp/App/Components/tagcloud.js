@@ -28,9 +28,11 @@ const renderTag = (skill, max, min, base, range) => {
   const borderRadius = height / 2;
   const padding = height / 2;
   return (
-    <Text style={ [styles.tag, { fontSize, height, borderRadius, paddingLeft: padding, paddingRight: padding }] }>
+    <View style={ [styles.tag, { fontSize, height, borderRadius, paddingLeft: padding, paddingRight: padding, justifyContent: 'center', alignItems: 'center' }] }>
+    <Text style={{ fontSize, color: color.green }}>
       {skill.skill.name}
     </Text>
+  </View>
   );
 };
 
