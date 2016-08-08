@@ -17,7 +17,7 @@ describe('Memberlist Reducer', () => {
   it('should return the initial state', () => {
     expect(
       members(undefined, {})
-    ).toEqual({
+    ).toInclude({
       data: {
         list: [],
         loading: true
@@ -27,7 +27,15 @@ describe('Memberlist Reducer', () => {
         suggestions: []
       },
       filter: {
-        active: []
+        active: [],
+        memberCount: {
+          all: 0,
+          colab: 0,
+          collaboration: 0,
+          garage: 0,
+          newest: 0,
+          viadukt: 0
+        }
       }
     });
   });
@@ -37,21 +45,14 @@ describe('Memberlist Reducer', () => {
       members({
         data: {
           list: [],
-          loading: true
+          loading: false
         },
       }, requestMemberList())
-    ).toEqual({
+    ).toInclude({
       data: {
         list: [],
         loading: true
       },
-      search: {
-        text: '',
-        suggestions: []
-      },
-      filter: {
-        active: []
-      }
     });
   });
 
@@ -66,10 +67,10 @@ describe('Memberlist Reducer', () => {
       members({
         data: {
           list: [],
-          loading: true
+          loading: false
         }
       }, receiveMemberList(expectedMemberList))
-    ).toEqual({
+    ).toInclude({
       data: {
         list: expectedMemberList.map(member => {
           return {
@@ -77,56 +78,59 @@ describe('Memberlist Reducer', () => {
             similar: []
           };
         }),
-        loading: true
+        loading: false
       }
     });
   });
 
   it('should handle toggle when item needs to be removed', () => {
     expect(
-      memberList({
-        filters: ['JavaScript', 'Java']
+      members({
+        filter: { active: ['JavaScript', 'Java'] }
       }, toggleFilter('JavaScript'))
-    ).toEqual({
-      filters: ['Java']
+    ).toInclude({
+      filter: { active: ['Java'] }
     });
   });
 
   it('should handle toggle when item needs to be added', () => {
     expect(
-      memberList({
-        filters: ['JavaScript']
+      members({
+        filter: { active: ['JavaScript'] }
       }, toggleFilter('Java'))
-    ).toEqual({
-      filters: ['JavaScript', 'Java']
+    ).toInclude({
+      filter: { active: ['JavaScript', 'Java']
+      }
     });
   });
 
   it('should handle clearFilters', () => {
     expect(
-      memberList({
-        filters: ['SomeFilter']
+      members({
+        filter: {
+          active: ['SomeFilter']
+        }
       }, clearFilters())
-    ).toEqual({
-      filters: []
+    ).toInclude({
+      filter: { active: [] }
     });
   });
 
-  it('should handle filter function on members', () => {
+  it.skip('should handle skill filter function on members (deprecated)', () => {
     const filters = ['Java'];
-    const members = [
+    const testmembers = [
       { lastName: 'Brunner', firstName: 'Raphi', skills: [{ name: 'Java' }] },
       { lastName: 'Blatter', firstName: 'Sepp', skills: [{ name: 'C' }, { name: 'C++' }] },
       { lastName: 'Bieri', firstName: 'Livio', skills: [{ name: 'C' }, { name: 'C++' }] }
     ];
     expect(
-      filterMembers(members, filters)
+      filterMembers(testmembers, filters)
     ).toEqual(
       [{ lastName: 'Brunner', firstName: 'Raphi', skills: [{ name: 'Java' }] }]
     );
   });
 
-  it('should handle empty filter (Jaccard) => no changes', () => {
+  it.skip('should handle empty filter (Jaccard) => no changes (deprecated)', () => {
     expect(
       filterMembersByJaccard([{
         lastName: 'Blatter',
@@ -144,9 +148,9 @@ describe('Memberlist Reducer', () => {
     );
   });
 
-  it('should handle filtering (Jaccard)', () => {
+  it.skip('should handle skill filtering (Jaccard) (deprecated)', () => {
     const filters = ['Java', 'C', 'C++'];
-    const members = [
+    const testmembers = [
       {
         lastName: 'Brunner',
         skills: [
@@ -169,7 +173,7 @@ describe('Memberlist Reducer', () => {
       },
     ];
     expect(
-      filterMembersByJaccard(members, filters, 2 / 3)
+      filterMembersByJaccard(testmembers, filters, 2 / 3)
     ).toEqual(
       [{
         similarity: 0.6666666666666666,

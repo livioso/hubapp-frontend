@@ -11,7 +11,7 @@ describe('Tags Reducer', () => {
       tagList(undefined, {})
     ).toEqual({
       tags: [],
-      loading: true,
+      loading: true
     });
   });
 
