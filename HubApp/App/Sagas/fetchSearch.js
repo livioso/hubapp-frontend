@@ -3,7 +3,7 @@ import { put, call } from 'redux-saga/effects';
 import { SEARCH, receiveSmartSearch } from '../Actions/memberListActions';
 import { request, similarURL } from '../Services/api';
 
-function* fetchSmartSearch(action) {
+export function* fetchSmartSearch(action) {
   // throttling: give the watcher some time
   // to cancel fetching in case we just
   // receive another search string
@@ -23,7 +23,7 @@ function* fetchSmartSearch(action) {
     const suggestions = response.data;
     yield put(receiveSmartSearch(suggestions));
   } else {
-    console.log(response.error); // eslint-disable-line no-console
+    yield call(console.log, response.error); // eslint-disable-line no-console
   }
 }
 
