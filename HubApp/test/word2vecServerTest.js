@@ -95,4 +95,31 @@ describe('Similarity Search Integrationstest 🙋', () => {
         done();
       });
   });
+
+  it('server should similar skill javascript to html,css', (done) => {
+    return fetchSimilar('html, css')
+      .then(response => response.json())
+      .then(similar => {
+        expect(similar).toInclude('javascript');
+        done();
+      });
+  });
+
+  it('server should find synonys javascript for js', (done) => {
+    return fetchSimilar('js')
+      .then(response => response.json())
+      .then(similar => {
+        expect(similar).toInclude('javascript');
+        done();
+      });
+  });
+
+  it('server should find synonys javascript for javascipt', (done) => {
+    return fetchSimilar('javascipt')
+      .then(response => response.json())
+      .then(similar => {
+        expect(similar).toInclude('javascript');
+        done();
+      });
+  });
 });
