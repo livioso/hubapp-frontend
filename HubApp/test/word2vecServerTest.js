@@ -6,6 +6,7 @@ import { call, put } from 'redux-saga/effects';
 import { fetchSmartSearch } from '../App/Sagas/fetchSearch';
 import { receiveSmartSearch } from '../App/Actions/memberListActions';
 import { request, similarURL } from '../App/Services/api';
+import fetch from 'isomorphic-fetch';
 
 describe('Similarity Search Saga', () => {
   const searchText = 'java';
@@ -54,5 +55,44 @@ describe('Similarity Search Saga when failed', () => {
     const expected = call(console.log, response.error); // eslint-disable-line
     const result = generator.next(response).value;
     expect(result).toEqual(expected);
+  });
+});
+
+describe('Similarity Search Integrationstest 🙋', () => {
+  const fetchSimilar = (toWhat) => fetch(`${similarURL}?q=${toWhat}&debug=true`);
+
+  it('server should return http status 200 on /similar', (done) => {
+    return fetchSimilar('java')
+      .then(response => {
+        expect(response.status).toBe(200);
+        done();
+      });
+  });
+
+  it('server should fetch similar skills to java', (done) => {
+    return fetchSimilar('java')
+      .then(response => response.json())
+      .then(similar => {
+        expect(similar).toInclude('c++');
+        expect(similar).toInclude('c#');
+        expect(similar).toInclude('c');
+        expect(similar).toInclude('swift');
+        expect(similar).toInclude('python');
+        expect(similar).toInclude('php');
+        expect(similar).toInclude('javascript');
+        done();
+      });
+  });
+
+  it('server should fetch similar skills to web,developer', (done) => {
+    return fetchSimilar('web,developer')
+      .then(response => response.json())
+      .then(similar => {
+        expect(similar).toInclude('webdesigner');
+        expect(similar).toInclude('webdeveloper');
+        expect(similar).toInclude('frontend');
+        expect(similar).toInclude('backend');
+        done();
+      });
   });
 });
