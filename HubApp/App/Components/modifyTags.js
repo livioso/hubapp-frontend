@@ -131,8 +131,6 @@ ModifyTags.propTypes = { // eslint-disable-line immutable/no-mutation
   suggestions: PropTypes.array.isRequired
 };
 
-const containerWidth = Dimensions.get('window').width;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
