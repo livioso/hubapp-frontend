@@ -46,7 +46,6 @@ export default connect(
     const isAny = m => containsLocation ? (_colab(m) || _viadukt(m) || _garage(m)) : true;
 
     const filteredMembers = allMember.filter(m => isAny(m)).filter(m => isColab(m));
-// debugger;
     // get results for searches
     const fulltextSearch =
       Immutable.Set(filterMembersByFullWordMatch(filteredMembers, searchText));

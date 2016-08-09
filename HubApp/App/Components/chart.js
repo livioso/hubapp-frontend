@@ -4,8 +4,9 @@ import { Surface, Shape, Path, Group } from 'ReactNativeART';
 import { color } from '../Styles/color';
 import { Text } from '../Styles/text';
 
-/** 
- * @param percentage indicates the 
+/**
+ * @param percentage indicates the
+ */
 export const ProfileChart = ({ percentage = 0 }) => {
   const backgroundPath = circlePath(radius, radius, radius - width / 2, 0, 360);
   const percentagePath = circlePath(radius, radius, radius - width / 2,
