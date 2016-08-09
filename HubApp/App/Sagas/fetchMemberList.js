@@ -16,10 +16,6 @@ export function* fetchMemberList() {
   }
 }
 
-export function* watchRequestMemberList() {
-  yield* takeLatest('REQUEST_MEMBERLIST', fetchMemberList);
-}
-
 /**
  * Helper function to map the returned API response
  * to our internal structure (as needed by components)
@@ -49,3 +45,11 @@ const mapResponseToMembers = (response) => {
     };
   });
 };
+
+// ------------------------------------------------------------------------------
+// ---------- Action Event Listener ---------------------------------------------
+// ------------------------------------------------------------------------------
+
+export function* watchRequestMemberList() {
+  yield* takeLatest('REQUEST_MEMBERLIST', fetchMemberList);
+}

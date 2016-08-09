@@ -85,6 +85,10 @@ function* fetchSuggestions(action) {
   }
 }
 
+// ------------------------------------------------------------------------------
+// ---------- Action Event Listener ---------------------------------------------
+// ------------------------------------------------------------------------------
+
 function* watchRemoveTag() {
   yield* takeLatest(REMOVE_TAG, updateProfileSkills);
 }

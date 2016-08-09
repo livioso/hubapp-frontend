@@ -15,10 +15,6 @@ export function* fetchTagList() {
   }
 }
 
-export function* watchRequestTagList() {
-  yield* takeLatest('REQUEST_TAGLIST', fetchTagList);
-}
-
 /**
  * Helper function to map the returned API response
  * to our internal structure (as needed by components)
@@ -32,3 +28,11 @@ const mapResponseToSkills = (response) => {
     };
   });
 };
+
+// ------------------------------------------------------------------------------
+// ---------- Action Event Listener ---------------------------------------------
+// ------------------------------------------------------------------------------
+
+export function* watchRequestTagList() {
+  yield* takeLatest('REQUEST_TAGLIST', fetchTagList);
+}

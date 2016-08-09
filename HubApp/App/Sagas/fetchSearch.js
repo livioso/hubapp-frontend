@@ -27,6 +27,10 @@ export function* fetchSmartSearch(action) {
   }
 }
 
+// ------------------------------------------------------------------------------
+// ---------- Action Event Listener ---------------------------------------------
+// ------------------------------------------------------------------------------
+
 export function* watchSearch() {
   yield* takeLatest(SEARCH, fetchSmartSearch);
 }
