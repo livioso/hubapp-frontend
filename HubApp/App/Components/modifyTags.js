@@ -4,7 +4,6 @@ import {
   StyleSheet,
   ScrollView,
   TextInput,
-  Dimensions,
 } from 'react-native';
 
 import { HeaderText } from '../Styles/text';
@@ -13,57 +12,63 @@ import { color } from '../Styles/color';
 import { font } from '../Styles/font';
 import TagCloud from '../Containers/tagcloudContainer';
 
+/**
+ * ModifyTags wraps the current skills and the tag cloud.
+ * -> see AddTagBar for more details.
+*/
 export class ModifyTags extends Component {
   constructor() {
     super();
-    this.state = { // eslint-disable-line immutable/no-mutation
-      textInputTextFocused: false
-    };
+    // eslint-disable-next-line immutable/no-mutation
+    this.state = { textInputTextFocused: false };
   }
 
   onFocus() {
-    this.setState({
-      textInputTextFocused: true
-    });
+    this.setState({ textInputTextFocused: true });
   }
 
   onEndEditing() {
-    this.setState({
-      textInputTextFocused: false
-    });
+    this.setState({ textInputTextFocused: false });
   }
 
   render() {
     const { tags, tagInputText, suggestions, ...props } = this.props;
     const { addTag, removeTag, changeTagInputText } = props;
-    const cloud = (suggestions.length === 0 && !this.state.textInputTextFocused) ?
-      (
-        <View style={ [styles.card, { backgroundColor: color.green, shadowColor: color.green }] }>
-          <HeaderText style={styles.cardText}>Popular Skills</HeaderText>
-          <TagCloud addSkill={addTag} />
-        </View>
-      ) : null;
+
+    // only render the cloud if keyboard is not visible
+    const cloud = (suggestions.length === 0 && !this.state.textInputTextFocused) ? (
+      <View style={ [styles.card, { backgroundColor: color.green, shadowColor: color.green }] }>
+        <HeaderText style={styles.cardText}>Popular Skills</HeaderText>
+        <TagCloud addSkill={addTag} />
+      </View>
+    ) : null;
 
     return (
-        <ScrollView style={{ flex: 1 }}>
-            <AddTagBar addTag={addTag}
-              onChangeText={changeTagInputText} value={tagInputText}
-              onFocus={() => this.onFocus()} onEndEditing={() => this.onEndEditing()} />
-            { renderSuggestions(suggestions, addTag) }
-          <View style={ [styles.container, { alignItems: 'stretch' }]}>
-            <View style={styles.card}>
-              <HeaderText style={styles.cardText}>Your Skills</HeaderText>
-              { renderActiveTags(tags, removeTag) }
-            </View>
-              {
-                cloud
-              }
+      <ScrollView style={{ flex: 1 }}>
+        <AddTagBar addTag={addTag}
+          onChangeText={changeTagInputText} value={tagInputText}
+          onFocus={() => this.onFocus()} onEndEditing={() => this.onEndEditing()} />
+        { renderSuggestions(suggestions, addTag) }
+        <View style={ [styles.container, { alignItems: 'stretch' }]}>
+          <View style={styles.card}>
+            <HeaderText style={styles.cardText}>Your Skills</HeaderText>
+            { renderActiveTags(tags, removeTag) }
           </View>
-        </ScrollView>
-      );
+          { cloud }
+        </View>
+      </ScrollView>
+    );
   }
 }
 
+/**
+ * Input bar for skills, with auto completion
+ * @param addTag function that handles adding new tags
+ * @param value new tag value (as string)
+ * @param onChangeText callback that gets called when text input changes
+ * @param onFocus callback that gets called when text input gets focus
+ * @param onEndEditing callback that gets called when text input loses focus
+*/
 class AddTagBar extends Component { // eslint-disable-line react/no-multi-comp
   static propTypes = {
     addTag: PropTypes.func.isRequired,
@@ -99,15 +104,15 @@ class AddTagBar extends Component { // eslint-disable-line react/no-multi-comp
 
 const renderActiveTags = (tags, removeTag) => (
   <View style={styles.activeTags}>
-  {
-    tags.map(tag => {
-      return (
-        <View style={{ paddingLeft: 2, paddingBottom: 2 }} key={tag.id}>
-          <ProfileTag onDelete={removeTag}>{tag.name}</ProfileTag>
-        </View>
-      );
-    })
-  }
+    {
+      tags.map(tag => {
+        return (
+          <View style={{ paddingLeft: 2, paddingBottom: 2 }} key={tag.id}>
+            <ProfileTag onDelete={removeTag}>{tag.name}</ProfileTag>
+          </View>
+        );
+      })
+    }
   </View>
 );
 
@@ -122,6 +127,7 @@ const renderSuggestions = (suggestions, addTag) => (
     }
   </View>
 );
+
 ModifyTags.propTypes = { // eslint-disable-line immutable/no-mutation
   tags: PropTypes.array.isRequired,
   removeTag: PropTypes.func.isRequired,

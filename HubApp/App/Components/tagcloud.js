@@ -8,14 +8,21 @@ import {
 
 import { color } from '../Styles/color';
 
+/**
+ * Render a tag cloud where the most used tags are big, lesser used smaller.
+ * @param skillList list of all the skill given as strings
+ * @param min number of least occurrences of a word (in skill list)
+ * @param max number of max occurrences of a word (in skill list)
+ * @param addSkill callback that gets called when the skill gets clicked
+ * @param style additional styling for the skill tag (touchable)
+ */
 export const TagCloud = ({ skillList, min, max, addSkill, style }) => (
   <View style={styles.skills}>
     {
       skillList.map(skill => (
-        <TouchableOpacity key={skill.skill.id} style={ [styles.tagButton, style] } onPress={() => addSkill(skill.skill.name)}>
-          {
-            renderTag(skill, max, min, 12, 20)
-          }
+        <TouchableOpacity key={skill.skill.id} style={ [styles.tagButton, style] }
+          onPress={() => addSkill(skill.skill.name)}>
+          { renderTag(skill, max, min, 12, 20) }
         </TouchableOpacity>
       ))
     }
@@ -28,7 +35,14 @@ const renderTag = (skill, max, min, base, range) => {
   const borderRadius = height / 2;
   const padding = height / 2;
   return (
-    <View style={ [styles.tag, { fontSize, height, borderRadius, paddingLeft: padding, paddingRight: padding, justifyContent: 'center', alignItems: 'center' }] }>
+    <View
+      style={[styles.tag, {
+        fontSize,
+        height,
+        borderRadius,
+        paddingLeft: padding,
+        paddingRight: padding
+      }]}>
     <Text style={{ fontSize, color: color.green }}>
       {skill.skill.name}
     </Text>
@@ -56,6 +70,8 @@ const styles = StyleSheet.create({
   },
   tag: {
     backgroundColor: color.light,
+    justifyContent: 'center',
+    alignItems: 'center',
     color: color.green
   }
 });

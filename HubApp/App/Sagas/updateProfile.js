@@ -22,11 +22,11 @@ function* updateProfileSkills() {
       },
     });
 
-  // re-fetch all the things
+    // re-fetch all the things
     yield call(fetchMemberList);
     yield call(fetchTagList);
   } catch (e) {
-    console.log(response.error); // eslint-disable-line no-console
+    yield call(console.log, e); // eslint-disable-line no-console
   }
 }
 
@@ -47,12 +47,13 @@ function* updateProfile() {
 
 function* fetchSuggestions(action) {
   const tagInput = action.tagInputText.toLowerCase();
+
   if (tagInput === '') {
     yield put(tagSuggestions([]));
     return;
   }
+
   const { tags: availableSkills } = yield select(state => state.tagList);
-  // const activeSkills = yield select(state => state.profile);
 
   yield call(delay, 40);
   const immediateSuggestions = availableSkills
@@ -80,7 +81,7 @@ function* fetchSuggestions(action) {
     const suggestions = response.data;
     yield put(tagSuggestions(immediateSuggestions.concat(suggestions)));
   } else {
-    console.log(response.error); // eslint-disable-line no-console
+    yield call(console.log, response.error); // eslint-disable-line no-console
   }
 }
 

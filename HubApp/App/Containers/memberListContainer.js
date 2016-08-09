@@ -34,18 +34,22 @@ export default connect(
 
     const { colab, viadukt, garage, collaboration } = availableFilters;
 
-    // FIXME (livioso 07.22.2016) Horrific naming => Please fix me.
-    // And some eslint errors as well. :(
-    const containsLocation = filter.active.includes(colab.identifier) || filter.active.includes(viadukt.identifier) || filter.active.includes(garage.identifier);
+    // FIXME (livioso 07.22.2016) Horrific naming => Maybe rename this. :(
+    const containsLocation = filter.active.includes(colab.identifier)
+      || filter.active.includes(viadukt.identifier)
+      || filter.active.includes(garage.identifier);
 
     const _colab = m => (filter.active.includes(colab.identifier) && colab.filter(m));
     const _viadukt = m => (filter.active.includes(viadukt.identifier) && viadukt.filter(m));
     const _garage = m => (filter.active.includes(garage.identifier) && garage.filter(m));
+    const isColab = m => (!filter.active.includes(collaboration.identifier)
+                          || filter.active.includes(collaboration.identifier)
+                          && collaboration.filter(m));
 
-    const isColab = m => (!filter.active.includes(collaboration.identifier) || filter.active.includes(collaboration.identifier) && collaboration.filter(m));
+    // eslint-disable-next-line no-confusing-arrow
     const isAny = m => containsLocation ? (_colab(m) || _viadukt(m) || _garage(m)) : true;
-
     const filteredMembers = allMember.filter(m => isAny(m)).filter(m => isColab(m));
+
     // get results for searches
     const fulltextSearch =
       Immutable.Set(filterMembersByFullWordMatch(filteredMembers, searchText));
@@ -66,12 +70,14 @@ export default connect(
         return { ...member, category: 'Good Matches' };
       });
 
+    // partial matches by full text search (annotated)
     const fulltextSearchPartialMatch = fullTextSearchPartial
       .filter(member => !fulltextSearch.has(member))
       .map(member => {
         return { ...member, category: 'Good Matches' };
       });
 
+    // full matches by full text search (annotated)
     const fulltextSearchAnnotated = fulltextSearch
       .map(member => {
         return { ...member, category: 'Best Matches' };
@@ -80,10 +86,7 @@ export default connect(
     // merge it all together :)
     const mergedGoodMatches = fulltextSearchPartialMatch.concat(smartSearchAnnotated);
     const mergedSearch = fulltextSearchAnnotated.concat(mergedGoodMatches);
-
-    const membersWithSections = searchText !== ''
-      ? mergedSearch.toJS()
-      : filteredMembers;
+    const membersWithSections = searchText !== '' ? mergedSearch.toJS() : filteredMembers;
 
     const membersWithSectionsGrouped = Immutable.Set(membersWithSections)
       .sortBy(member => member.lastname)

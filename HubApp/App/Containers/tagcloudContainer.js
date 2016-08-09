@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import { TagCloud } from '../Components/tagcloud';
 import Immutable from 'immutable';
 
-
 export default connect(
   (state) => {
     const skillList = countList(state.members.data.list)
@@ -14,9 +13,6 @@ export default connect(
       min: Math.log(skillList.minBy(o => o.count).count),
       max: Math.log(skillList.maxBy(o => o.count).count),
     };
-  },
-  (dispatch) => {
-    return {};
   }
 )(TagCloud);
 

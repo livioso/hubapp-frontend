@@ -14,58 +14,79 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Skills } from './skills';
 import { ProfileChart } from './chart';
 
+/**
+ * Profile tab component view (which shows basic profile information)
+ * @param me the currently logged in user (profile)
+ * @param toggleCollaboration toggle collaboration flag
+ */
 export const Profile = ({ me, toggleCollaboration }) => {
+  // precondition profile must exist
   if (me === undefined) {
     return null;
   }
+
   return (
-  <ScrollView>
-    <View style={[styles.container, { alignItems: 'stretch' }]}>
-      <View style={styles.card}>
-        { renderCollobrationFlag(me.collaboration) }
-        <Image style={styles.image} source={{ uri: me.picture }}
-          defaultSource={require('../Styles/Assets/ic_account_circle.png')} />
-          <View style={styles.businesscard}>
-            <HeaderText style={ styles.cardText}>
-              {`${me.firstname} ${me.lastname}`}
-            </HeaderText>
-            <Text style={styles.cardText }>{me.position} ({me.firm})</Text>
-            <View style={{ marginTop: 10 }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Icon name="phone" size={16} style={styles.cardText} />
-                <Text style={{ color: color.light, paddingLeft: 5 }}>{me.phone}</Text>
-              </View>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Icon name="mail" size={16} style={styles.cardText} />
-                <Text style={{ color: color.light, paddingLeft: 5 }}>{me.email}</Text>
+    <ScrollView>
+
+      { /* Basic Profile */ }
+      <View style={[styles.container, { alignItems: 'stretch' }]}>
+        <View style={styles.card}>
+          { renderCollobrationFlag(me.collaboration) }
+          <Image style={styles.image} source={{ uri: me.picture }}
+            defaultSource={require('../Styles/Assets/ic_account_circle.png')} />
+            <View style={styles.businesscard}>
+              <HeaderText style={ styles.cardText}>
+                {`${me.firstname} ${me.lastname}`}
+              </HeaderText>
+              <Text style={styles.cardText }>{me.position} ({me.firm})</Text>
+              <View style={{ marginTop: 10 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Icon name="phone" size={16} style={styles.cardText} />
+                  <Text style={{ color: color.light, paddingLeft: 5 }}>{me.phone}</Text>
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Icon name="mail" size={16} style={styles.cardText} />
+                  <Text style={{ color: color.light, paddingLeft: 5 }}>{me.email}</Text>
+                </View>
               </View>
             </View>
-          </View>
-          <Skills skills={me.skills} style={{ paddingTop: 20 }} />
-          <Text style={styles.bio}>{me.shortDescription}</Text>
-          <View style={styles.seperator} />
-          <HeaderText style={styles.cardText}>Profile Completion</HeaderText>
-          <View style={{ marginTop: 20, alignItems: 'center' }}>
-            <ProfileChart percentage={me.percentage} />
-          </View>
-          <View style={styles.seperator} />
-          <HeaderText style={styles.cardText}>Settings</HeaderText>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
-            <Text style={{ color: color.light, paddingLeft: 5 }}>Open for Collaboration</Text>
-            <Switch onValueChange={() => toggleCollaboration()} value={me.collaboration} />
-          </View>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
-            <Text style={{ color: color.light, paddingLeft: 5 }}>Show my Phonenumber</Text>
-            <Switch onValueChange={() => alert('This feature will be implemented soon!')} value />
-          </View>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
-            <Text style={{ color: color.light, paddingLeft: 5 }}>Show my Location</Text>
-            <Switch onValueChange={() => alert('This feature will be implemented soon!')} value />
-          </View>
+
+            { /* Skills */ }
+            <Skills skills={me.skills} style={{ paddingTop: 20 }} />
+            <Text style={styles.bio}>{me.shortDescription}</Text>
+            <View style={styles.seperator} />
+            <HeaderText style={styles.cardText}>Profile Completion</HeaderText>
+
+            { /* Profile Chart*/ }
+            <View style={{ marginTop: 20, alignItems: 'center' }}>
+              <ProfileChart percentage={me.percentage} />
+            </View>
+            <View style={styles.seperator} />
+
+            { /* Settings */ }
+            <HeaderText style={styles.cardText}>Settings</HeaderText>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
+              <Text style={{ color: color.light, paddingLeft: 5 }}>Open for Collaboration</Text>
+              <Switch onValueChange={() => toggleCollaboration()} value={me.collaboration} />
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
+              <Text style={{ color: color.light, paddingLeft: 5 }}>Show my Phonenumber</Text>
+              <Switch onValueChange={notImplementedAlert} value />
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
+              <Text style={{ color: color.light, paddingLeft: 5 }}>Show my Location</Text>
+              <Switch onValueChange={notImplementedAlert} value />
+            </View>
+        </View>
       </View>
-    </View>
-  </ScrollView>
+    </ScrollView>
   );
+};
+
+// 💩
+const notImplementedAlert = () => {
+  // eslint-disable-next-line no-alert
+  alert('This feature is not yet implemnted (but tests showed that users request this feature)');
 };
 
 const renderCollobrationFlag = (isCollobarationEnabled) => {

@@ -8,6 +8,13 @@ import {
 import { Tag } from '../Styles/tag';
 import { color } from '../Styles/color';
 
+/**
+ * Render skills given by parameter skills as a skill view.
+ * @param skills list of skills as array of strings, example ['C', 'C++', 'Java']
+ * @param onPress callback that gets called when a tag gets clicked.
+ * @param style styling for the container (wrapper) of tags.
+ * @param tagStyle styling for tags themselves.
+ */
 export const Skills = ({ skills, style, tagStyle, onPressTag = () => {} }) => (
   <View style={ [styles.skills, style] }>
     {
@@ -23,7 +30,8 @@ export const Skills = ({ skills, style, tagStyle, onPressTag = () => {} }) => (
 Skills.propTypes = { // eslint-disable-line immutable/no-mutation
   skills: PropTypes.array.isRequired,
   onPressTag: PropTypes.func,
-  style: PropTypes.object
+  style: PropTypes.object,
+  tagStyle: PropTypes.object
 };
 
 const containerWidth = Dimensions.get('window').width;
