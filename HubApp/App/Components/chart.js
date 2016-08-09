@@ -4,6 +4,8 @@ import { Surface, Shape, Path, Group } from 'ReactNativeART';
 import { color } from '../Styles/color';
 import { Text } from '../Styles/text';
 
+/** 
+ * @param percentage indicates the 
 export const ProfileChart = ({ percentage = 0 }) => {
   const backgroundPath = circlePath(radius, radius, radius - width / 2, 0, 360);
   const percentagePath = circlePath(radius, radius, radius - width / 2,
@@ -24,6 +26,7 @@ export const ProfileChart = ({ percentage = 0 }) => {
     </View>
   );
 };
+
 const circlePath = (cx, cy, r, startDegree, endDegree) => {
   const MOVE_TO = 0;
   const ARC = 4;
@@ -42,6 +45,7 @@ const cleanPercentage = (percentage) => {
 ProfileChart.propTypes = { // eslint-disable-line immutable/no-mutation
   percentage: PropTypes.number.isRequired,
 };
+
 const diameter = Dimensions.get('window').width * 0.4;
 const radius = diameter / 2;
 const width = diameter / 6;

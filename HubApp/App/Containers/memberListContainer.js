@@ -34,7 +34,7 @@ export default connect(
 
     const { colab, viadukt, garage, collaboration } = availableFilters;
 
-    // FIXME (livioso 07.22.2016) Horrific naming => Please fix me. 
+    // FIXME (livioso 07.22.2016) Horrific naming => Please fix me.
     // And some eslint errors as well. :(
     const containsLocation = filter.active.includes(colab.identifier) || filter.active.includes(viadukt.identifier) || filter.active.includes(garage.identifier);
 

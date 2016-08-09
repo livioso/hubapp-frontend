@@ -83,29 +83,29 @@ const styles = StyleSheet.create({
 });
 
 const mem1 = {
-  name:  'livio',
-  skills:  [
+  name: 'livio',
+  skills: [
     {
-      id:  1,
-      name:  'javascript'
+      id: 1,
+      name: 'javascript'
     },
     {
       id: 2,
-      name:  'java'
+      name: 'java'
     },
     {
       id: 3,
-      name:  'jassen'
+      name: 'jassen'
     }
   ]
 };
 
 const mem2 = {
-  name:  'yves',
+  name: 'yves',
   skills: [
     {
       id: 2,
-      name:  'java'
+      name: 'java'
     },
     {
       id: 4,
@@ -116,47 +116,47 @@ const mem2 = {
 
 const mem3 = {
   name: 'marius',
-  skills:  [
+  skills: [
     {
       id: 1,
       name: 'javascript'
-    },{
+    }, {
       id: 1,
       name: 'javascript'
-    },{
+    }, {
       id: 1,
       name: 'javascript'
-    },{
+    }, {
       id: 1,
       name: 'javascript'
-    },{
+    }, {
       id: 1,
       name: 'javascript'
-    },{
+    }, {
       id: 1,
       name: 'javascript'
-    },{
+    }, {
       id: 1,
       name: 'javascript'
-    },{
+    }, {
       id: 1,
       name: 'javascript'
-    },{
+    }, {
       id: 1,
       name: 'javascript'
-    },{
+    }, {
       id: 1,
       name: 'javascript'
-    },{
+    }, {
       id: 1,
       name: 'javascript'
-    },{
+    }, {
       id: 1,
       name: 'javascript'
-    },{
+    }, {
       id: 1,
       name: 'javascript'
-    },{
+    }, {
       id: 1,
       name: 'javascript'
     },

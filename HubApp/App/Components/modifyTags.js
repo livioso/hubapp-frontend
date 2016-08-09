@@ -44,13 +44,13 @@ export class ModifyTags extends Component {
         </View>
       ) : null;
 
-      return (
+    return (
         <ScrollView style={{ flex: 1 }}>
             <AddTagBar addTag={addTag}
-            onChangeText={changeTagInputText} value={tagInputText}
-            onFocus={() => this.onFocus()} onEndEditing={() => this.onEndEditing()} />
+              onChangeText={changeTagInputText} value={tagInputText}
+              onFocus={() => this.onFocus()} onEndEditing={() => this.onEndEditing()} />
             { renderSuggestions(suggestions, addTag) }
-          <View style={ [styles.container, {alignItems: 'stretch'}]}>
+          <View style={ [styles.container, { alignItems: 'stretch' }]}>
             <View style={styles.card}>
               <HeaderText style={styles.cardText}>Your Skills</HeaderText>
               { renderActiveTags(tags, removeTag) }
