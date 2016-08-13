@@ -19,8 +19,8 @@ export default connect(
 const countList = members => {
   const immutableMembers = Immutable.List(members);
   return immutableMembers
-  .map(m => Immutable.List(m.skills))
-  .flatten()
-  .groupBy(s => s.id)
-  .map(l => ({ skill: l.first(), count: l.count() }));
+    .map(m => Immutable.List(m.skills))
+    .flatten()
+    .groupBy(s => s.id)
+    .map(l => ({ skill: l.first(), count: l.count() }));
 };

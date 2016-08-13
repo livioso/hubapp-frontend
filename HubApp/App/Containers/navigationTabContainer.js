@@ -10,7 +10,6 @@ import {
   NavigationExperimental
 } from 'react-native';
 
-
 const { Reducer: NavigationReducer } = NavigationExperimental;
 const { JumpToAction } = NavigationReducer.TabsReducer;
 
