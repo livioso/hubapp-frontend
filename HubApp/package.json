@@ -8,7 +8,7 @@
     "bundle": "react-native bundle --platform ios --entry-file index.ios.js --bundle-output ./main.jsbundle --assets-dest ./release --dev false",
     "test": "node node_modules/mocha/bin/mocha --compilers js:babel-register --recursive --timeout 3000",
     "test:watch": "npm test -- --watch",
-    "lint": "node ./node_modules/eslint/bin/eslint.js --config .eslintrc index.android.js index.ios.js App/ __tests__/; flow || true",
+    "lint": "node ./node_modules/eslint/bin/eslint.js --config .eslintrc index.android.js index.ios.js App/ __tests__/",
     "lint:fix": "node ./node_modules/eslint/bin/eslint.js --fix --config .eslintrc index.android.js index.ios.js App/"
   },
   "dependencies": {

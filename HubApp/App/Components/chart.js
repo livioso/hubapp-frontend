@@ -5,7 +5,8 @@ import { color } from '../Styles/color';
 import { Text } from '../Styles/text';
 
 /**
- * @param percentage indicates the
+ * Profile completion chart component.
+ * @param percentage indicates the completion of profile, where 0 is not complete and 100 fully.
  */
 export const ProfileChart = ({ percentage = 0 }) => {
   const backgroundPath = circlePath(radius, radius, radius - width / 2, 0, 360);
