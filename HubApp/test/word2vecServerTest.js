@@ -105,7 +105,7 @@ describe('Similarity Search Integrationstest 🙋', () => {
       });
   });
 
-  it('server should find synonys javascript for js', (done) => {
+  it('server should find synonyms javascript for js', (done) => {
     return fetchSimilar('js')
       .then(response => response.json())
       .then(similar => {
@@ -114,7 +114,8 @@ describe('Similarity Search Integrationstest 🙋', () => {
       });
   });
 
-  it('server should find synonys javascript for javascipt', (done) => {
+  // synonyms
+  it('server should find synonyms javascript for javascipt', (done) => {
     return fetchSimilar('javascipt')
       .then(response => response.json())
       .then(similar => {
