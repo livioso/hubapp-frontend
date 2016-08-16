@@ -117,7 +117,7 @@ export const MemberListFilter = ({ onToggleFilter, activeFilters, memberCount, r
       </TouchableOpacity>
 
       { /* Filter for all / reset */ }
-      <TouchableOpacity style={ [styles.tile, { backgroundColor: color.red, width }] }
+      <TouchableOpacity style={ [styles.tile, { backgroundColor: color.blue, width }] }
         onPress={() => resetAll()}>
         <Icon name="public" size={40} color="white" />
         <HeaderText style={{ color: 'white', paddingTop: 3 }}>All Members</HeaderText>
