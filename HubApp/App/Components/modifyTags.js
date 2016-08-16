@@ -90,6 +90,7 @@ class AddTagBar extends Component { // eslint-disable-line react/no-multi-comp
       <View style={styles.tagInputWrapper}>
         <TextInput ref="tagInput" style={[font.text, styles.tagInputText]}
           value={this.props.value}
+          autoCorrect={false}
           placeholder="Add new tag to your profile"
           onChangeText={this.props.onChangeText}
           onSubmitEditing={this.onSubmitEditing}

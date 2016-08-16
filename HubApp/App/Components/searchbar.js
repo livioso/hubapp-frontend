@@ -13,6 +13,7 @@ export const Searchbar = ({ search, searchText }) => (
   <View style={styles.searchBar}>
       <TextInput onChangeText={search}
         value={searchText}
+        autoCorrect={false}
         clearButtonMode="always"
         style={[font.text, styles.searchBarTextInput]}
         returnKeyType="done"
