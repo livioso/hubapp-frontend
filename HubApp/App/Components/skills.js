@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
   },
   tag: {
     backgroundColor: color.light,
+    margin: 3,
     color: color.blue
   }
 });

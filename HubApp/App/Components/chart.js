@@ -13,7 +13,7 @@ export const ProfileChart = ({ percentage = 0 }) => {
   const percentagePath = circlePath(radius, radius, radius - width / 2,
                                     0, 360 * cleanPercentage(percentage) / 100);
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, paddingBottom: 8 }}>
       <Surface width={diameter} height={diameter}>
         <Group rotation={-90} originX={radius} originY={radius}>
           <Shape d={backgroundPath} stroke={backgroundColor} strokeWidth={width} />

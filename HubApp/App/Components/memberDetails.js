@@ -104,7 +104,7 @@ const renderSimilar = ({ similar, firstname, ...props }) => {
   return (
     <View style={styles.seperator}>
     <Text style={styles.cardText}>Similar to {firstname}:</Text>
-      <View style={{ alignItems: 'center' }}>
+      <View style={{ alignItems: 'center', paddingTop: 5 }}>
         <ScrollView horizontal>
           {
             Immutable.Set(similar).sortBy(m => m.similarity).take(4).map(member => (
