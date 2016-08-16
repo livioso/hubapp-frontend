@@ -16,6 +16,7 @@ export const Searchbar = ({ search, searchText }) => (
         autoCorrect={false}
         clearButtonMode="always"
         style={[font.text, styles.searchBarTextInput]}
+        placeholderTextColor={"rgb(146, 146, 146)"}
         returnKeyType="done"
         placeholder="Search for members or skills..." />
       { renderLoupe(searchText) }
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   searchBarLoupe: {
-    color: 'rgba(146, 146, 146, 0.5)',
+    color: 'rgba(146, 146, 146, 0.7)',
     backgroundColor: color.light,
     position: 'absolute',
     right: 8,
