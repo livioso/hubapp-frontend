@@ -1,5 +1,7 @@
 ## HubApp
 
+**Prototype for a community app for the Impact Hub Zurich built with React Native, Redux and ImmutableJS.**
+
 ### Overview
 ![Overview](./docs/Overview.png)
 
