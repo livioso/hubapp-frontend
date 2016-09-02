@@ -4,12 +4,6 @@
 >  
 > Built with ♥️ by [@livioso](https://github.com/livioso/) and [@raphioriginal](https://github.com/RaphiOriginal)
 
-### Overview
-![Overview](./docs/Overview.png)
-
-### Architecture
-![Architecture](./docs/Architecture.png)
-
 ### Getting Started
 
 In order to get the simulator running do the following:
@@ -39,3 +33,9 @@ Run Build on device:
 - XCode: Change `Product -> Scheme -> Edit Scheme` from `debug` to `production`
 - Bundle code and assets: `npm run bundle`
 - Change `jsCodeLocation` in _AppDelegate.m_ to `jsbundle`.
+
+### Overview
+![Overview](./docs/Overview.png)
+
+### Architecture
+![Architecture](./docs/Architecture.png)
