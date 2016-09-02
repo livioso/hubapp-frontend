@@ -4,11 +4,11 @@
 >  
 > Built with ♥️ by [@livioso](https://github.com/livioso/) and [@raphioriginal](https://github.com/RaphiOriginal)
 
-### Overview
+### 🐌 Overview
 ![Overview](./docs/Overview.png)
 
-### Architecture
-![Architecture](./docs/Architecture.png)♥️
+### 🔍 Architecture
+![Architecture](./docs/Architecture.png)
 
 ### Getting Started
 
