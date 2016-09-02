@@ -1,6 +1,7 @@
 ## HubApp
 
 Prototype for a community app for the Impact Hub Zurich built with React Native, Redux and ImmutableJS.  
+  
 Built with ♥️ by @livioso and @raphioriginal.
 
 ### Overview
