@@ -2,7 +2,7 @@
 
 > Prototype for a community app for the Impact Hub Zurich built with React Native, Redux and ImmutableJS.  
 >  
-> Built with ♥️ by [@livioso](https://github.com/livioso/) and [@raphioriginal](https://github.com/RaphiOriginal)
+> Built with ♥️ by [@livioso](https://github.com/livioso/) and [@raphioriginal](https://github.com/RaphiOriginal).
 
 ### Overview
 ![Overview](./docs/Overview.png)
